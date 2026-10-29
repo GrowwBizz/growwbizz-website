@@ -8,7 +8,7 @@
 <meta property="og:title" content="GrowwBizz: Business registration, GST and compliance across India">
 <meta property="og:description" content="Clear prices, no 100% advance. Company, LLP, OPC, GST, ITR, trademark, MSME and more.">
 <meta property="og:image" content="https://www.growwbizz.in/favicon.png">
-<meta name="theme-color" content="#071812">
+<meta name="theme-color" content="#f7f3ea">
 <title>GrowwBizz</title>
 <meta name="description" content="GrowwBizz: company, LLP and OPC registration, GST, income tax, ROC compliance, MSME, trademark, IEC, Startup India and project reports. Online across India, with clear prices and step-by-step payment.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -395,7 +395,7 @@ footer .legal { border-top: 1px solid var(--hair-2); padding-block: 22px; displa
 .chat .ch .av svg { width: 22px; height: 22px; }
 .chat .ch b { display: block; font-size: 16.5px; }
 .chat .ch small { color: var(--em-t); font-size: 14px; }
-.chat .ch button { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: var(--sunk); cursor: pointer; display: grid; place-items: center; }
+.chat .ch button { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.14); color: #fffbf2; cursor: pointer; display: grid; place-items: center; }
 .chat .ch button svg { width: 16px; height: 16px; }
 .chat .log { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
 .msg { max-width: 88%; padding: 11px 14px; border-radius: 18px; font-size: 15.5px; line-height: 1.55; }
@@ -472,11 +472,14 @@ footer .legal { border-top: 1px solid var(--hair-2); padding-block: 22px; displa
 .pcard li b { white-space: nowrap; color: var(--ink); text-align: right; }
 .pcard .pay { padding: 16px 26px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--hair-2); background: var(--sunk); }
 .pcard .pay b { color: var(--gold-t2); }
+.pcard .pay.payafter { background: linear-gradient(135deg, rgba(25,179,138,.18), rgba(25,179,138,.06)); border-top: 2px solid var(--emerald); color: var(--ink-2); font-size: 15.5px; }
+.pcard .pay.payafter b { display: block; color: var(--em-t); font-size: 17px; margin-bottom: 2px; }
 .pcard .acts { padding: 18px 26px 26px; display: grid; gap: 10px; }
 .svc-body.calc-on .pcard .acts > .btn { display: none; }
 .pcard .minor { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 4px 10px; font-size: 14.5px; color: var(--muted); margin-top: 2px; }
 .pcard .minor button, .pcard .minor a { font: inherit; font-weight: 700; color: var(--ink-2); background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; gap: 6px; }
 .pcard .minor svg { width: 16px; height: 16px; }
+.pcard .hours { margin: 0; text-align: center; font-size: 13.5px; color: var(--muted); }
 .helpbox { border-radius: 18px; border: 1px solid var(--hair-2); background: var(--glass); padding: 16px 18px; font-size: 15px; color: var(--muted); }
 .helpbox b { color: var(--ink); display: block; font-size: 16px; }
 @media (max-width: 1000px) { .svc-body { grid-template-columns: 1fr; } .side { position: static; order: -1; } .stabs { top: 70px; } }
@@ -509,6 +512,10 @@ footer .legal { border-top: 1px solid var(--hair-2); padding-block: 22px; displa
 .am-total { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding-top: 12px; margin: 6px 0 14px; border-top: 1px dashed var(--hair); font-weight: 700; font-size: 15px; }
 .am-total span:last-child { font-family: var(--display); font-weight: 600; font-size: 36px; color: var(--gold-t2); }
 .am-res .btn { width: 100%; }
+.rtype { margin: 0 0 16px; }
+.am-card .rkind { display: inline-block; font-size: 12.5px; font-weight: 800; letter-spacing: .04em; padding: 2px 9px; border-radius: 999px; margin: 2px 0 8px; background: var(--glass-2); color: var(--ink-2); }
+.am-card .rf { font-size: 14.5px; line-height: 1.45; margin-top: 4px; } .am-card .rf span { display: inline-block; min-width: 46px; font-weight: 800; color: var(--muted); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; }
+.am-card.rk-simple { border-left-color: var(--emerald-2); } .am-card.rk-approval { border-left-color: var(--gold); } .am-card.rk-complex { border-left-color: var(--danger); } .am-card.rk-none { border-left-color: var(--hair-2); }
 @media (max-width: 760px) { .amend-grid { grid-template-columns: 1fr; } .am-res { position: static; } }
 
 .float-wa-unused { position: fixed; right: calc(20px + env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 50; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); color: #04170c; display: grid; place-items: center; box-shadow: 0 14px 34px rgba(37,194,106,.35); }
@@ -527,7 +534,9 @@ input::placeholder, textarea::placeholder { color: #a9bab3 !important; opacity: 
 .stepn { display: block; font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--em-t); margin-bottom: 4px; }
 table.cb { width: 100%; border-collapse: collapse; margin: 6px 0 4px; font-size: calc(var(--cfs, 15.5px) - 1px); }
 table.cb td { padding: 6px 0; border-bottom: 1px solid var(--hair-2); vertical-align: top; }
-table.cb td:last-child { text-align: right; white-space: nowrap; font-weight: 700; padding-left: 10px; color: var(--ink); }
+table.cb { table-layout: fixed; }
+table.cb td:first-child { width: 52%; }
+table.cb td:last-child { text-align: right; font-weight: 700; padding-left: 10px; color: var(--ink); overflow-wrap: anywhere; }
 table.cb tr.t td { border-bottom: 0; border-top: 1px solid var(--gold); font-weight: 800; color: var(--gold-t2); font-size: 16px; padding-top: 8px; }
 .quick button[disabled] { cursor: default; opacity: .45; }
 .quick.done button.on, .quick.multi button.on { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); opacity: 1; }
@@ -578,6 +587,7 @@ table.cb tr.t td { border-bottom: 0; border-top: 1px solid var(--gold); font-wei
 .cline small { display: block; margin-top: 4px; color: var(--gold-t2); font-size: 13.5px; }
 .cq { display: flex; align-items: center; gap: 6px; font-size: 14.5px; white-space: nowrap; }
 .cq button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--hair); background: var(--glass); color: var(--ink); font-weight: 800; font-size: 16px; cursor: pointer; }
+.cq-q { font-size: 14px; color: var(--gold-t2); }
 .cp { text-align: right; font-weight: 800; font-size: 16.5px; white-space: nowrap; }
 .cp .rm { display: block; margin-left: auto; margin-top: 4px; font: inherit; font-size: 13px; font-weight: 600; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .ctot { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0 6px; border-top: 1px solid var(--gold); font-weight: 800; font-size: 17px; }
@@ -619,6 +629,9 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
 .menu > a, .menu > button { white-space: nowrap; }
 @media (max-width: 1460px) { .top .cta .btn-ghost { display: none; } .menu > a, .menu > button { padding: 9px 11px; } }
 .dnote { margin-top: 18px; padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--gold); background: rgba(235,199,127,.07); color: var(--ink-2); font-size: 15.5px; } .dnote b { color: var(--gold-t2); }
+.ferr { display: block; color: var(--danger); font-size: 14px; font-weight: 700; line-height: 1.4; }
+.ferr:empty { display: none; }
+input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(255,138,101,.15); }
 .cdet { margin: 10px 0 4px; padding: 12px 14px; border-radius: 14px; background: var(--sunk); border: 1px solid var(--hair-2); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); } .cdet b { display: block; color: var(--gold-t2); margin-bottom: 2px; }
 .oid { margin: -8px 0 10px; font-size: 14.5px; color: var(--muted); letter-spacing: .02em; } .oid b { color: var(--gold-t2); font-size: 15.5px; letter-spacing: .06em; margin-left: 6px; }
 .cwho { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; margin-top: 4px; }
@@ -777,7 +790,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
 [data-theme="light"] .chat { box-shadow: 0 30px 70px rgba(11,42,34,.25); }
 </style>
 
-<script>try { if (localStorage.getItem("gb-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}</script>
+<script>document.documentElement.setAttribute("data-theme", "light"); try { if (localStorage.getItem("gb-theme2") === "dark") document.documentElement.removeAttribute("data-theme"); } catch (e) {}</script>
 <header class="top" id="topbar">
   <div class="wrap">
     <a class="logo" href="#" aria-label="GrowwBizz home"><img class="lg-light" src="logo-light.png" alt="GrowwBizz" width="145" height="35"><img class="lg-dark" src="logo-dark.png" alt="GrowwBizz" width="145" height="35"></a>
@@ -880,10 +893,10 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
               <div class="field" id="state-f"><label for="state">State of registered office</label><select id="state"></select></div>
               <div class="field"><label for="dirs" id="dirs-l">How many directors?</label><select id="dirs"></select><small class="hint" id="dirs-h">A Private Limited company needs at least 2.</small></div>
               <div class="field"><span class="lbl" id="dsc-l">Digital signature (DSC)</span>
-                <div class="dchoice" role="radiogroup" aria-labelledby="dsc-l"><button type="button" role="radio" aria-checked="true" data-dsc="new"><i></i><span><b>Make new DSCs with us</b><small>Recommended · ₹2,000 per person</small></span></button><button type="button" role="radio" aria-checked="false" data-dsc="own"><i></i><span><b>Some already have a valid DSC</b><small>Class 3 and not expired</small></span></button></div>
+                <div class="dchoice" role="radiogroup" aria-labelledby="dsc-l"><button type="button" role="radio" aria-checked="true" data-dsc="new"><i></i><span><b>Buy DSC</b><small>Recommended · ₹2,000 per person</small></span></button><button type="button" role="radio" aria-checked="false" data-dsc="own"><i></i><span><b>I already have DSC</b><small>Class 3 and not expired</small></span></button></div>
                 <div id="have-f" class="have-f" hidden><label for="have" id="have-l">How many already have a valid DSC?</label><select id="have"></select></div>
-                <div class="hint dsc-rec"><b>Why make your DSC with us?</b>Registration needs several online forms signed with the DSC.
-                  <ul><li><b class="ok">With us:</b> all forms get signed smoothly, with no back-and-forth.</li><li><b class="no">Your own DSC:</b> we must contact you again and again to sign each form, which can delay registration.</li></ul></div></div>
+                <div class="hint dsc-rec"><b>Why buy DSC from us?</b>Don't have a DSC? We get it made for you, hassle-free.
+                  <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth.</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul></div></div>
               <details class="dsc-help"><summary>What is a DSC and do I need one?</summary>
                 <p>A <b>DSC (Digital Signature Certificate)</b> is an online signature on a USB token. Every director or partner signs the government (MCA) forms with it, so <b>each person needs one</b>.</p>
                 <ul><li><b>Best choice: make it with us</b> at the time of registration. We handle the signing of all incorporation forms smoothly, without chasing you for each form.</li><li><b>Already have one?</b> You can use it if it is a Class 3 DSC that is still valid (a DSC lasts 2 years), but expect us to ask you to sign several forms one by one.</li></ul>
@@ -955,7 +968,8 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
           <h2>Introduce a business. <em class="g">Get rewarded.</em></h2>
           <p>You don't need to be our client. When someone you refer takes our service and pays, you earn 10% of our professional fee.</p>
           <ul><li>Paid to your bank or UPI within 7 days after they pay</li><li>Track every referral on your phone</li><li>Join in a minute with your mobile number</li></ul>
-          <a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbyMdb7wU_zktnwPNGKcHUOwvflPgYGlJVHax-Qr16vKoUwZapCznB_pXEYgu0WVRJp5/exec" target="_blank" rel="noopener">Join &amp; refer now</a>
+          <a class="btn btn-gold" href="refer.html" target="_blank" rel="noopener">Join &amp; refer now</a>
+          <p class="fine" style="margin-top:10px">Prefer WhatsApp? You can also <a href="https://wa.me/919203601998?text=Hi%20GrowwBizz%2C%20I%20want%20to%20join%20Refer%20%26%20Earn." target="_blank" rel="noopener" style="color:var(--gold-t2);font-weight:700">join on WhatsApp</a>.</p>
         </div>
         <div class="big"><b class="gold-text">10%</b><small>of our professional fee, for every client you refer</small></div>
       </div>
@@ -1050,8 +1064,8 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
   var CATS = [
     { id: "start", cls: "c-start", name: "Start a Business", blurb: "Company, LLP and OPC registration, Startup India" },
     { id: "gst", cls: "c-gst", name: "GST", blurb: "Registration, return filing, amendments and LUT" },
-    { id: "roc", cls: "c-roc", name: "ROC Compliances", blurb: "Yearly MCA filings for companies and LLPs, Director KYC" },
-    { id: "tax", cls: "c-tax", name: "Income Tax", blurb: "ITR for individuals, professionals and businesses" },
+    { id: "roc", cls: "c-roc", name: "ROC Compliances", blurb: "Yearly MCA filings, INC-20A, Director KYC and ROC changes" },
+    { id: "tax", cls: "c-tax", name: "Income Tax", blurb: "ITR and TDS returns for individuals and businesses" },
     { id: "reg", cls: "c-reg", name: "Registrations & Licences", blurb: "MSME (Udyam), IEC, Digital Signature" },
     { id: "brand", cls: "c-brand", name: "Brand Protection", blurb: "Trademark search and registration" },
     { id: "fin", cls: "c-fin", name: "Project Reports", blurb: "Project report and CMA data for bank loans" }
@@ -1065,7 +1079,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       facts: ["About 3 to 7 working days", "Minimum 2 directors", "Fully online"],
       about: "A Private Limited Company is a separate legal entity owned by its shareholders and run by its directors. Owners' personal assets are protected, and it is the preferred structure for investors and banks.",
       who: ["Startups that plan to raise investment", "Businesses that want to add partners as shareholders", "Founders who want limited liability and a strong brand image", "Businesses dealing with large clients or government tenders"],
-      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "WhatsApp updates at every step"],
+      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "INC-20A (commencement of business) filing: our fee free, only govt fee", "ADT-1 (first auditor appointment) filing: our fee free, only govt fee", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each director and shareholder"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement or electricity bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["Office electricity bill", "Of the registered office, not older than 2 months"], ["Rent agreement and owner NOC", "Only if the office is rented"]],
       steps: [["Name application", "Share two proposed names and your business activity. We file the name application with MCA.", "1 to 3 working days"], ["Documents and DSC", "DSCs are issued and we draft the MOA, AOA and incorporation forms for signing.", "1 to 2 working days"], ["Incorporation", "We file with MCA. Your Certificate of Incorporation, DIN, PAN and TAN are issued.", "2 to 3 working days"]],
       breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fee: name application", "₹1,000"], ["Govt fee: PAN and TAN", "₹143"], ["State stamp duty and registration", "Varies by state"], DSC_ROW],
@@ -1113,8 +1127,8 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       pay: "Paid in steps, just before each step starts.",
       faq: [["Is DPIIT recognition free from the government?", "Yes, the government does not charge a fee for DPIIT recognition."], ["Do you help with funding?", "No. Our service covers DPIIT recognition only."]] },
 
-    { id: "gst-registration", cat: "gst", name: "GST Registration", short: "GST Registration",
-      price: 499, plus: "professional fee", card: "Get your GSTIN to bill with GST and claim input tax credit.",
+    { id: "gst-registration", cat: "gst", name: "GST Registration", short: "GST Registration", tag: "Pay after certificate",
+      price: 499, plus: "professional fee", payAfter: "Pay after GST certificate delivery", card: "Get your GSTIN to bill with GST and claim input tax credit.",
       sub: "Get your GST number online, with the right business category and place of business.",
       facts: ["Usually 3 to 7 working days", "No govt fee", "Fully online"],
       about: "GST registration gives your business a GSTIN. It is required once turnover crosses the threshold, for selling on e-commerce platforms, for inter-state supply of goods, and many other cases.",
@@ -1123,8 +1137,8 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       docs: [["PAN card", "Of the business or proprietor"], ["Aadhaar card", "Of proprietor, partners or directors"], ["Photograph", "Of proprietor, partners or directors"], ["Business address proof", "Electricity bill and rent agreement or NOC"], ["Bank details", "Cancelled cheque or bank statement"], ["Business documents", "Incorporation certificate or partnership deed, if any"]],
       steps: [["Documents check", "We check your documents and choose the right category.", "Same day"], ["Application filing", "We file the application. You complete Aadhaar OTP authentication.", "1 working day"], ["GSTIN issued", "The GST officer verifies and approves. We answer any query raised.", "Usually 3 to 7 working days"]],
       breakup: [["GrowwBizz professional fee", "₹499"], ["Govt fee", "Nil"]],
-      pay: "Our fee is paid before we file the application.",
-      faq: [["Is there a government fee for GST registration?", "No, GST registration is free on the government portal."], ["Can I register from home?", "Yes, your home can be your place of business with an electricity bill and owner NOC."]] },
+      pay: "Pay our fee only after your GST certificate is delivered to you.",
+      faq: [["When do I pay?", "Only after your GST certificate (REG-06) is issued and delivered to you."], ["Is there a government fee for GST registration?", "No, GST registration is free on the government portal."], ["Can I register from home?", "Yes, your home can be your place of business with an electricity bill and owner NOC."]] },
 
     { id: "gst-filing", cat: "gst", name: "GST Return Filing", short: "GST Return Filing", tag: "From ₹200",
       price: 200, from: true, plus: "per return", card: "GSTR-1 and GSTR-3B filed on time, monthly or quarterly.",
@@ -1209,6 +1223,19 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       pay: "Paid per form, before we file it.",
       faq: [["Why is ADT-1 free?", "For companies registered through GrowwBizz, we file the auditor appointment (ADT-1) with no professional fee."], ["What is MGT-7A?", "A shorter annual return for small companies and OPCs."]] },
 
+    { id: "inc-20a", cat: "roc", name: "Commencement of Business (INC-20A)", short: "INC-20A", tag: "Free if registered with us",
+      price: 999, plus: "+ govt fee", card: "Mandatory declaration within 180 days of incorporation. Free for companies registered with us.",
+      sub: "File the declaration of commencement of business (INC-20A) after the shareholders pay for their shares.",
+      facts: ["Within 180 days of incorporation", "Free if registered with us", "Fully online"],
+      about: "Every company with share capital incorporated after November 2019 must file INC-20A within 180 days of incorporation, confirming that the subscribers have paid for their shares into the company's bank account. Until it is filed, the company cannot start business or borrow, and late filing attracts a penalty of ₹50,000 on the company and ₹1,000 per day on each director (up to ₹1 lakh), and the ROC can strike the company off.",
+      who: ["Private Limited companies and OPCs incorporated in the last 180 days", "Companies that missed the 180-day deadline (late filing)"],
+      get: ["Check of the share money received in the bank", "INC-20A prepared and certified as needed", "Filing with MCA", "Filing receipt (SRN) shared with you"],
+      docs: [["Company bank statement", "Showing share capital received from each subscriber"], ["Certificate of Incorporation", ""], ["DSC of a director", "We use the DSC made at registration"]],
+      steps: [["Share money", "Shareholders pay their subscription into the company's bank account.", "After the bank account opens"], ["Preparation", "We prepare INC-20A with the bank proof.", "1 working day"], ["Filing", "Filed with MCA, signed with the director's DSC.", "Same day"]],
+      breakup: [["GrowwBizz fee", "₹999 (free if registered with us)"], ["Govt fee", "As per capital, ₹200 up to ₹1 lakh"]],
+      pay: "Our fee (if any) and the govt fee are paid before we file.",
+      faq: [["My company was registered by GrowwBizz. Do I pay?", "Only the govt fee. Our professional fee is free."], ["What if I miss 180 days?", "The form can still be filed with additional fees, but penalties apply. Contact us quickly."]] },
+
     { id: "dir-kyc", cat: "roc", name: "Director KYC (DIR-3 KYC)", short: "Director KYC",
       price: 499, plus: "per director", card: "Keep your DIN active and avoid the ₹5,000 late fee.",
       sub: "File DIR-3 KYC for every director or designated partner who holds a DIN, and keep the DIN active.",
@@ -1222,10 +1249,10 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       pay: "Our fee is paid before we file.",
       faq: [["What if my DIN is deactivated?", "File the KYC with the ₹5,000 fee and the DIN is reactivated."]] },
 
-    { id: "other-roc", cat: "roc", name: "Other ROC Filings", short: "Other ROC Filings",
-      price: 0, quote: true, plus: "price on request", card: "Change of directors, partners, office, capital and more. Tell us what you need.",
-      sub: "Any other MCA filing for your company or LLP. Tell us your requirement and we'll send a clear quote.",
-      facts: ["Quote the same day", "Companies and LLPs"],
+    { id: "other-roc", cat: "roc", name: "ROC Changes & Amendments", short: "ROC Changes", tag: "Interactive checker",
+      price: 0, quote: true, plus: "price on request", card: "Change directors, partners, office, capital, name and more. See the forms and documents your change needs.",
+      sub: "Report changes in your company or LLP to MCA the right way. Tick what has changed to see the forms, approvals, time limits and documents.",
+      facts: ["Quote the same day", "Private Limited, OPC and LLP"], tool: "rocamend",
       about: "Besides yearly compliance, companies and LLPs must report many changes to MCA. Tell us what has changed and we'll confirm the forms, documents and cost.",
       who: ["Appointing or removing a director (DIR-12)", "Shifting the registered office (INC-22)", "Increasing authorised capital (SH-7) or allotting shares (PAS-3)", "Adding or removing an LLP partner (Form 4) or changing the LLP Agreement", "Changing the company or LLP name or business objects"],
       get: ["Check of the forms needed", "Drafting of resolutions and forms", "Filing with MCA", "Filing receipts and approvals"],
@@ -1247,6 +1274,19 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       breakup: [["GrowwBizz professional fee", "From ₹499"], ["Govt fee", "Nil"]],
       pay: "Our fee after you approve the computation, before filing.",
       faq: [["What is the due date?", "Usually 31 July for individuals not requiring audit. Due dates can change by government notification."], ["I missed the due date. Can I still file?", "Yes, a belated return can be filed with a late fee, within the time allowed."]] },
+
+    { id: "tds-return", cat: "tax", name: "TDS Return Filing (24Q / 26Q)", short: "TDS Return",
+      price: 1499, plus: "per quarterly return", card: "Quarterly TDS returns for salary and other payments, with Form 16 and 16A.",
+      sub: "Quarterly TDS return filing for businesses and employers, with challan matching, correct PAN details and Form 16 and 16A.",
+      facts: ["Quarterly returns", "Form 16 and 16A", "Fully online"],
+      about: "Anyone who deducts TDS must file a quarterly TDS return: Form 24Q for salaries and Form 26Q for other payments such as rent, contractors and professional fees. Late filing costs ₹200 per day under section 234E, and wrong PAN or challan details lead to notices. We match every challan, check PANs and file on time.",
+      who: ["Businesses and employers with a TAN", "Companies, LLPs and firms deducting TDS on rent, contractors or professionals", "Employers deducting TDS on salary", "Anyone who received a TDS default notice"],
+      get: ["Challan matching with deductee entries", "PAN check of all deductees", "Form 24Q or 26Q prepared and filed", "Form 16 or 16A generated for deductees", "Filing acknowledgement shared with you"],
+      docs: [["TAN and TRACES login", "Or we help you register"], ["TDS challans paid", "Challan details or receipts for the quarter"], ["Deductee details", "Name, PAN, amount paid and TDS deducted"], ["Salary details", "For Form 24Q, employee-wise"]],
+      steps: [["Share data", "Send challans and deductee details for the quarter.", "Day 1"], ["Preparation", "We match challans, check PANs and prepare the return.", "1 to 2 working days"], ["Filing", "We file the return and share the acknowledgement and Form 16 or 16A.", "Same day as approval"]],
+      breakup: [["GrowwBizz fee, per quarterly return", "₹1,499"], ["Govt fee", "Nil"]],
+      pay: "Our fee is paid before we file the return.",
+      faq: [["What are the due dates?", "31 July, 31 October, 31 January and 31 May for the four quarters. Due dates can change by government notification."], ["Is there a penalty for late filing?", "Yes, ₹200 per day under section 234E until the return is filed, up to the TDS amount, plus possible penalty for wrong details."]] },
 
     { id: "msme", cat: "reg", name: "MSME (Udyam) Registration", short: "MSME (Udyam)",
       price: 499, plus: "professional fee", card: "Your Udyam certificate to access MSME benefits.",
@@ -1382,7 +1422,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
 
   // Search
   var q = document.getElementById("q"), sugg = document.getElementById("sugg"), sel = -1;
-  var KEYS = { "private-limited": "company pvt ltd private limited incorporation startup", llp: "llp partnership limited liability", opc: "opc one person company solo", "startup-india": "startup india dpiit recognition", "gst-registration": "gst registration gstin new", "gst-filing": "gst return filing gstr 3b gstr1 nil monthly quarterly", "gst-ecommerce": "gst ecommerce amazon flipkart meesho online seller", itr: "itr income tax return filing salary", msme: "msme udyam registration", iec: "iec import export code dgft", dsc: "dsc digital signature", trademark: "trademark brand logo tm", "project-report": "project report cma loan bank", "gst-amendment": "gst amendment change address name partner bank core non core", lut: "lut export letter of undertaking rfd-11 igst", "llp-compliance": "llp roc form 8 form 11 form 3 annual compliance", "company-compliance": "roc company annual compliance aoc-4 mgt-7 adt-1 audit", "dir-kyc": "director kyc dir-3 din", "other-roc": "roc mca change director office capital dir-12 inc-22" };
+  var KEYS = { "inc-20a": "inc 20a inc20a commencement of business declaration", "tds-return": "tds return 24q 26q tds filing form 16 16a tan", "other-roc": "roc change amendment director appointment resignation registered office capital increase name change llp partner form 4 form 3 dir-12 inc-22 sh-7", "private-limited": "company pvt ltd private limited incorporation startup", llp: "llp partnership limited liability", opc: "opc one person company solo", "startup-india": "startup india dpiit recognition", "gst-registration": "gst registration gstin new", "gst-filing": "gst return filing gstr 3b gstr1 nil monthly quarterly", "gst-ecommerce": "gst ecommerce amazon flipkart meesho online seller", itr: "itr income tax return filing salary", msme: "msme udyam registration", iec: "iec import export code dgft", dsc: "dsc digital signature", trademark: "trademark brand logo tm", "project-report": "project report cma loan bank", "gst-amendment": "gst amendment change address name partner bank core non core", lut: "lut export letter of undertaking rfd-11 igst", "llp-compliance": "llp roc form 8 form 11 form 3 annual compliance", "company-compliance": "roc company annual compliance aoc-4 mgt-7 adt-1 audit", "dir-kyc": "director kyc dir-3 din", "other-roc": "roc mca change director office capital dir-12 inc-22" };
   function renderSugg() {
     var t = q.value.trim().toLowerCase();
     if (!t) { sugg.hidden = true; return; }
@@ -1401,13 +1441,13 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
   document.addEventListener("click", function (e) { if (!e.target.closest(".search")) sugg.hidden = true; });
   document.getElementById("chips").insertAdjacentHTML("beforeend", ["private-limited", "gst-filing", "itr", "trademark", "company-compliance"].map(function (id) { return '<a href="#' + id + '">' + esc(byId[id].short) + "</a>"; }).join("") + '<a class="ref" href="#" data-go="refer">Refer &amp; Earn 10%</a>');
 
-  // Dark / light switch (dark is the default; choice remembered on this device)
+  // Dark / light switch (light is the default; choice remembered on this device)
   var themeBtn = document.getElementById("theme-btn");
   function syncTheme() { var light = document.documentElement.getAttribute("data-theme") === "light", t = light ? "Switch to dark mode" : "Switch to light mode"; themeBtn.setAttribute("aria-label", t); themeBtn.title = t; }
   themeBtn.addEventListener("click", function () {
     var light = document.documentElement.getAttribute("data-theme") !== "light";
     if (light) document.documentElement.setAttribute("data-theme", "light"); else document.documentElement.removeAttribute("data-theme");
-    try { localStorage.setItem("gb-theme", light ? "light" : "dark"); } catch (e) {}
+    try { localStorage.setItem("gb-theme2", light ? "light" : "dark"); } catch (e) {}
     syncTheme();
   });
   syncTheme();
@@ -1431,7 +1471,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
   }
   function fillHave() {
     var d = +dirSel.value, cur = Math.min(Math.max(+haveSel.value || 1, 1), d), h = "";
-    for (var i = 1; i <= d; i++) h += '<option value="' + i + '"' + (i === cur ? " selected" : "") + ">" + (i === d ? (d === 2 ? "Both" : "All " + d) + " have one, no new DSC" : i + " of " + d + " has one, make " + (d - i) + " new") + "</option>";
+    for (var i = 1; i <= d; i++) h += '<option value="' + i + '"' + (i === cur ? " selected" : "") + ">" + (i === d ? (d === 2 ? "Both" : "All " + d) + " have DSC, buy none" : i + " of " + d + " has DSC, buy " + (d - i)) + "</option>";
     haveSel.innerHTML = h;
     document.getElementById("have-l").textContent = type === "opc" ? "Of the director and nominee, how many already have one?" : "How many of the " + d + " already have one?";
   }
@@ -1500,7 +1540,11 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     [11, 15, "Advance tax, 3rd instalment", "75% of the year's tax, cumulative", "tax", "itr"],
     [11, 31, "GSTR-9 / 9C", "GST annual return and reconciliation", "gst", "gst-filing"],
     [11, 31, "Belated or revised ITR", "Last date for the previous year's return", "tax", "itr"],
-    [2, 15, "Advance tax, 4th instalment", "100% of the year's tax", "tax", "itr"]
+    [2, 15, "Advance tax, 4th instalment", "100% of the year's tax", "tax", "itr"],
+    [6, 31, "TDS return, Q1", "Form 24Q / 26Q for April to June", "tax", "tds-return"],
+    [9, 31, "TDS return, Q2", "Form 24Q / 26Q for July to September", "tax", "tds-return"],
+    [0, 31, "TDS return, Q3", "Form 24Q / 26Q for October to December", "tax", "tds-return"],
+    [4, 31, "TDS return, Q4", "Form 24Q / 26Q for January to March", "tax", "tds-return"]
   ];
   var GTAG = { gst: "GST", tax: "Income Tax", co: "Company", llp: "LLP" };
   // ROC card in the tools section
@@ -1588,7 +1632,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     if (!fCat) { e.preventDefault(); err.textContent = "Please choose what you need help with."; }
     else if (fCat !== "other" && !fSvc) { e.preventDefault(); err.textContent = "Please choose the service."; }
     else if (!nm.value.trim()) { e.preventDefault(); err.textContent = "Please enter your name."; }
-    else if (!/^[6-9]\d{9}$/.test(mob.value)) { e.preventDefault(); err.textContent = "Please enter a valid 10-digit mobile number."; }
+    else if (!/^[6-9]\d{9}$/.test(mob.value)) { e.preventDefault(); err.textContent = "Please enter a valid 10-digit mobile number."; mobCheck(mob, true); mob.focus(); }
     else if (forCheck(efor, mob.value)) { e.preventDefault(); err.textContent = forCheck(efor, mob.value); }
     else {
       err.textContent = "";
@@ -1645,6 +1689,69 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       res.innerHTML = h;
     }
     AM.forEach(function (a) { var el = document.getElementById(a.id); if (el) el.addEventListener("change", draw); });
+    draw();
+  }
+
+  // ROC change checker (Private Limited / OPC and LLP only; not for public, Section 8 or producer companies).
+  // k: "simple" = filed with ROC; "approval" = needs a special resolution or ROC approval; "complex" = Regional Director or longer process; "none" = no MCA form
+  var RAM = [
+    { id: "r-dir-add", e: "co", k: "simple", t: "Appoint a new director", n: "Or an additional director", f: "DIR-12 (and DIN for a new person)", w: "Within 30 days of appointment", docs: ["PAN, Aadhaar, photo and address proof of the new director", "Consent (DIR-2) and declaration (DIR-8), we draft them", "DSC of the new director (we can make one)", "Board resolution, we draft it"] },
+    { id: "r-dir-out", e: "co", k: "simple", t: "Director resigns or is removed", n: "At least 2 directors must remain (1 in an OPC)", f: "DIR-12 (DIR-11 by the director, optional)", w: "Within 30 days of resignation", docs: ["Resignation letter with date", "Board resolution noting the resignation"] },
+    { id: "r-dir-reg", e: "co", k: "simple", t: "Regularise an additional director", n: "Confirmed as a director at the general meeting", f: "DIR-12", w: "Within 30 days of the meeting", docs: ["Notice and minutes of the general meeting, we draft them"] },
+    { id: "r-ro-local", e: "co", k: "simple", t: "Shift registered office in the same city", n: "Within the same town or village", f: "INC-22", w: "Within 30 days of the shift", docs: ["Electricity bill of the new office, not older than 2 months", "Rent agreement and owner NOC, if rented", "Board resolution, we draft it"] },
+    { id: "r-ro-city", e: "co", k: "approval", t: "Shift registered office to another city, same state", n: "Needs shareholders' special resolution", f: "MGT-14 and INC-22 (plus INC-23 if the ROC changes)", w: "MGT-14 within 30 days of the resolution", docs: ["Electricity bill of the new office", "Rent agreement and owner NOC, if rented", "Special resolution and meeting notice, we draft them"] },
+    { id: "r-ro-state", e: "co", k: "complex", t: "Shift registered office to another state", n: "Needs Regional Director approval", f: "MGT-14, INC-23, INC-28 and INC-22", w: "Usually takes 2 to 3 months", docs: ["Special resolution and altered MOA", "Newspaper advertisement and notices to creditors", "List of creditors and directors' declaration", "Proof of the new office"] },
+    { id: "r-cap", e: "co", k: "simple", t: "Increase authorised capital", n: "Govt fee and stamp duty depend on the increase and state", f: "SH-7 (and MGT-14 if needed)", w: "Within 30 days of the shareholders' resolution", docs: ["Shareholders' resolution, we draft it", "Altered MOA (and AOA if needed)"] },
+    { id: "r-allot", e: "co", k: "approval", t: "Issue new shares", n: "To existing or new shareholders", f: "PAS-3 (plus MGT-14 and PAS-4/5 for a private placement)", w: "PAS-3 within 15 days of allotment", docs: ["Share money received in the company bank account", "Board and shareholder resolutions, we draft them", "Valuation report, if issued at a premium"] },
+    { id: "r-transfer", e: "co", k: "none", t: "Transfer shares between shareholders", n: "No MCA form; shown in the annual return", f: "Share transfer deed (SH-4) and stamp duty", w: "Board approves the transfer", docs: ["Share transfer deed signed by both parties", "Original share certificate", "Stamp duty paid on the transfer value"] },
+    { id: "r-name", e: "co", k: "approval", t: "Change the company name", n: "New certificate issued by the ROC", f: "RUN (name approval), MGT-14 and INC-24", w: "Special resolution within the name approval validity", docs: ["Two proposed names", "Special resolution and altered MOA and AOA", "Trademark check of the new name"] },
+    { id: "r-object", e: "co", k: "approval", t: "Change business activities (MOA objects)", n: "Needs shareholders' special resolution", f: "MGT-14", w: "Within 30 days of the resolution", docs: ["Special resolution, we draft it", "Altered MOA"] },
+    { id: "r-aoa", e: "co", k: "approval", t: "Change the Articles (AOA)", n: "Rules on shares, meetings, directors", f: "MGT-14", w: "Within 30 days of the resolution", docs: ["Special resolution, we draft it", "Altered AOA"] },
+    { id: "r-aud", e: "co", k: "simple", t: "Appoint or change the auditor", n: "Including after an auditor resigns", f: "ADT-1 (ADT-3 by a resigning auditor)", w: "Within 15 days of appointment", docs: ["Auditor's consent and eligibility certificate", "Board or shareholder resolution, we draft it"] },
+    { id: "r-close", e: "co", k: "complex", t: "Close the company (strike off)", n: "All pending filings must be completed first", f: "STK-2", w: "Usually takes 3 to 6 months", docs: ["Affidavits and indemnity bonds of directors", "Statement of accounts (nil assets and liabilities)", "Bank account closure proof", "Special resolution or consent of 75% shareholders"] },
+
+    { id: "l-partner", e: "llp", k: "simple", t: "Add or remove a partner or designated partner", n: "LLP agreement is also updated", f: "Form 4 and Form 3", w: "Within 30 days of the change", docs: ["PAN, Aadhaar, photo and address proof of the new partner", "DSC of the new partner (we can make one)", "Consent of the new partner", "Supplementary LLP agreement, we draft it (state stamp duty applies)"] },
+    { id: "l-agree", e: "llp", k: "simple", t: "Change the LLP agreement", n: "Profit sharing, duties or other terms", f: "Form 3", w: "Within 30 days of the change", docs: ["Supplementary LLP agreement, we draft it", "Stamp duty as per state"] },
+    { id: "l-contri", e: "llp", k: "simple", t: "Change capital contribution", n: "Increase or decrease", f: "Form 3", w: "Within 30 days of the change", docs: ["Supplementary LLP agreement showing the new contribution", "Proof of contribution received in the LLP bank account"] },
+    { id: "l-ro", e: "llp", k: "simple", t: "Shift registered office in the same state", n: "Partners' consent needed", f: "Form 15", w: "Within 30 days of the change", docs: ["Electricity bill of the new office, not older than 2 months", "Rent agreement and owner NOC, if rented", "Partners' consent, we draft it"] },
+    { id: "l-ro-state", e: "llp", k: "approval", t: "Shift registered office to another state", n: "Public notice needed before filing", f: "Form 15", w: "Newspaper notice at least 21 days before filing", docs: ["Partners' and creditors' consent", "Newspaper notice in two papers", "Proof of the new office"] },
+    { id: "l-name", e: "llp", k: "approval", t: "Change the LLP name", n: "New certificate issued", f: "RUN-LLP (name approval) and Form 5", w: "Within 30 days of the partners' consent", docs: ["Two proposed names", "Partners' consent", "Trademark check of the new name"] },
+    { id: "l-biz", e: "llp", k: "simple", t: "Change business activity", n: "Updated in the LLP agreement", f: "Form 3 (and Form 5 if the name changes)", w: "Within 30 days of the change", docs: ["Supplementary LLP agreement, we draft it"] },
+    { id: "l-close", e: "llp", k: "complex", t: "Close the LLP", n: "All pending Form 8 and Form 11 must be filed first", f: "Form 24", w: "Usually takes 3 to 6 months", docs: ["Statement of accounts (nil assets and liabilities)", "Partners' affidavits and indemnity bond", "Bank account closure proof"] }
+  ];
+  var RKIND = { simple: ["simple", "Filed with the ROC"], approval: ["approval", "Needs a resolution and ROC approval"], complex: ["complex", "Longer process with extra approvals"], none: ["none", "No MCA form needed"] };
+  function rocList(e) {
+    return RAM.filter(function (a) { return a.e === e; }).map(function (a) {
+      return '<label class="am-opt" for="' + a.id + '"><input type="checkbox" id="' + a.id + '" value="' + a.id + '"><span>' + a.t + (a.n ? "<small>" + a.n + "</small>" : "") + "</span></label>";
+    }).join("");
+  }
+  var ROC_BOX = '<div class="box amend" id="s-check"><h2>What has changed?</h2><p>Choose your business type and tick everything that has changed. We\'ll show the forms, time limit and documents. For Private Limited companies, OPCs and LLPs.</p>' +
+    '<div class="seg2 rtype" role="group" aria-label="Business type"><button type="button" aria-pressed="true" data-re="co">Private Limited / OPC</button><button type="button" aria-pressed="false" data-re="llp">LLP</button></div>' +
+    '<div class="amend-grid"><div id="r-list">' + rocList("co") + '</div><div class="am-res" id="r-res" aria-live="polite"></div></div></div>';
+
+  function initRocAmend() {
+    var res = document.getElementById("r-res"), list = document.getElementById("r-list"), ent = "co";
+    function draw() {
+      var picked = RAM.filter(function (a) { var el = document.getElementById(a.id); return a.e === ent && el && el.checked; });
+      if (!picked.length) { res.innerHTML = '<p class="empty">Tick one or more changes to see the forms and documents here.</p><p class="fine">Most changes must be filed within 30 days. Late filing attracts additional fees for each day of delay.</p>'; return; }
+      var h = picked.map(function (a) {
+        var k = RKIND[a.k];
+        return '<div class="am-card rk-' + k[0] + '"><b>' + a.t + '</b><span class="rkind">' + k[1] + '</span><div class="rf"><span>Form</span>' + a.f + '</div><div class="rf"><span>Time</span>' + a.w + "</div>" +
+          (a.docs ? "<ul>" + a.docs.map(function (d) { return "<li>" + d + "</li>"; }).join("") + "</ul>" : "") + "</div>";
+      }).join("");
+      var note = (ent === "co" ? "Company" : "LLP") + ": " + picked.map(function (a) { return a.t; }).join("; ");
+      h += '<div class="am-total"><span>Our fee</span><span style="font-size:22px">Clear quote, same day</span></div>' +
+        '<button type="button" class="btn btn-gold" data-order="other-roc" data-note="' + esc(note) + '">Request quote (adds to cart)</button>' +
+        '<p class="fine">Govt (MCA) fee depends on the form and your capital; we include it in the quote. Paid in steps, just before each step starts.</p>';
+      res.innerHTML = h;
+    }
+    document.querySelector(".rtype").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-re]"); if (!b) return;
+      ent = b.getAttribute("data-re");
+      document.querySelectorAll(".rtype button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      list.innerHTML = rocList(ent); draw();
+    });
+    list.addEventListener("change", draw);
     draw();
   }
 
@@ -1769,7 +1876,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     "gst-registration": function (a) {
       var d = DOCSBY["gst-registration"].docs[a.ent].filter(function (x) { return x[0].indexOf("address proof") < 0; });
       return h("GST registration for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 499], ["Govt fee", "Nil"]], 499) + h("Documents") + docLi(d) + h("Premises proof (" + (a.prem === "own" ? "owned" : a.prem === "rent" ? "rented" : "family-owned") + ")") + docLi(PREM[a.prem]) +
-        h("Steps") + li(["We file the application; you complete Aadhaar OTP authentication", "GST officer verifies; we reply to any query", "GSTIN usually issued in 3 to 7 working days"]) + "Our fee is paid before we file.";
+        h("Steps") + li(["We file the application; you complete Aadhaar OTP authentication", "GST officer verifies; we reply to any query", "GSTIN usually issued in 3 to 7 working days"]) + "<b>Pay our fee only after your GST certificate is delivered.</b>";
     },
     "gst-filing": function (a) {
       var rows = [["GrowwBizz fee per return", a.inv]]; if (a.iff) rows.push(["IFF upload, months 1 and 2 of each quarter", "₹499 each"]);
@@ -1897,7 +2004,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
   }
   function general(t, raw) {
     if (has(t, [" pay", "payment", "advance", "upfront", "refund"])) return "There's no big upfront payment. Work is split into steps, and you pay for each step (our fee for that step plus any government fee or DSC) just before we start it. Government fees, once paid, are non-refundable.";
-    if (has(t, ["refer", "earn", "commission", "reward"])) return 'Refer anyone who needs our services. When they pay, you get <b>10% of our professional fee</b> in your bank or UPI within 7 days. Existing clients get the same 10%. <a href="https://script.google.com/macros/s/AKfycbyMdb7wU_zktnwPNGKcHUOwvflPgYGlJVHax-Qr16vKoUwZapCznB_pXEYgu0WVRJp5/exec" target="_blank" rel="noopener">Join here</a>.';
+    if (has(t, ["refer", "earn", "commission", "reward"])) return 'Refer anyone who needs our services. When they pay, you get <b>10% of our professional fee</b> in your bank or UPI within 7 days. Existing clients get the same 10%. <a href="refer.html" target="_blank" rel="noopener">Join here</a>.';
     if (has(t, ["due date", "last date", "deadline", "gstr"])) return "GST due dates:" + li(["GSTR-1 monthly: 11th", "GSTR-3B monthly: 20th", "PMT-06 for quarterly filers (months 1 and 2): 25th", "GSTR-1 quarterly: 13th after the quarter", "GSTR-3B quarterly: 22nd or 24th, by state"]) + "Dates can change by government notification.";
     if (has(t, ["which", "difference", " vs ", "better", "compare", "choose"]) && has(t, ["llp", "pvt", "private", "opc", "company", "structure"])) return "Quick guide:" + li(["<b>Private Limited</b>: best if you plan to raise funds or grow big. Minimum 2 directors.", "<b>LLP</b>: for partners who want lower yearly compliance.", "<b>OPC</b>: a company with a single owner."]) + "All three are ₹899 + govt fee + DSC. Pick one below and I'll work out your exact cost.";
     if (has(t, ["where", "office", "location", "address", "visit"])) return "We're based in <b>Bhopal, Madhya Pradesh</b> (the heart of India), and work with clients across India fully online. No office visit needed.";
@@ -1991,6 +2098,19 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     // Backup route for pages that block fetch: an image request carrying the same data (same ID, so it is saved once)
     try { var img = new Image(); img.src = ORDERS_URL + "?d=" + encodeURIComponent(body); } catch (e) {}
   }
+  // Mobile number check shown right under the field while typing (cart, enquiry and "ordering for" fields)
+  function mobCheck(el, done) {
+    var v = el.value, msg = "";
+    if (v && !/^[6-9]/.test(v)) msg = "Mobile numbers start with 6, 7, 8 or 9. Please check.";
+    else if (done && v && v.length < 10) msg = "Please enter all 10 digits (" + v.length + " entered).";
+    var e = el.parentNode.querySelector(".ferr");
+    if (!e) { e = document.createElement("small"); e.className = "ferr"; e.setAttribute("role", "alert"); el.parentNode.appendChild(e); }
+    e.textContent = msg; el.classList.toggle("bad", !!msg); el.setAttribute("aria-invalid", msg ? "true" : "false");
+    return !msg;
+  }
+  var MOBS = "#c-mob, #c-fmob, #f-mob, #f-fmob";
+  document.addEventListener("input", function (e) { if (e.target.matches && e.target.matches(MOBS)) mobCheck(e.target, false); });
+  document.addEventListener("focusout", function (e) { if (e.target.matches && e.target.matches(MOBS)) mobCheck(e.target, true); });
   function me() { try { return JSON.parse(localStorage.getItem("gb-me") || "{}"); } catch (e) { return {}; } }
   function rememberMe(o) { try { localStorage.setItem("gb-me", JSON.stringify(o)); } catch (e) {} }
   // "Ordering for": the client may order for someone else; their name is needed, their mobile is optional.
@@ -2050,13 +2170,14 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
       var s = byId[l.id], u = unit(l), sub = u * l.q; total += sub; extras(s).forEach(function (x) { ex[x] = 1; });
       var opt = s.rates ? '<select data-ci="' + i + '" aria-label="Option for ' + esc(s.short) + '">' + s.rates.map(function (r, k) { return '<option value="' + k + '"' + (k === l.o ? " selected" : "") + ">" + esc(r[0]) + " · " + inr(r[1]) + "</option>"; }).join("") + "</select>" : "";
       var xs = extras(s);
-      return '<div class="cline"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + inr(sub) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div></div>';
+      return '<div class="cline"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : inr(sub)) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div></div>';
     }).join("");
-    var exl = Object.keys(ex), m = me();
+    var exl = Object.keys(ex), m = me(), qn = cart.filter(function (l) { return byId[l.id].quote; }).map(function (l) { return byId[l.id].short; });
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
-      '<div class="ctot"><span>GrowwBizz professional fee</span><b>' + inr(total) + "</b></div>" +
-      (exl.length ? '<p class="cnote">Plus ' + exl.join(" and ") + " where the law requires them. For a company, the govt fee depends on your state: " + '<a href="#" data-go="tools" data-cclose>see the calculator</a>. We share the full amount before we start.</p>' : '<p class="cnote">No government fee for these services.</p>') +
+      '<div class="ctot"><span>GrowwBizz professional fee</span><b>' + (qn.length && !total ? "On quote" : inr(total) + (qn.length ? " + quote" : "")) + "</b></div>" +
+      (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
+      (qn.length === cart.length ? "" : exl.length ? '<p class="cnote">Plus ' + exl.join(" and ") + " where the law requires them. For a company, the govt fee depends on your state: " + '<a href="#" data-go="tools" data-cclose>see the calculator</a>. We share the full amount before we start.</p>' : '<p class="cnote">No government fee for these services.</p>') +
       '<div class="cpromise"><b>No 100% advance.</b> You pay for each step just before we start it.</div>' +
       '<div class="cwho"><div class="field"><label for="c-name">Your name</label><input id="c-name" autocomplete="name" value="' + esc(m.name || "") + '"></div><div class="field"><label for="c-mob">Your mobile</label><input id="c-mob" inputmode="numeric" maxlength="10" autocomplete="tel" value="' + esc(m.mobile || "") + '"></div></div>' + forBlock("c", cfor) + '<div class="err" id="c-err" role="alert"></div>' +
       '<a class="btn btn-wa" id="cart-send" target="_blank" rel="noopener" href="' + wa(cartMsg(total, exl)) + '">' + document.querySelector(".top .btn-wa svg").outerHTML + "Place order via WhatsApp</a>" +
@@ -2065,7 +2186,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
   }
   function cartMsg(total, exl) {
     var m = me();
-    return "Hi GrowwBizz, I'd like these services.\nOrder ID: " + cartId + (m.name ? "\nName: " + m.name : "") + (m.mobile ? "\nMobile: " + m.mobile : "") + forLine(cfor) + "\n" + cart.map(function (l, n) { var s = byId[l.id]; return (n + 1) + ". " + s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (l.q > 1 ? " × " + l.q : "") + ": " + inr(unit(l) * l.q); }).join("\n") + "\nProfessional fee total: " + inr(total) + (exl.length ? " + " + exl.join(" + ") : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease share the full cost and documents list.";
+    return "Hi GrowwBizz, I'd like these services.\nOrder ID: " + cartId + (m.name ? "\nName: " + m.name : "") + (m.mobile ? "\nMobile: " + m.mobile : "") + forLine(cfor) + "\n" + cart.map(function (l, n) { var s = byId[l.id]; return (n + 1) + ". " + s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (l.q > 1 ? " × " + l.q : "") + ": " + (s.quote ? "fee on quote" : inr(unit(l) * l.q)); }).join("\n") + "\nProfessional fee total: " + (total ? inr(total) : "on quote") + (total && cart.some(function (l) { return byId[l.id].quote; }) ? " + quote" : "") + (exl.length ? " + " + exl.join(" + ") : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease share the full cost and documents list.";
   }
   var cartFocus = null;
   function openCart() { cartFocus = document.activeElement; renderCart(); cartEl.hidden = false; document.body.style.overflow = "hidden"; toastEl.hidden = true; cartEl.querySelector(".close").focus(); }
@@ -2102,7 +2223,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     if (e.target.closest("#cart-send")) {
       var m = me(), err = document.getElementById("c-err");
       if (!m.name) { e.preventDefault(); err.textContent = "Please enter your name."; return; }
-      if (!/^[6-9]\d{9}$/.test(m.mobile || "")) { e.preventDefault(); err.textContent = "Please enter a valid 10-digit mobile number."; return; }
+      if (!/^[6-9]\d{9}$/.test(m.mobile || "")) { e.preventDefault(); err.textContent = "Please enter a valid 10-digit mobile number."; var cm = document.getElementById("c-mob"); mobCheck(cm, true); cm.focus(); return; }
       var fe = forCheck(cfor, m.mobile); if (fe) { e.preventDefault(); err.textContent = fe; return; }
       err.textContent = "";
       track(Object.assign(forData(cfor), { type: "order", id: cartId, name: m.name, mobile: m.mobile, city: m.city || "", total: cartTotal(), extras: cartExtras().join(" + "), note: cartNote,
@@ -2138,13 +2259,13 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     var breakup = s.breakup.map(function (x) { return "<li><span>" + x[0] + "</span><b>" + x[1] + "</b></li>"; }).join("");
     svcView.innerHTML =
       '<section class="svc-hero"><div class="aurora" aria-hidden="true"></div><div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="#">Home</a><span>/</span><a href="#" data-sheet="' + c.id + '">' + c.name + "</a><span>/</span><span>" + esc(s.short) + "</span></nav>" +
-      '<span class="kicker">' + c.name + "</span><h1>" + esc(s.name) + '</h1><p class="sub">' + esc(s.sub) + '</p><div class="facts">' + s.facts.map(function (f) { return "<span>" + esc(f) + "</span>"; }).join("") + "<span class=\"hi\">No 100% advance</span></div></div></section>" +
-      '<div class="wrap svc-body"><div class="svc-main">' + (s.tool === "amend" ? AMEND_BOX : "") +
+      '<span class="kicker">' + c.name + "</span><h1>" + esc(s.name) + '</h1><p class="sub">' + esc(s.sub) + '</p><div class="facts">' + s.facts.map(function (f) { return "<span>" + esc(f) + "</span>"; }).join("") + "<span class=\"hi\">" + (s.payAfter ? esc(s.payAfter) : "No 100% advance") + "</span></div></div></section>" +
+      '<div class="wrap svc-body"><div class="svc-main">' + (s.tool === "amend" ? AMEND_BOX : s.tool === "rocamend" ? ROC_BOX : "") +
       '<div class="stabs" role="tablist" aria-label="Service details">' + tabs.map(function (t, i) { return '<button type="button" role="tab" id="st-' + t[0] + '" aria-controls="sp" aria-selected="' + (i === 0) + '" data-st="' + i + '">' + t[1] + "</button>"; }).join("") + "</div>" +
       '<div class="spanel" id="sp" role="tabpanel">' + tabs[0][2] + "</div>" +
       (s.cat === "gst" ? GST_BOX() : "") +
       '<div><span class="kicker">You may also need</span><div class="related" style="margin-top:16px">' + rel.slice(0, 3).map(function (x) { return '<a class="rel" href="#' + x.id + '"><h4>' + esc(x.short) + "</h4><p>" + esc(x.card) + "</p><b>" + priceTxt(x) + "</b></a>"; }).join("") + "</div></div></div>" +
-      '<aside class="side"><div class="pcard"><div class="hd"><div class="lbl">' + (s.quote ? "Professional fee" : s.from ? "Starts at" : "Professional fee") + '</div><div class="amt num gold-text">' + priceTxt(s) + "</div><div style=\"color:var(--muted);font-size:13.5px\">" + esc(s.quote ? "We quote after understanding your need" : s.plus) + "</div><ul>" + breakup + '</ul></div><div class="pay"><b>No 100% advance.</b> ' + esc(s.pay) + '</div><div class="acts">' + (s.quote ? '<a class="btn btn-gold" data-wa="Hi GrowwBizz, I want ' + esc(s.name) + '. Please share a quote and the documents list." href="#">Get a quote on WhatsApp</a>' : '<button type="button" class="btn btn-gold" data-order="' + s.id + '">Order now</button>') + (CALC_FOR[s.id] ? '<button type="button" class="btn btn-ghost" data-calctab>Calculate my exact fees</button>' : FLOWS[s.id] && FLOWS[s.id].length ? '<button type="button" class="btn btn-ghost" data-ask="' + s.id + '">Check my exact cost</button>' : "") + '<div class="minor">' + (s.quote ? "" : '<button type="button" data-add="' + s.id + '">' + CART_ICON + "Add to cart only</button><span>·</span>") + '<a href="tel:+919203601998">Call 92036 01998</a></div></div></div>' +
+      '<aside class="side"><div class="pcard"><div class="hd"><div class="lbl">' + (s.quote ? "Professional fee" : s.from ? "Starts at" : "Professional fee") + '</div><div class="amt num gold-text">' + priceTxt(s) + "</div><div style=\"color:var(--muted);font-size:13.5px\">" + esc(s.quote ? "We quote after understanding your need" : s.plus) + "</div><ul>" + breakup + '</ul></div><div class="pay' + (s.payAfter ? " payafter" : "") + '"><b>' + (s.payAfter ? esc(s.payAfter) + "." : "No 100% advance.") + "</b> " + esc(s.pay) + '</div><div class="acts">' + (s.quote ? '<a class="btn btn-gold" data-wa="Hi GrowwBizz, I want ' + esc(s.name) + '. Please share a quote and the documents list." href="#">Get a quote on WhatsApp</a>' : '<button type="button" class="btn btn-gold" data-order="' + s.id + '">Order now</button>') + (CALC_FOR[s.id] ? '<button type="button" class="btn btn-ghost" data-calctab>Calculate my exact fees</button>' : FLOWS[s.id] && FLOWS[s.id].length ? '<button type="button" class="btn btn-ghost" data-ask="' + s.id + '">Check my exact cost</button>' : "") + '<div class="minor">' + (s.quote ? "" : '<button type="button" data-add="' + s.id + '">' + CART_ICON + "Add to cart only</button><span>·</span>") + '<a href="tel:+919203601998">Call 92036 01998</a></div><p class="hours">Calls: Mon to Sat, 11 am to 7 pm · WhatsApp 24×7</p></div></div>' +
       '<div class="helpbox"><b>Not sure what you need?</b>WhatsApp us any time. Calls 11 am to 7 pm, Monday to Saturday.</div></aside></div>';
     var sp = document.getElementById("sp");
     svcView.querySelectorAll(".stabs button").forEach(function (b) {
@@ -2159,6 +2280,7 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
     bindWa(svcView);
     var ct = svcView.querySelector("[data-calctab]"); if (ct) ct.addEventListener("click", function () { var t = document.getElementById("st-calc"); t.click(); t.closest(".stabs").scrollIntoView({ behavior: "smooth", block: "start" }); });
     if (s.tool === "amend") initAmend();
+    if (s.tool === "rocamend") initRocAmend();
   }
 
   function docHtml(list) { return list.map(function (d) { return '<div class="doc">' + DOC + "<div>" + esc(d[0]) + (d[1] ? "<small>" + esc(d[1]) + "</small>" : "") + "</div></div>"; }).join(""); }

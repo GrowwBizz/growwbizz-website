@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_blank">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GrowwBizz Refer &amp; Earn</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  :root{--brand:#0d604c;--ink:#09252e;--soft:#e3f1ec;--bg:#f4f7f5;--line:#d3ddd8;--muted:#5a6e68;
+        --warn:#9a5b00;--warnbg:#fbefd9;--good:#1f7a3f;--goodbg:#dff1e4;--bad:#b3261e;--badbg:#fbe3e1;--blue:#1d5fa8;--bluebg:#e3eefa}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{background:var(--brand);color:#fff;padding:18px 16px}
+  header .in{max-width:780px;margin:0 auto}
+  header h1{margin:0;font:700 1.4rem Georgia,"Times New Roman",serif}
+  header p{margin:2px 0 0;opacity:.88;font-size:.9rem}
+  main{max-width:780px;margin:0 auto;padding:16px;display:grid;gap:14px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;min-width:0}
+  h2{margin:0;font:700 1.12rem Georgia,"Times New Roman",serif}
+  h3{margin:4px 0 0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  label{display:grid;gap:4px;font-size:.82rem;font-weight:600;color:var(--muted)}
+  input,select,textarea{font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;background:#fff;color:var(--ink);min-width:0}
+  input:focus,select:focus,textarea:focus,button:focus{outline:2px solid var(--brand);outline-offset:1px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:540px){.grid2{grid-template-columns:1fr}}
+  button{font:600 .95rem system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:11px 16px;border-radius:8px;border:1px solid var(--brand);background:var(--brand);color:#fff;cursor:pointer}
+  button.ghost{background:transparent;color:var(--brand)}
+  button.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+  button.sm{padding:6px 11px;font-size:.84rem}
+  button:disabled{opacity:.55;cursor:wait}
+  a.btnlink{display:inline-block;padding:6px 11px;font-size:.84rem;font-weight:600;border-radius:8px;border:1px solid var(--line);color:var(--ink);text-decoration:none;background:#fff}
+  .big{display:grid;gap:10px}
+  .big button{padding:15px;font-size:1.02rem}
+  .msg{padding:9px 12px;border-radius:8px;font-size:.9rem}
+  .err{background:var(--badbg);color:var(--bad)} .ok{background:var(--goodbg);color:var(--good)} .info{background:var(--warnbg);color:var(--warn)}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+  .tile{background:var(--soft);border-radius:10px;padding:10px 12px}
+  .tile b{display:block;font:700 1.3rem Georgia,serif;font-variant-numeric:tabular-nums}
+  .tile span{font-size:.76rem;color:var(--muted)}
+  .tile.alert{background:var(--badbg)} .tile.alert b,.tile.alert span{color:var(--bad)}
+  .item{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:7px}
+  .item:first-child{border-top:0;padding-top:0}
+  .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .sub{color:var(--muted);font-size:.83rem}
+  .pill{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--soft);color:var(--brand);white-space:nowrap}
+  .s-lead{background:transparent;border:1px solid var(--brand)}
+  .s-converted{background:var(--bluebg);color:var(--blue)}
+  .s-paid{background:var(--warnbg);color:var(--warn)} .s-overdue{background:var(--badbg);color:var(--bad)}
+  .s-settled{background:var(--goodbg);color:var(--good)} .s-cancelled{background:#eceeed;color:#777}
+  .code{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;background:var(--soft);color:var(--brand);padding:1px 7px;border-radius:6px}
+  .acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .acts input{width:auto;flex:1 1 150px;padding:7px 9px}
+  .team{background:#f7f5ee;border:1px dashed #d9cfae;border-radius:8px;padding:8px 10px;display:grid;gap:6px}
+  .team .sub b{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.84rem}
+  .chip.on{background:var(--soft);border-color:var(--brand);color:var(--brand)}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+  .tabs button{background:none;border:0;border-bottom:3px solid transparent;border-radius:0;color:var(--muted);padding:9px 12px;white-space:nowrap}
+  .tabs button.on{color:var(--brand);border-bottom-color:var(--brand)}
+  .check{display:flex;gap:8px;align-items:flex-start;font-weight:500;color:var(--ink)}
+  .check input{width:auto;margin-top:3px}
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  @media (max-width:540px){.svc{grid-template-columns:1fr}}
+  .svc label{display:flex;gap:8px;align-items:center;font-weight:500;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer}
+  .svc input{width:auto;margin:0}
+  .svc label:has(input:checked){border-color:var(--brand);background:var(--soft)}
+  .svc .pr{margin-left:auto;color:var(--muted);font-size:.8rem}
+  details summary{cursor:pointer;color:var(--brand);font-weight:600;font-size:.88rem}
+  .rules{margin:6px 0 0;padding-left:18px;font-size:.85rem;color:var(--muted)}
+  .muted{color:var(--muted);font-size:.86rem}
+  .num{font-variant-numeric:tabular-nums}
+  a{color:var(--brand)}
+  /* referrer progress tracker */
+  .steps{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:0}
+  .steps li{display:grid;grid-template-columns:22px 1fr;gap:10px;position:relative;padding-bottom:10px}
+  .steps li:last-child{padding-bottom:0}
+  .steps li::before{content:"";position:absolute;left:10px;top:20px;bottom:-2px;width:2px;background:var(--line)}
+  .steps li:last-child::before{display:none}
+  .steps .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);background:#fff;display:grid;place-items:center;font-size:.7rem;font-weight:700;color:var(--muted);z-index:1}
+  .steps .t{font-size:.86rem;color:var(--muted);padding-top:1px}
+  .steps .done .dot{background:var(--brand);border-color:var(--brand);color:#fff}
+  .steps .done::before{background:var(--brand)}
+  .steps .done .t{color:var(--ink)}
+  .steps .now .dot{border-color:var(--brand);color:var(--brand)}
+  .steps .now .t{color:var(--ink);font-weight:700}
+  .steps .no .dot{background:var(--bad);border-color:var(--bad);color:#fff}
+  .steps .no .t{color:var(--bad);font-weight:700}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="in"><h1>GrowwBizz Refer &amp; Earn</h1><p id="tag">Refer friends. Earn on every successful order.</p></div></header>
+<main id="root"></main>
+
+<script>
+var MODE = /[?&]admin\b/.test(location.search) ? 'admin' : 'user';
+var APP_URL = 'https://www.growwbizz.in/refer.html';
+// Data is saved through the Refer & Earn Apps Script web app (doPost JSON API)
+var API_URL = 'https://script.google.com/macros/s/AKfycbyMdb7wU_zktnwPNGKcHUOwvflPgYGlJVHax-Qr16vKoUwZapCznB_pXEYgu0WVRJp5/exec';
+var root = document.getElementById('root');
+var state = {};
+var inr = function (n) { return '₹' + Math.round(Number(n) || 0).toLocaleString('en-IN'); };
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function $(id) { return document.getElementById(id); }
+function val(id) { var e = $(id); return e ? e.value.trim() : ''; }
+function fmt(iso) { if (!iso) return ''; var p = iso.slice(0, 10).split('-'); return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : iso; }
+function addDays(iso, n) { var d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return d; }
+function show(id, text, cls) { var e = $(id); if (!e) return; e.textContent = text || ''; e.className = 'msg ' + (cls || 'err'); e.hidden = !text; }
+function call(fn, args, onOk, msgId, btn) {
+  if (btn) btn.disabled = true;
+  if (msgId) show(msgId, '');
+  function fail(m) { if (btn) btn.disabled = false; show(msgId || 'gmsg', m); if (!msgId && $('gmsg')) $('gmsg').scrollIntoView(); }
+  fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ fn: fn, args: args }) })
+    .then(function (r) { return r.json(); })
+    .then(function (res) { if (!res.ok) return fail(res.error || 'Something went wrong. Please try again.'); if (btn) btn.disabled = false; onOk(res.data); })
+    .catch(function () { fail('Could not connect. Please check your internet and try again.'); });
+}
+function copyText(text, btn, label) {
+  function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.rows = 8; btn.after(ta); ta.select(); btn.textContent = 'Select and copy below'; }
+  try { navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 2000); }, fallback); } catch (e) { fallback(); }
+}
+var SERVICES = [['GST Registration',499],['GST Monthly Filing',499],['GST E-commerce Seller Filing',499],['GST Amendment',499],['LUT Filing',499],['Income Tax Return Filing',499],['Private Limited Company Registration',899],['LLP Registration',899],['OPC Registration',899],['MSME (Udyam) Registration',499],['CMA & Project Report',999],['Trademark Registration',799],['IEC Registration',799],['Startup India (DPIIT) Registration',999],['DSC Class 3 (2 years)',2000],['LLP Form 3',499],['LLP Annual Filing (Form 8 + Form 11)',1998],['Company Annual Filing (AOC-4 + MGT-7)',1998],['Director KYC',499]];
+// Tick-box list so a friend can need more than one service
+function serviceChecks(prefix, list) {
+  return '<div class="svc" id="' + prefix + '">' + list.map(function (s, i) {
+    return '<label><input type="checkbox" value="' + esc(s[0]) + '"> ' + esc(s[0]) + '<span class="pr">' + inr(s[1]) + '</span></label>';
+  }).join('') + '</div>';
+}
+function checked(prefix) { return Array.prototype.map.call(document.querySelectorAll('#' + prefix + ' input:checked'), function (c) { return c.value; }); }
+var RULES = '<ul class="rules"><li>Everyone, including existing GrowwBizz clients, gets 10% of our professional fee straight to their bank account.</li><li>The reward is paid within 7 days after your friend pays GrowwBizz.</li><li>One friend counts once. If two people refer the same number, the first one counts.</li><li>Referring your own number or your own business does not count.</li><li>Please refer only people who really need the service. Spam or fake referrals will be removed.</li><li>GrowwBizz\'s decision on rewards is final.</li></ul>';
+function waLink(mobile, text) { return 'https://wa.me/91' + mobile + (text ? '?text=' + encodeURIComponent(text) : ''); }
+
+/* =================== REFERRER SIDE =================== */
+function userHome() {
+  root.innerHTML =
+    '<section class="card"><h2>Earn on every friend you send us</h2>' +
+    '<p class="muted" style="margin:0">Your friend needs GST, Income Tax, MSME, Trademark, IEC, DSC, Startup India or a bank Project Report? Refer them here. When they pay us, you earn <b>10% of our fee</b> straight to your bank account.</p>' +
+    '<div class="big"><button id="b-new">I\'m new: refer a friend</button><button class="ghost" id="b-login">Already joined: log in</button></div></section>';
+  $('b-new').onclick = userJoin; $('b-login').onclick = userLogin;
+}
+function userJoin() {
+  root.innerHTML =
+    '<section class="card"><h2>Refer your first friend</h2><p class="muted" style="margin:0">Takes 1 minute. After this you just log in with your mobile number and PIN.</p>' +
+    '<h3>About you</h3>' +
+    '<div class="grid2"><label>Your full name<input id="j-name" autocomplete="name"></label>' +
+    '<label>Your mobile number<input id="j-mobile" inputmode="numeric" maxlength="10" placeholder="10 digits"></label>' +
+    '<label>Your city<input id="j-city"></label>' +
+    '<label>Are you already a GrowwBizz client?<select id="j-existing"><option value="no">No</option><option value="yes">Yes</option></select></label>' +
+    '<label>Create a 4-digit PIN<input id="j-pin" inputmode="numeric" maxlength="4" type="password" placeholder="You will use this to log in"></label>' +
+    '<label>UPI ID or bank account (optional now)<input id="j-pay" placeholder="name@upi, or A/c no + IFSC"></label></div>' +
+    '<h3>Your friend</h3>' +
+    '<div class="grid2"><label>Friend\'s name<input id="j-fname"></label>' +
+    '<label>Friend\'s mobile number<input id="j-fmobile" inputmode="numeric" maxlength="10" placeholder="10 digits"></label></div>' +
+    '<label>Services your friend needs (tick all that apply)</label>' + serviceChecks('j-svc', SERVICES) +
+    '<label>Anything we should know? (optional)<input id="j-note"></label>' +
+    '<label class="check"><input type="checkbox" id="j-agree"> I agree to the Refer &amp; Earn rules</label>' +
+    '<details><summary>Read the rules</summary>' + RULES + '</details>' +
+    '<div id="jmsg" hidden></div>' +
+    '<button id="j-go">Send referral</button><button class="ghost" id="j-back">Back</button></section>';
+  $('j-back').onclick = userHome;
+  $('j-go').onclick = function () {
+    var d = { name: val('j-name'), mobile: val('j-mobile'), city: val('j-city'), existing: val('j-existing'), pin: val('j-pin'),
+      payTo: val('j-pay'), friend: val('j-fname'), friendMobile: val('j-fmobile'), services: checked('j-svc'), note: val('j-note'), agree: $('j-agree').checked };
+    call('joinAndRefer', [d], function (v) { state.cred = { m: d.mobile.replace(/\D/g, ''), p: d.pin }; userDash(v, 'Welcome! Your friend has been referred. We will contact them soon.'); }, 'jmsg', this);
+  };
+}
+function userLogin() {
+  root.innerHTML =
+    '<section class="card"><h2>Log in</h2>' +
+    '<label>Your mobile number<input id="l-m" inputmode="numeric" maxlength="10" placeholder="10 digits"></label>' +
+    '<label>Your 4-digit PIN<input id="l-p" inputmode="numeric" maxlength="4" type="password"></label>' +
+    '<div id="lmsg" hidden></div><button id="l-go">Log in</button><button class="ghost" id="l-back">Back</button>' +
+    '<p class="muted" style="margin:0">Forgot your PIN? WhatsApp us on 92036 01998.</p></section>';
+  $('l-back').onclick = userHome;
+  $('l-go').onclick = function () {
+    var m = val('l-m').replace(/\D/g, ''), p = val('l-p');
+    call('login', [m, p], function (v) { state.cred = { m: m, p: p }; userDash(v); }, 'lmsg', this);
+  };
+}
+// The 5 steps a referrer sees for each friend
+function tracker(r, isClient) {
+  var steps = [
+    'Referred to GrowwBizz',
+    r.rejected ? 'Offer rejected by friend' : 'Service under processing (WIP)',
+    'Successfully converted · payment pending from client',
+    'Payment received · ' + 'sending your reward',
+    isClient ? 'DISCOUNT GIVEN' : 'PAID'
+  ];
+  return '<ol class="steps">' + steps.map(function (t, i) {
+    var n = i + 1, cls = '';
+    if (r.rejected) cls = n === 1 ? 'done' : n === 2 ? 'no' : '';
+    else cls = n < r.step || r.step === 5 ? 'done' : n === r.step ? 'now' : '';
+    var date = r.dates[n] ? ' <span class="sub">· ' + fmt(r.dates[n]) + '</span>' : '';
+    var mark = cls === 'done' ? '✓' : cls === 'no' ? '✕' : n;
+    if (n > 2 && r.rejected) return '';
+    return '<li class="' + cls + '"><span class="dot">' + mark + '</span><span class="t">' + esc(t) + (cls ? date : '') + '</span></li>';
+  }).join('') + '</ol>';
+}
+function userDash(v, notice) {
+  var isClient = v.type === 'client';
+  var due = 0, got = 0, count = 0;
+  v.referrals.forEach(function (r) {
+    if (!r.rejected) count++;
+    if (r.step === 4) due += r.reward;
+    if (r.step === 5) got += r.reward;
+  });
+  var list = v.referrals.length ? v.referrals.map(function (r) {
+    var pill = r.rejected ? '<span class="pill s-cancelled">Not converted</span>' : r.step === 5 ? '<span class="pill s-settled">' + (isClient ? 'Discount given' : 'Paid') + '</span>' : r.step === 4 ? '<span class="pill s-paid">Reward due</span>' : '<span class="pill">In progress</span>';
+    return '<div class="item"><div class="top"><div><b>' + esc(r.friend) + '</b> <span class="sub">' + esc(r.mobile) + '</span></div>' + pill + '</div>' +
+      '<div class="sub">' + esc(r.service) + (r.reward ? ' · ' + 'your reward ' + '<b>' + inr(r.reward) + '</b>' : '') + '</div>' +
+      tracker(r, isClient) + '</div>';
+  }).join('') : '<p class="muted" style="margin:0">No referrals yet.</p>';
+  var payCard = !isClient ? (v.hasPayTo
+    ? '<div class="sub">Rewards go to: ' + esc(v.payTo) + ' · <a href="#" id="pay-edit" target="_self">change</a></div>'
+    : '<div class="msg info">Add your UPI ID or bank account so we can send your rewards.</div>') : '';
+  root.innerHTML =
+    (notice ? '<div class="msg ok">' + esc(notice) + '</div>' : '') +
+    '<section class="card"><h2>Namaste ' + esc(v.name.split(' ')[0]) + ' 🙏</h2>' +
+    '<div class="muted">Your referral code: <span class="code">' + esc(v.code) + '</span> (your mobile number)</div>' +
+    '<div class="tiles"><div class="tile"><b>' + count + '</b><span>Friends referred</span></div>' +
+    '<div class="tile"><b>' + inr(due) + '</b><span>' + (isClient ? 'Discount due' : 'Reward due') + '</span></div>' +
+    '<div class="tile"><b>' + inr(got) + '</b><span>' + (isClient ? 'Discount received' : 'Reward received') + '</span></div></div>' +
+    payCard + '<div id="paybox" ' + (!isClient && !v.hasPayTo ? '' : 'hidden') + ' class="acts"><input id="pay-in" placeholder="name@upi, or A/c no + IFSC"><button class="sm" id="pay-save">Save</button></div><div id="pmsg" hidden></div></section>' +
+    '<section class="card"><h2>Refer a friend</h2><div class="grid2">' +
+    '<label>Friend\'s name<input id="r-name"></label>' +
+    '<label>Friend\'s mobile number<input id="r-mobile" inputmode="numeric" maxlength="10" placeholder="10 digits"></label></div>' +
+    '<label>Services your friend needs (tick all that apply)</label>' + serviceChecks('r-svc', v.services) +
+    '<label>Anything we should know? (optional)<input id="r-note"></label>' +
+    '<div id="rmsg" hidden></div><button id="r-go">Send referral</button></section>' +
+    '<section class="card"><h2>My referrals</h2>' + list + '</section>' +
+    '<button class="ghost" id="out">Log out</button>';
+  var c = state.cred;
+  if ($('pay-edit')) $('pay-edit').onclick = function (e) { e.preventDefault(); $('paybox').hidden = false; };
+  $('pay-save').onclick = function () { call('updatePayTo', [c.m, c.p, val('pay-in')], function (nv) { userDash(nv, 'Payment details saved.'); }, 'pmsg', this); };
+  $('r-go').onclick = function () {
+    call('referFriend', [c.m, c.p, val('r-name'), val('r-mobile'), checked('r-svc'), val('r-note')], function (nv) { userDash(nv, 'Referral sent. We will contact your friend soon.'); }, 'rmsg', this);
+  };
+  $('out').onclick = function () { state.cred = null; userHome(); };
+  window.scrollTo(0, 0);
+}
+
+/* =================== TEAM SIDE =================== */
+var A = { pw: '', data: null, tab: 'refs', filter: 'open', q: '', who: '' };
+function stageOf(r) {
+  if (r.Status === 'paid') return addDays(r.PaidOn, A.data.dueDays) < new Date(A.data.today + 'T00:00:00') ? 'overdue' : 'paid';
+  return r.Status;
+}
+var STAGE = { lead: '1 · New lead', working: '2 · Work in progress', converted: '3 · Payment pending', paid: '4 · Reward due', overdue: '4 · Reward overdue', settled: '5 · Paid', cancelled: 'Rejected / cancelled' };
+var OPEN = { lead: 1, working: 1, converted: 1, paid: 1, overdue: 1 };
+function adminLogin() {
+  $('tag').textContent = 'Team view';
+  root.innerHTML = '<section class="card"><h2>Team login</h2><label>Team password<input id="a-pw" type="password" autocomplete="new-password"></label>' +
+    '<label style="display:flex;gap:8px;align-items:center;font-weight:400"><input id="a-keep" type="checkbox" style="width:auto"> Remember on this device (only on your own phone or computer)</label>' +
+    '<div id="amsg" hidden></div><button id="a-go">Open</button></section>';
+  try { var saved = localStorage.getItem('gbz_pw'); if (saved) { $('a-pw').value = saved; $('a-keep').checked = true; } } catch (e) {}
+  $('a-go').onclick = function () {
+    var pw = val('a-pw'), keep = $('a-keep').checked;
+    call('adminData', [pw], function (d) {
+      A.pw = pw;
+      try { if (keep) localStorage.setItem('gbz_pw', pw); else localStorage.removeItem('gbz_pw'); } catch (e) {}
+      A.data = d; adminRender();
+    }, 'amsg', this);
+  };
+}
+function adminLogout() {
+  try { localStorage.removeItem('gbz_pw'); } catch (e) {}
+  A.pw = ''; A.data = null; adminLogin();
+}
+function act(fn, args, btn) { call(fn, [A.pw].concat(args), function (d) { A.data = d; adminRender(); }, 'gmsg', btn); }
+function teamNames() {
+  var names = {};
+  (A.data.team || []).forEach(function (n) { names[n] = 1; });
+  A.data.referrals.forEach(function (r) { if (r.AssignedTo) names[r.AssignedTo] = 1; });
+  return Object.keys(names).sort();
+}
+function assignPick(cur) {
+  var names = (A.data.team || []).slice();
+  if (cur && names.indexOf(cur) < 0) names.push(cur);
+  return '<select data-assign style="flex:1 1 120px;width:auto;padding:6px"><option value="">Not assigned</option>' +
+    names.map(function (n) { return '<option value="' + esc(n) + '"' + (n === cur ? ' selected' : '') + '>' + esc(n) + '</option>'; }).join('') + '</select>';
+}
+function adminRender() {
+  var d = A.data, byCode = {};
+  d.referrers.forEach(function (p) { byCode[p.Code] = p; });
+  var cash = 0, disc = 0, overdue = 0, leads = 0, pending = 0;
+  d.referrals.forEach(function (r) {
+    var s = stageOf(r), p = byCode[r.Code] || {};
+    if (s === 'paid' || s === 'overdue') { cash += r.Reward; if (s === 'overdue') overdue++; }
+    if (s === 'lead') leads++;
+    if (s === 'converted') pending++;
+  });
+  var T = [['refs', 'Referrals'], ['tasks', 'Tasks'], ['people', 'Referrers (' + d.referrers.length + ')'], ['add', 'Add referral']];
+  var tabs = '<nav class="tabs">' + T.map(function (t) { return '<button data-t="' + t[0] + '" class="' + (A.tab === t[0] ? 'on' : '') + '">' + t[1] + '</button>'; }).join('') + '</nav>';
+  var head = '<div id="gmsg" hidden></div><section class="tiles">' +
+    '<div class="tile"><b>' + leads + '</b><span>New leads to call</span></div>' +
+    '<div class="tile"><b>' + pending + '</b><span>Clients yet to pay</span></div>' +
+    '<div class="tile ' + (overdue ? 'alert' : '') + '"><b>' + inr(cash) + '</b><span>Cash rewards to pay' + (overdue ? ' · ' + overdue + ' overdue' : '') + '</span></div>' +
+    '</section>' + tabs;
+  var body = A.tab === 'people' ? adminPeople(d) : A.tab === 'add' ? adminAdd(d) : A.tab === 'tasks' ? adminTasks(d, byCode) : adminRefs(d, byCode);
+  root.innerHTML = head + body + '<datalist id="team-list">' + teamNames().map(function (n) { return '<option value="' + esc(n) + '">'; }).join('') + '</datalist>' +
+    '<p class="muted">All data is saved in your <a href="' + esc(d.sheetUrl) + '">Google Sheet</a>. <a href="#" id="refresh" target="_self">Refresh</a> · <a href="#" id="logout" target="_self">Log out</a></p>';
+  document.querySelectorAll('.tabs button').forEach(function (b) { b.onclick = function () { A.tab = b.dataset.t; adminRender(); }; });
+  $('refresh').onclick = function (e) { e.preventDefault(); act('adminData', [], null); };
+  $('logout').onclick = function (e) { e.preventDefault(); adminLogout(); };
+  wireAdmin(d, byCode);
+}
+function statusMsg(r, p, s) {
+  var first = (p.Name || '').split(' ')[0], f = r.Friend.split(' ')[0];
+  var t = { lead: 'we have received your referral of ' + f + '. We will call them soon.',
+    working: 'we are now working with ' + f + ' on ' + r.Service + '.',
+    converted: f + ' has confirmed the service. We are waiting for their payment.',
+    paid: f + ' has paid. ' + (false ? 'Your discount of ' + inr(r.Reward) + ' will be applied to your next bill.' : 'Your reward of ' + inr(r.Reward) + ' will be sent within 7 days.'),
+    overdue: f + ' has paid. ' + (false ? 'Your discount of ' + inr(r.Reward) + ' will be applied to your next bill.' : 'Your reward of ' + inr(r.Reward) + ' is being sent.'),
+    settled: (false ? 'your discount of ' + inr(r.Reward) + ' has been applied' : 'your reward of ' + inr(r.Reward) + ' has been paid') + (r.Ref ? ' (ref ' + r.Ref + ')' : '') + '. Thank you for referring ' + f + '! 🙏',
+    cancelled: f + ' has decided not to go ahead for now. Thank you for the referral, please keep referring!' }[s];
+  return 'Namaste ' + first + ' 🙏, ' + t + '\n\nTrack it here: ' + APP_URL + '\n\nTeam GrowwBizz';
+}
+function card(r, byCode) {
+  var s = stageOf(r), p = byCode[r.Code] || {}, isClient = p.Type === 'client', d = A.data;
+  var acts = '';
+  var cancelBtn = '<button class="sm danger" data-a="askcancel">Friend rejected / cancel</button>';
+  var undo = '<button class="sm ghost" data-a="undo">↶ Undo</button>';
+  if (s === 'lead') acts = '<button class="sm" data-a="working">Start work (WIP)</button><button class="sm ghost" data-a="converted">Converted: payment pending</button>' + cancelBtn;
+  else if (s === 'working') acts = '<button class="sm" data-a="converted">Converted: payment pending</button>' + cancelBtn + undo;
+  else if (s === 'converted') acts = '<button class="sm" data-a="paid">Payment received from client</button>' + cancelBtn + undo;
+  else if (s === 'paid' || s === 'overdue') {
+    var due = addDays(r.PaidOn, d.dueDays);
+    acts = '<div class="sub" style="width:100%">' + (isClient ? 'Take <b>' + inr(r.Reward) + '</b> off ' + esc(p.Name || r.Code) + '\'s next bill' : 'Pay <b>' + inr(r.Reward) + '</b> to ' + esc(p.PayTo || 'their account (no UPI or bank added yet)')) + ' · due ' + due.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) + '</div>' +
+      '<input data-ref placeholder="' + 'UTR / ref no.' + '"><button class="sm" data-a="settle">' + 'Mark reward PAID' + '</button>' + undo;
+  }
+  else if (s === 'settled') acts = '<span class="sub">Settled ' + fmt(r.SettledOn) + (r.Ref ? ' · ' + esc(r.Ref) : '') + '</span>' + undo;
+  else acts = '<button class="sm ghost" data-a="restore">↩ Undo reject</button>';
+  var feeHtml = (s === 'lead' || s === 'working' || s === 'converted') ? '<input data-fee type="number" min="0" value="' + (Number(r.Fee) || 0) + '" style="width:100px;padding:5px 8px" aria-label="Fee">' : inr(r.Fee);
+  return '<div class="item" data-id="' + esc(r.ID) + '">' +
+    '<div class="top"><div><b>' + esc(r.Friend) + '</b> <span class="sub">' + esc(r.FriendMobile) + '</span></div><span class="pill s-' + s + '">' + STAGE[s] + '</span></div>' +
+    '<div class="sub">' + esc(r.Service) + ' · ' + fmt(r.Date) + (r.Note ? ' · friend\'s note: "' + esc(r.Note) + '"' : '') + '</div>' +
+    '<div class="sub">Referred by ' + esc(p.Name || '?') + ' <span class="code">' + esc(r.Code) + '</span> · ' + '<select data-rtype style="width:auto;padding:4px 6px"><option value="partner"' + (!isClient ? ' selected' : '') + '>Not a client: 10% to bank</option><option value="client"' + (isClient ? ' selected' : '') + '>Existing client: 10% to bank</option></select></div>' +
+    '<div class="acts"><span class="sub">Fee</span> ' + feeHtml + ' <span class="sub">Reward <b class="num">' + inr(r.Reward) + '</b></span></div>' +
+    '<div class="acts"><a class="btnlink" href="tel:+91' + esc(r.FriendMobile) + '">📞 Call friend</a><a class="btnlink" href="' + waLink(r.FriendMobile) + '">WhatsApp friend</a><a class="btnlink" href="' + waLink(r.Code, statusMsg(r, p, s)) + '">Update referrer on WhatsApp</a></div>' +
+    '<div class="team"><div class="sub">Team only (referrer never sees this)' + (r.AssignedTo ? ' · assigned to <b>' + esc(r.AssignedTo) + '</b>' : '') + '</div>' +
+    '<div class="acts">' + assignPick(r.AssignedTo || '') + '<input data-remark value="' + esc(r.Remark) + '" placeholder="Internal remark" style="flex:3 1 200px"><button class="sm ghost" data-a="team">Save</button></div></div>' +
+    '<div class="acts">' + acts + '</div>' +
+    '<div class="acts" data-cancelbox hidden><input data-reason placeholder="Reason, e.g. friend not interested"><button class="sm danger" data-a="cancel">Confirm</button></div></div>';
+}
+function adminRefs(d, byCode) {
+  var F = { open: 'Open', lead: '1 New', working: '2 WIP', converted: '3 Payment pending', due: '4 Reward due', settled: '5 Paid', cancelled: 'Rejected', all: 'All' };
+  var order = { overdue: 0, paid: 1, converted: 2, lead: 3, working: 4, settled: 5, cancelled: 6 };
+  var q = A.q.toLowerCase();
+  var rows = d.referrals.filter(function (r) {
+    var s = stageOf(r), p = byCode[r.Code] || {};
+    if (A.filter === 'open' && !OPEN[s]) return false;
+    if (A.filter === 'due' && s !== 'paid' && s !== 'overdue') return false;
+    if (['lead', 'working', 'converted', 'settled', 'cancelled'].indexOf(A.filter) >= 0 && s !== A.filter) return false;
+    if (q && (r.Friend + ' ' + r.FriendMobile + ' ' + r.Code + ' ' + (p.Name || '') + ' ' + r.AssignedTo + ' ' + r.Remark).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  }).sort(function (a, b) { return (order[stageOf(a)] - order[stageOf(b)]) || (b.Date < a.Date ? -1 : 1); });
+  var chips = '<div class="chips">' + Object.keys(F).map(function (k) { return '<button class="chip ' + (A.filter === k ? 'on' : '') + '" data-f="' + k + '">' + F[k] + '</button>'; }).join('') + '</div>' +
+    '<input id="a-q" placeholder="Search name, mobile, code, person or remark" value="' + esc(A.q) + '">';
+  var items = rows.map(function (r) { return card(r, byCode); }).join('');
+  return '<section class="card">' + chips + (items || '<p class="muted" style="margin:0">' + (d.referrals.length ? 'Nothing here for this filter.' : 'No referrals yet. Share the app link with your clients and contacts.') + '</p>') + '</section>';
+}
+function adminTasks(d, byCode) {
+  var open = d.referrals.filter(function (r) { return OPEN[stageOf(r)]; });
+  var counts = { '': 0 };
+  teamNames().forEach(function (n) { counts[n] = 0; });
+  open.forEach(function (r) { counts[r.AssignedTo || ''] = (counts[r.AssignedTo || ''] || 0) + 1; });
+  var names = Object.keys(counts).filter(function (n) { return n; }).sort();
+  if (A.who !== '' && counts[A.who] === undefined) A.who = '';
+  var chips = '<div class="chips">' + names.map(function (n) { return '<button class="chip ' + (A.who === n ? 'on' : '') + '" data-who="' + esc(n) + '">' + esc(n) + ' (' + counts[n] + ')</button>'; }).join('') +
+    '<button class="chip ' + (A.who === '' ? 'on' : '') + '" data-who="">Not assigned (' + counts[''] + ')</button></div>';
+  var rows = open.filter(function (r) { return (r.AssignedTo || '') === A.who; }).map(function (r) { return card(r, byCode); }).join('');
+  var members = (d.team || []).map(function (n) { return '<span class="chip">' + esc(n) + ' <a href="#" data-rm="' + esc(n) + '" title="Remove">✕</a></span>'; }).join('');
+  var teamBox = '<section class="card"><h2>Team members</h2><p class="muted" style="margin:0">Add your team here. Their names appear in "Assigned to" on every referral.</p>' +
+    '<div class="chips">' + (members || '<span class="muted">No one added yet.</span>') + '</div>' +
+    '<div class="acts"><input id="t-name" placeholder="Team member name" maxlength="40" style="flex:1 1 160px"><button class="sm" id="t-add">Add</button></div></section>';
+  return teamBox + '<section class="card"><h2>Open tasks by person</h2><p class="muted" style="margin:0">Pick a person in "Assigned to" on any referral and press Save. It then shows here under that person until the reward is paid.</p>' + chips +
+    (rows || '<p class="muted" style="margin:0">No open tasks here.</p>') + '</section>';
+}
+function adminPeople(d) {
+  var items = d.referrers.slice().reverse().map(function (p) {
+    var mine = d.referrals.filter(function (r) { return r.Code === p.Code && r.Status !== 'cancelled'; });
+    var due = mine.filter(function (r) { return r.Status === 'paid'; }).reduce(function (a, r) { return a + r.Reward; }, 0);
+    var done = mine.filter(function (r) { return r.Status === 'settled'; }).reduce(function (a, r) { return a + r.Reward; }, 0);
+    return '<div class="item" data-code="' + esc(p.Code) + '"><div class="top"><div><b>' + esc(p.Name) + '</b> <span class="code">' + esc(p.Code) + '</span></div><span class="sub">joined ' + fmt(p.Joined) + '</span></div>' +
+      '<div class="sub">' + esc(p.City || '') + ' · ' + mine.length + ' referral' + (mine.length === 1 ? '' : 's') + ' · due ' + inr(due) + ' · settled ' + inr(done) + '</div>' +
+      '<div class="acts"><select data-type style="width:auto;padding:6px"><option value="partner"' + (p.Type !== 'client' ? ' selected' : '') + '>Not a client: 10% to bank</option><option value="client"' + (p.Type === 'client' ? ' selected' : '') + '>Existing client: 10% to bank</option></select><a class="btnlink" href="' + waLink(p.Code) + '">WhatsApp</a></div>' +
+      '<div class="acts"><input data-pay value="' + esc(p.PayTo) + '" placeholder="UPI or bank details"><button class="sm ghost" data-p="pay">Save</button></div>' +
+      '<div class="acts"><input data-pin inputmode="numeric" maxlength="4" placeholder="New 4-digit PIN" style="max-width:170px"><button class="sm ghost" data-p="pin">Reset PIN</button><button class="sm ghost" data-p="copy">Copy welcome message</button></div></div>';
+  }).join('');
+  return '<section class="card">' + (items || '<p class="muted" style="margin:0">No one has joined yet.</p>') + '</section>';
+}
+function adminAdd(d) {
+  return '<section class="card"><h2>Add a referral by hand</h2><p class="muted" style="margin:0">For a client who messaged you "Code 98XXXXXXXX" on WhatsApp. The referrer must have joined in the app.</p>' +
+    '<div class="grid2"><label>Referrer\'s code (their mobile)<input id="m-code" inputmode="numeric" maxlength="10"></label>' +
+    '<label>Client name<input id="m-name"></label>' +
+    '<label>Client mobile<input id="m-mobile" inputmode="numeric" maxlength="10"></label>' +
+    '<label>Total fee (₹, blank = list price)<input id="m-fee" type="number" min="0"></label></div>' +
+    '<label>Services (tick all that apply)</label>' + serviceChecks('m-svc', d.services) +
+    '<label>Note (optional)<input id="m-note"></label><div id="mmsg" hidden></div><button id="m-go">Add referral</button></section>';
+}
+function welcome(p) {
+  return 'Namaste ' + p.Name.split(' ')[0] + ' 🙏\n\nWelcome to *GrowwBizz Refer & Earn*!\n\nYour referral code is your mobile number: *' + p.Code + '*\n\n' +
+    'Refer friends and track every step here 👉 ' + APP_URL + '\n(Log in with your mobile number and PIN.)\n\n' +
+    'When your friend pays us, *10% of our fee goes straight to your bank account* within 7 days 🏦' +
+    '\n\n📲 WhatsApp: 92036 01998 (24x7)\n📞 Calls: 11am to 7pm, Mon to Sat\n\nTeam GrowwBizz';
+}
+function wireAdmin(d, byCode) {
+  document.querySelectorAll('.chip[data-f]').forEach(function (c) { c.onclick = function () { A.filter = c.dataset.f; adminRender(); }; });
+  document.querySelectorAll('.chip[data-who]').forEach(function (c) { c.onclick = function () { A.who = c.dataset.who; adminRender(); }; });
+  if ($('a-q')) $('a-q').oninput = function () { A.q = this.value; var pos = this.selectionStart; adminRender(); $('a-q').focus(); $('a-q').setSelectionRange(pos, pos); };
+  document.querySelectorAll('.item[data-id]').forEach(function (it) {
+    var id = it.dataset.id;
+    it.querySelectorAll('button[data-a]').forEach(function (b) {
+      b.onclick = function () {
+        var a = b.dataset.a;
+        if (a === 'askcancel') { it.querySelector('[data-cancelbox]').hidden = false; return; }
+        if (a === 'team') return act('adminUpdateReferral', [id, { assignedTo: it.querySelector('[data-assign]').value, remark: it.querySelector('[data-remark]').value }], b);
+        var value = a === 'settle' ? it.querySelector('[data-ref]').value : a === 'cancel' ? it.querySelector('[data-reason]').value : '';
+        act('adminAction', [id, a, value], b);
+      };
+    });
+    var rtype = it.querySelector('[data-rtype]');
+    if (rtype) rtype.onchange = function () {
+      var r = d.referrals.find(function (x) { return x.ID === id; }), p = byCode[r.Code] || {};
+      var msg = 'Change ' + (p.Name || r.Code) + ' to "' + rtype.options[rtype.selectedIndex].text + '"?\n\nThis updates the reward on all their referrals that are not settled yet, and their own dashboard.';
+      if (!confirm(msg)) { adminRender(); return; }
+      act('adminUpdateReferrer', [r.Code, { type: rtype.value }], null);
+    };
+    var fee = it.querySelector('[data-fee]');
+    if (fee) fee.onchange = function () { act('adminAction', [id, 'fee', fee.value], null); };
+  });
+  document.querySelectorAll('.item[data-code]').forEach(function (it) {
+    var code = it.dataset.code;
+    it.querySelector('[data-type]').onchange = function () {
+      if (!confirm('Change ' + (byCode[code].Name || code) + ' to "' + this.options[this.selectedIndex].text + '"?\n\nThis updates the reward on all their referrals that are not settled yet, and their own dashboard.')) { adminRender(); return; }
+      act('adminUpdateReferrer', [code, { type: this.value }], null);
+    };
+    it.querySelectorAll('button[data-p]').forEach(function (b) {
+      b.onclick = function () {
+        var k = b.dataset.p;
+        if (k === 'copy') return copyText(welcome(byCode[code]), b, 'Copy welcome message');
+        if (k === 'pay') act('adminUpdateReferrer', [code, { payTo: it.querySelector('[data-pay]').value }], b);
+        if (k === 'pin') act('adminUpdateReferrer', [code, { pin: it.querySelector('[data-pin]').value.trim() }], b);
+      };
+    });
+  });
+  if ($('t-add')) $('t-add').onclick = function () {
+    var n = val('t-name');
+    if (!n) return;
+    act('adminSetTeam', [(d.team || []).concat([n])], this);
+  };
+  document.querySelectorAll('[data-rm]').forEach(function (x) {
+    x.onclick = function (e) {
+      e.preventDefault();
+      var n = x.dataset.rm;
+      if (!confirm('Remove ' + n + ' from the team? Referrals already assigned to them keep their name.')) return;
+      act('adminSetTeam', [(d.team || []).filter(function (m) { return m !== n; })], null);
+    };
+  });
+  if ($('m-go')) $('m-go').onclick = function () {
+    var m = { code: val('m-code'), friend: val('m-name'), friendMobile: val('m-mobile'), services: checked('m-svc'), fee: val('m-fee'), note: val('m-note') };
+    call('adminAddReferral', [A.pw, m], function (nd) { A.data = nd; A.tab = 'refs'; A.filter = 'lead'; adminRender(); }, 'mmsg', this);
+  };
+}
+
+if (MODE === 'admin') adminLogin(); else userHome();
+</script>
+</body>
+</html>
