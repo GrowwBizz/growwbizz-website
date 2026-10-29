@@ -448,6 +448,8 @@ footer .legal { border-top: 1px solid var(--hair-2); padding-block: 22px; displa
 .ticks li::before { content: ""; position: absolute; left: 0; top: 3px; width: 19px; height: 19px; border-radius: 50%; border: 1px solid var(--gold); background: rgba(217,181,107,.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2dca6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/11px no-repeat; }
 @media (max-width: 640px) { .ticks { grid-template-columns: 1fr; } .spanel { padding: 22px; } }
 .docs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dochd { grid-column: 1 / -1; font-weight: 800; font-size: 15px; color: var(--gold-t2); margin: 12px 0 0; letter-spacing: .02em; }
+.dochd:first-child { margin-top: 0; }
 .doc { display: flex; gap: 12px; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--hair-2); background: var(--sunk); font-weight: 700; font-size: 16px; min-width: 0; }
 .doc svg { width: 22px; height: 22px; color: var(--gold-t); flex: none; }
 .doc small { display: block; font-weight: 500; color: var(--muted); font-size: 14.5px; }
@@ -653,6 +655,10 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
 .spanel #calc { padding: 0; border: 0; background: none; box-shadow: none; }
 .spanel #calc h3 { font-size: 30px; }
 .dchoice { display: grid; gap: 8px; }
+.dsc-rec .miss { margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed var(--hair); color: var(--ink); font-weight: 600; }
+.dsc-rec .miss:empty { display: none; }
+.xlbox { margin-top: 16px; padding: 16px 18px; border-radius: 16px; border: 1px dashed var(--gold); background: var(--sunk); font-size: 15px; color: var(--ink-2); display: grid; gap: 10px; }
+.xlbox b { color: var(--gold-t2); font-size: 16px; } .xlbox .btn { justify-self: start; }
 .dchoice button { display: flex; align-items: center; gap: 12px; text-align: left; font: inherit; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--hair-2); background: var(--sunk); color: var(--ink); cursor: pointer; }
 .dchoice button i { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--muted); display: grid; place-items: center; }
 .dchoice button[aria-checked="true"] { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
@@ -896,7 +902,8 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
                 <div class="dchoice" role="radiogroup" aria-labelledby="dsc-l"><button type="button" role="radio" aria-checked="true" data-dsc="new"><i></i><span><b>Buy DSC</b><small>Recommended · ₹2,000 per person</small></span></button><button type="button" role="radio" aria-checked="false" data-dsc="own"><i></i><span><b>I already have DSC</b><small>Class 3 and not expired</small></span></button></div>
                 <div id="have-f" class="have-f" hidden><label for="have" id="have-l">How many already have a valid DSC?</label><select id="have"></select></div>
                 <div class="hint dsc-rec"><b>Why buy DSC from us?</b>Don't have a DSC? We get it made for you, hassle-free.
-                  <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth.</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul></div></div>
+                  <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth. For a company, INC-20A and ADT-1 filing is also free (only govt fee).</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul>
+                  <p class="miss" id="dsc-miss"></p></div></div>
               <details class="dsc-help"><summary>What is a DSC and do I need one?</summary>
                 <p>A <b>DSC (Digital Signature Certificate)</b> is an online signature on a USB token. Every director or partner signs the government (MCA) forms with it, so <b>each person needs one</b>.</p>
                 <ul><li><b>Best choice: make it with us</b> at the time of registration. We handle the signing of all incorporation forms smoothly, without chasing you for each form.</li><li><b>Already have one?</b> You can use it if it is a Class 3 DSC that is still valid (a DSC lasts 2 years), but expect us to ask you to sign several forms one by one.</li></ul>
@@ -1031,7 +1038,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   <div class="wrap cols" id="foot-cols">
     <div class="about"><a class="logo" href="#"><img class="lg-light" src="logo-light.png" alt="GrowwBizz" width="145" height="35"><img class="lg-dark" src="logo-dark.png" alt="GrowwBizz" width="145" height="35"></a><p>Grow Your Business. The Smart Way. Your one-stop partner for registration, tax and compliance. Based in Bhopal, Madhya Pradesh (the heart of India), serving clients across India.</p></div>
   </div>
-  <div class="wrap legal"><span>© 2026 GrowwBizz · Your Partner in Business Growth</span><span>WhatsApp 92036 01998 · hello.growwbizz@gmail.com</span></div>
+  <div class="wrap legal"><span>© 2026 GrowwBizz · Your Partner in Business Growth</span><span>WhatsApp 92036 01998 · hello.growwbizz@gmail.com · <a href="privacy.html">Privacy Policy</a></span></div>
 </footer>
 
 <button class="ask-btn" id="ask-btn" type="button" aria-controls="chat"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><span class="pulse"></span><span class="t">Ask GrowwBizz<small>Instant answers</small></span></button>
@@ -1076,27 +1083,27 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     { id: "private-limited", cat: "start", name: "Private Limited Company Registration", short: "Private Limited", tag: "Most popular",
       price: 899, plus: "+ govt fee + DSC", card: "The best structure for startups and growing businesses that plan to raise funds.",
       sub: "Register your Private Limited Company online, from name approval to Certificate of Incorporation, PAN and TAN.",
-      facts: ["About 3 to 7 working days", "Minimum 2 directors", "Fully online"],
+      facts: ["About 7 working days", "Minimum 2 directors", "Fully online"],
       about: "A Private Limited Company is a separate legal entity owned by its shareholders and run by its directors. Owners' personal assets are protected, and it is the preferred structure for investors and banks.",
       who: ["Startups that plan to raise investment", "Businesses that want to add partners as shareholders", "Founders who want limited liability and a strong brand image", "Businesses dealing with large clients or government tenders"],
-      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "INC-20A (commencement of business) filing: our fee free, only govt fee", "ADT-1 (first auditor appointment) filing: our fee free, only govt fee", "WhatsApp updates at every step"],
+      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "INC-20A (commencement of business) filing: free when DSCs are bought from us, only govt fee", "ADT-1 (first auditor appointment) filing: free when DSCs are bought from us, only govt fee", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each director and shareholder"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement or electricity bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["Office electricity bill", "Of the registered office, not older than 2 months"], ["Rent agreement and owner NOC", "Only if the office is rented"]],
       steps: [["Name application", "Share two proposed names and your business activity. We file the name application with MCA.", "1 to 3 working days"], ["Documents and DSC", "DSCs are issued and we draft the MOA, AOA and incorporation forms for signing.", "1 to 2 working days"], ["Incorporation", "We file with MCA. Your Certificate of Incorporation, DIN, PAN and TAN are issued.", "2 to 3 working days"]],
       breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fee: name application", "₹1,000"], ["Govt fee: PAN and TAN", "₹143"], ["State stamp duty and registration", "Varies by state"], DSC_ROW],
-      pay: "Step 1, before name application: name fee and part of our fee. Step 2, before incorporation filing: remaining govt fees, DSC and our balance fee.",
+      pay: "Step 1, before name application: only the govt name fee (₹1,000). Step 2, when incorporation starts: our fee, DSC and the remaining govt fees.",
       calc: true,
-      faq: [["How many people do I need?", "At least 2 directors and 2 shareholders. The same 2 people can be both. At least one director must be resident in India."], ["How much capital is needed?", "There is no minimum capital. Most small companies start with ₹1 lakh authorised capital, which keeps government fees low."], ["Why does the cost change by state?", "Each state charges its own stamp duty on the MOA and AOA. Use our cost calculator to see the exact amount for your state."]] },
+      faq: [["How many people do I need?", "At least 2 directors and 2 shareholders. The same 2 people can be both. At least one director must be resident in India."], ["How much capital is needed?", "There is no minimum capital. You can start with as little as ₹1,000. Keeping authorised capital up to ₹1 lakh keeps government fees low."], ["Why does the cost change by state?", "Each state charges its own stamp duty on the MOA and AOA. Use our cost calculator to see the exact amount for your state."]] },
 
     { id: "llp", cat: "start", name: "LLP Registration", short: "LLP",
       price: 899, plus: "+ govt fee + DSC", card: "For partners who want limited liability with lower yearly compliance.",
-      sub: "Register your Limited Liability Partnership online, with name approval, incorporation, LLP PAN and TAN.",
+      sub: "Register your Limited Liability Partnership online, with name approval, incorporation, LLP PAN and TAN. With DSCs from us, LLP Agreement drafting and Form 3 filing are free. With your own DSC you miss this and pay ₹499 for Form 3.",
       facts: ["About 7 working days", "Minimum 2 partners", "Fully online"],
       about: "An LLP combines the flexibility of a partnership with the limited liability of a company. Partners are not personally liable for the LLP's debts, and compliance is lighter than a company.",
       who: ["Two or more people starting a business together", "Professionals such as consultants, architects and agencies", "Existing partnership firms that want limited liability", "Businesses that don't plan to raise equity investment"],
-      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "WhatsApp updates at every step"],
+      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "LLP Agreement drafting", "LLP Agreement filing (Form 3): free when DSCs are bought from us, only govt fee and stamp duty", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each partner"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement, electricity or phone bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["One more ID", "Passport, Voter ID or Driving Licence"], ["Office proof", "Electricity bill, owner NOC, and rent agreement if rented"]],
-      steps: [["Name approval", "Your two proposed names are filed with MCA and approval is obtained.", "1 to 3 working days"], ["Document preparation", "DSCs are issued, the incorporation form is drafted and documents are signed.", "About 2 working days"], ["Incorporation", "MCA processes the application. Certificate of Incorporation, LLP PAN and TAN are issued.", "2 to 3 working days"], ["LLP Agreement (Form 3)", "The LLP Agreement must be filed within 30 days of incorporation. Our fee ₹499.", "Within 30 days"]],
-      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fees (contribution up to ₹1 lakh)", "₹900"], DSC_ROW, ["LLP Agreement filing (Form 3)", "₹499"], ["LLP Agreement stamp duty", "As per state"]],
+      steps: [["Name approval", "Your two proposed names are filed with MCA and approval is obtained.", "1 to 3 working days"], ["Document preparation", "DSCs are issued, the incorporation form is drafted and documents are signed.", "About 2 working days"], ["Incorporation", "MCA processes the application. Certificate of Incorporation, LLP PAN and TAN are issued.", "2 to 3 working days"], ["LLP Agreement (Form 3)", "We draft the LLP Agreement and file it within 30 days of incorporation. Free when DSCs are bought from us; otherwise ₹499.", "Within 30 days"]],
+      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fees (contribution up to ₹1 lakh)", "₹900"], DSC_ROW, ["LLP Agreement drafting and filing (Form 3)", "Free with our DSC (else ₹499)"], ["LLP Agreement stamp duty", "As per state"]],
       pay: "Paid in steps. The amount for each step (our fee, govt fee, DSC) is paid just before that step starts.",
       calc: true,
       faq: [["How many partners do I need?", "At least 2 designated partners, and at least one must be resident in India."], ["What is Form 3?", "Form 3 files your LLP Agreement with MCA. It must be filed within 30 days of incorporation, or a late fee of ₹100 per day applies."], ["LLP or Private Limited?", "Choose an LLP for lower compliance between partners. Choose a Private Limited if you want to raise investment. See our comparison on the home page."]] },
@@ -1121,24 +1128,24 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       about: "DPIIT recognition certifies your business as a startup under the Government of India's Startup India programme. We handle the DPIIT registration application, including the write-up on your innovation.",
       who: ["Private Limited companies, LLPs and registered partnership firms", "Entities less than 10 years old from incorporation", "Turnover below ₹100 crore in any year", "Businesses working on an innovative product, process or service"],
       get: ["Eligibility check", "Startup India portal profile", "Write-up on your innovation and business", "DPIIT application filed", "Follow-up till the recognition decision"],
-      docs: [["Certificate of Incorporation", "Of the company, LLP or firm"], ["Company or LLP PAN", ""], ["Director or partner details", "Name, email, mobile"], ["Business write-up", "What you do and what is new about it. We help you draft it"], ["Website or pitch deck", "If available"], ["Authorisation letter", "We draft it for you"]],
+      docs: [["Certificate of Incorporation", "Of the company, LLP or firm"], ["Company or LLP PAN", ""], ["Director or partner details", "Name, email, mobile"], ["Business write-up", "What you do and what is new about it. We help you draft it"], ["Website or pitch deck", "If available"], ["Authorisation letter", "We draft it for you"], ["Organisation DSC", "Class 3 DSC in the name of the company or LLP, not an individual DSC. We can issue it for ₹2,000"]],
       steps: [["Eligibility check", "We confirm your entity qualifies for DPIIT recognition.", "Same day"], ["Application drafting", "We prepare the innovation write-up and fill the application.", "1 to 2 working days"], ["Filing and follow-up", "We file on the Startup India portal and track it till DPIIT decides.", "As per DPIIT"]],
-      breakup: [["GrowwBizz professional fee", "₹999"], ["Govt fee", "Nil"], ["DSC (Class 3, 2 years), if you don't have one", "₹2,000"]],
+      breakup: [["GrowwBizz professional fee", "₹999"], ["Govt fee", "Nil"], ["Organisation DSC (Class 3, 2 years) of the company or LLP, if you don't have one. An individual DSC does not work", "₹2,000"]],
       pay: "Paid in steps, just before each step starts.",
-      faq: [["Is DPIIT recognition free from the government?", "Yes, the government does not charge a fee for DPIIT recognition."], ["Do you help with funding?", "No. Our service covers DPIIT recognition only."]] },
+      faq: [["Is DPIIT recognition free from the government?", "Yes, the government does not charge a fee for DPIIT recognition."], ["Do you help with funding?", "No. Our service covers DPIIT recognition only."], ["Which DSC is needed?", "An Organisation DSC (Class 3) issued in the name of the company or LLP. A director's or partner's individual DSC cannot be used."]] },
 
     { id: "gst-registration", cat: "gst", name: "GST Registration", short: "GST Registration", tag: "Pay after certificate",
       price: 499, plus: "professional fee", payAfter: "Pay after GST certificate delivery", card: "Get your GSTIN to bill with GST and claim input tax credit.",
       sub: "Get your GST number online, with the right business category and place of business.",
-      facts: ["Usually 3 to 7 working days", "No govt fee", "Fully online"],
+      facts: ["GST delivered within 24 hours for startups and small businesses", "No govt fee", "Fully online"],
       about: "GST registration gives your business a GSTIN. It is required once turnover crosses the threshold, for selling on e-commerce platforms, for inter-state supply of goods, and many other cases.",
       who: ["Businesses above ₹40 lakh turnover for goods (₹20 lakh for services)", "Online sellers on Amazon, Flipkart, Meesho and others", "Businesses supplying goods to other states", "Anyone who wants to claim input tax credit"],
       get: ["Choosing the right registration type", "HSN and SAC codes for your products or services", "Application filing and Aadhaar authentication", "Reply to queries, if raised", "GST certificate (REG-06)"],
-      docs: [["PAN card", "Of the business or proprietor"], ["Aadhaar card", "Of proprietor, partners or directors"], ["Photograph", "Of proprietor, partners or directors"], ["Business address proof", "Electricity bill and rent agreement or NOC"], ["Bank details", "Cancelled cheque or bank statement"], ["Business documents", "Incorporation certificate or partnership deed, if any"]],
-      steps: [["Documents check", "We check your documents and choose the right category.", "Same day"], ["Application filing", "We file the application. You complete Aadhaar OTP authentication.", "1 working day"], ["GSTIN issued", "The GST officer verifies and approves. We answer any query raised.", "Usually 3 to 7 working days"]],
+      docs: [["PAN card", "Of the business, and of proprietor, partners or directors"], ["Aadhaar card", "Of proprietor, partners or directors"], ["Photograph", "Of proprietor, partners or directors"], ["Mobile number and email ID", ""], ["Business address proof", "Electricity bill, property tax receipt or gas bill; rent agreement if rented"], ["Business documents", "Incorporation certificate, PAN, MOA/AOA, LLP Agreement or partnership deed, as applicable"]],
+      steps: [["Documents check", "We check your documents and choose the right category.", "Same day"], ["Application filing", "We file the application. You complete Aadhaar OTP authentication.", "1 working day"], ["GSTIN issued", "The GST officer verifies and approves. We answer any query raised.", "Within 24 hours for startups and small businesses"]],
       breakup: [["GrowwBizz professional fee", "₹499"], ["Govt fee", "Nil"]],
       pay: "Pay our fee only after your GST certificate is delivered to you.",
-      faq: [["When do I pay?", "Only after your GST certificate (REG-06) is issued and delivered to you."], ["Is there a government fee for GST registration?", "No, GST registration is free on the government portal."], ["Can I register from home?", "Yes, your home can be your place of business with an electricity bill and owner NOC."]] },
+      faq: [["When do I pay?", "Only after your GST certificate (REG-06) is issued and delivered to you."], ["How long does it take?", "For startups and small businesses we deliver GST within 24 hours. If the GST officer raises a query, we reply for you and keep you updated on WhatsApp."], ["Is there a government fee for GST registration?", "No, GST registration is free on the government portal."], ["Which documents do I need?", "It depends on your business type. Open the Documents tab and pick Proprietor, Partnership, LLP or Company to see the exact list."], ["Can I register from home?", "Yes. Your home can be your place of business. Give an electricity bill, property tax receipt or gas bill, plus a consent letter if the home is in a relative's name."], ["My premises is rented. What do I need?", "The rent agreement and the owner's electricity bill, property tax receipt or gas bill, not older than 2 months."], ["Why does my company or LLP need a separate mobile and email?", "GST needs a mobile number and email of the company or LLP itself, different from the directors' or partners'. All GST messages and OTPs go there."], ["Who must complete Aadhaar authentication?", "The proprietor, or the partners or directors, complete Aadhaar OTP authentication on their own mobile. It takes a few minutes."], ["Do I need a DSC?", "Not for a proprietor or partnership firm. Companies and LLPs sign with the director's or partner's DSC."]] },
 
     { id: "gst-filing", cat: "gst", name: "GST Return Filing", short: "GST Return Filing", tag: "From ₹200",
       price: 200, from: true, plus: "per return", card: "GSTR-1 and GSTR-3B filed on time, monthly or quarterly.",
@@ -1147,7 +1154,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       about: "Every GST-registered business must file returns, even with no sales. Late filing attracts late fees, and late tax payment attracts 18% yearly interest. We prepare your tax working, file your returns and remind you before each due date.",
       who: ["Every GST-registered business", "Quarterly filers under the QRMP scheme", "Businesses with nil sales (nil return still needed)"],
       get: ["GSTR-1 sales return", "GSTR-3B tax return", "Tax working and payment challan", "Input tax credit check", "Due date reminders on WhatsApp"],
-      docs: [["Sales bills", "All invoices for the period"], ["Purchase bills", "For input tax credit"], ["Credit and debit notes", "If any"], ["GST portal login", "Or we set it up with you"]],
+      docs: [["Sales bills", "All invoices for the period (up to 30 invoices: bills or photos are fine)"], ["Sales data in Excel (more than 30 invoices)", "Invoice no., date, customer GSTIN, state, HSN, quantity, taxable value, CGST, SGST, IGST. Use our Excel format below"], ["Purchase bills", "For input tax credit"], ["Credit and debit notes", "If any"], ["GST portal login", "Or we set it up with you"]], xl: true,
       steps: [["Send your bills", "Share sales and purchase bills on WhatsApp or email, every month.", "Before the 5th"], ["Tax working", "We prepare the return and tell you the tax payable.", "1 to 2 working days"], ["Filing", "You pay the tax and we file the return. You get the acknowledgement.", "Before due date"]],
       rates: [["Nil return (no sales)", 200], ["Up to 20 invoices", 499], ["Above 20 invoices", 999]],
       breakup: [["Nil return", "₹200"], ["Up to 20 invoices", "₹499"], ["Above 20 invoices", "₹999"], ["IFF upload (optional, quarterly filers)", "₹499 each"]],
@@ -1155,18 +1162,18 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       faq: [["Does quarterly filing mean I pay tax once a quarter?", "No. If you make sales in the 1st or 2nd month of the quarter, the GST on them must be paid by the 25th of the next month (PMT-06). Late payment attracts 18% yearly interest."], ["What is IFF?", "The Invoice Furnishing Facility lets quarterly filers upload B2B bills in months 1 and 2, so their buyers get credit every month. It is optional, at ₹499 per IFF filed."]] },
 
     { id: "gst-ecommerce", cat: "gst", name: "GST Filing for E-commerce Sellers", short: "E-commerce GST",
-      price: 499, from: true, plus: "per return", card: "For sellers on Amazon, Flipkart, Meesho and other marketplaces.",
+      price: 200, from: true, plus: "per return", card: "For sellers on Amazon, Flipkart, Meesho and other marketplaces.",
       sub: "GST returns for online sellers, matched with your marketplace reports and TCS credit.",
       facts: ["Marketplace TCS reconciled", "Monthly or quarterly"],
       about: "Marketplaces deduct TCS and report your sales to GST. Your returns must match their reports. We reconcile your marketplace sales and TCS credit and file accurate returns.",
       who: ["Sellers on Amazon, Flipkart, Meesho, JioMart and similar platforms", "Sellers on one platform or many"],
       get: ["Marketplace sales report reconciliation", "TCS credit check (GSTR-8)", "GSTR-1 and GSTR-3B filing", "Returns and refunds adjusted", "Due date reminders on WhatsApp"],
-      docs: [["Marketplace sales reports", "Monthly tax or GST reports from each platform"], ["Purchase bills", "For input tax credit"], ["Returns and refunds report", "From each platform"], ["GST portal login", ""]],
-      steps: [["Download reports", "Share marketplace reports, or give us view access.", "Before the 5th"], ["Reconcile", "We match sales, returns and TCS across platforms.", "1 to 2 working days"], ["Filing", "You pay the tax and we file. You get the acknowledgement.", "Before due date"]],
-      rates: [["Selling on one platform", 499], ["Selling on multiple platforms", 999]],
-      breakup: [["Selling on one platform", "₹499"], ["Selling on multiple platforms", "₹999"]],
-      pay: "Per return, paid before we file. GST tax, if any, is paid by you to the government.",
-      faq: [["Do I need GST to sell online?", "Yes. Sellers of goods on e-commerce platforms generally need GST registration."]] },
+      docs: [["Marketplace sales reports", "Monthly tax or GST reports from each platform, in Excel"], ["Sales outside marketplaces", "Your own website or offline sales, in our Excel format if more than 30 invoices"], ["Purchase bills", "For input tax credit"], ["Returns and refunds report", "From each platform"], ["GST portal login", ""]], xl: true,
+      steps: [["Download reports", "Download your marketplace reports by the 7th (platforms often update data late), or give us view access.", "By the 7th"], ["Reconcile", "We match sales, returns and TCS across platforms.", "1 to 2 working days"], ["Filing", "You pay the tax and we file GSTR-1 before the 11th, then GSTR-3B. You get the acknowledgement.", "GSTR-1 by the 11th"]],
+      rates: [["Nil return (no sales)", 200], ["Selling on one platform", 499], ["Selling on multiple platforms", 999]],
+      breakup: [["Nil return (no sales)", "₹200"], ["Selling on one platform", "₹499"], ["Selling on multiple platforms", "₹999"]],
+      pay: "Per return, paid before we file. Nil return ₹200, one platform ₹499, two or more platforms ₹999. GST tax, if any, is paid by you directly to the government.",
+      faq: [["What if I had no sales this month?", "We file a Nil return for ₹200. Nil returns must still be filed on time, or a late fee applies."], ["What does selling on multiple platforms mean?", "Selling on two or more marketplaces under the same GST number, for example Amazon and Flipkart, or Amazon, Flipkart and Meesho. Each platform sends its own report and TCS, so we reconcile each one. Selling on only one marketplace is ₹499 per return."], ["Why do you need reports by the 7th?", "Marketplaces often update their monthly data late. Reports downloaded by the 7th give us time to reconcile and file GSTR-1 before the 11th."], ["Do I need GST to sell online?", "Yes. Sellers of goods on e-commerce platforms generally need GST registration."]] },
 
     { id: "gst-amendment", cat: "gst", name: "GST Registration Amendment", short: "GST Amendment", tag: "Interactive checker",
       price: 499, plus: "per application", card: "Change address, name, partners, bank or other GST details. See what your change needs.",
@@ -1196,7 +1203,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       faq: [["How often do I file the LUT?", "Once every financial year, ideally before the first export of that year."], ["What if I export without an LUT?", "You must pay IGST on the export and then claim a refund."]] },
 
     { id: "llp-compliance", cat: "roc", name: "LLP Annual Compliance", short: "LLP Compliance",
-      price: 499, from: true, plus: "per form", card: "Form 8 and Form 11 every year, and Form 3 for your LLP Agreement.",
+      price: 499, from: true, plus: "per form + govt fee", card: "Form 8 and Form 11 every year, and Form 3 for your LLP Agreement.",
       sub: "Yearly MCA filings for your LLP, filed on time to avoid ₹100 per day late fees.",
       facts: ["Form 11 by 30 May", "Form 8 by 30 October", "Late fee ₹100 per day per form"],
       about: "Every LLP must file Form 11 (annual return) and Form 8 (statement of accounts and solvency) with MCA every year, even if there was no business. Form 3 files the LLP Agreement and any change to it. Late filing attracts ₹100 per day per form.",
@@ -1205,36 +1212,36 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       docs: [["Financial statements", "Balance sheet and profit and loss for the year"], ["Partner details", "Any change in partners or contribution"], ["DSC of designated partners", "We can arrange one for ₹2,000"], ["LLP Agreement", "For Form 3"]],
       steps: [["Share accounts", "Send your financial statements and partner details.", "Day 1"], ["Prepare forms", "We prepare the forms and share them for review.", "1 to 2 working days"], ["File with MCA", "Partners sign with DSC and we file. You get the SRN receipts.", "Before due date"]],
       rates: [["Form 3 (LLP Agreement)", 499], ["Form 8 (accounts and solvency)", 999], ["Form 11 (annual return)", 999]],
-      breakup: [["Form 3: LLP Agreement", "₹499"], ["Form 8: accounts and solvency", "₹999"], ["Form 11: annual return", "₹999"], ["MCA filing fee per form", "As per contribution"], ["LLP Agreement stamp duty (Form 3)", "As per state"]],
-      pay: "Paid per form, before we file it.",
+      breakup: [["Form 3: LLP Agreement", "₹499"], ["Form 8: accounts and solvency", "₹999 + govt fee"], ["Form 11: annual return", "₹999 + govt fee"], ["MCA filing fee per form", "As per contribution"], ["LLP Agreement stamp duty (Form 3)", "As per state"]],
+      pay: "Paid per form, before we file it: our fee plus the MCA govt fee for that form.",
       faq: [["My LLP had no business. Do I still file?", "Yes. Form 8 and Form 11 are compulsory every year, even with nil business."], ["What if I miss the due date?", "MCA charges ₹100 per day per form for late filing."]] },
 
     { id: "company-compliance", cat: "roc", name: "Private Limited Annual Compliance", short: "Company Compliance",
-      price: 999, plus: "per form", card: "ADT-1, AOC-4 and MGT-7/7A filed on time for your company.",
+      price: 999, plus: "per form + govt fee", card: "ADT-1, AOC-4 and MGT-7/7A filed on time for your company.",
       sub: "Yearly MCA filings for your Private Limited company, filed on time to avoid late fees.",
-      facts: ["AOC-4 within 30 days of AGM", "MGT-7/7A within 60 days of AGM", "ADT-1 free if registered with us"],
+      facts: ["AOC-4 within 30 days of AGM", "MGT-7/7A within 60 days of AGM", "ADT-1 within 15 days of AGM"],
       about: "Every Private Limited company must appoint an auditor (ADT-1) and file its financial statements (AOC-4) and annual return (MGT-7, or MGT-7A for small companies and OPCs) with MCA every year. Late filing attracts ₹100 per day per form.",
       who: ["Every Private Limited company, even with zero business", "OPCs and small companies (MGT-7A)", "New companies appointing their first auditor"],
       get: ["ADT-1: auditor appointment", "AOC-4: financial statements", "MGT-7 or MGT-7A: annual return", "Due date reminders on WhatsApp", "MCA filing receipts (SRN)"],
       docs: [["Audited financial statements", "With auditor's report and directors' report"], ["Auditor consent and certificate", "For ADT-1"], ["Shareholder and director details", "Any changes during the year"], ["DSC of a director", "We can arrange one for ₹2,000"]],
       steps: [["Share documents", "Send audited accounts and AGM details.", "Day 1"], ["Prepare forms", "We prepare ADT-1, AOC-4 and MGT-7/7A for review.", "1 to 3 working days"], ["File with MCA", "A director signs with DSC and we file. You get the SRN receipts.", "Before due date"]],
-      rates: [["ADT-1 (if registered with us)", 0], ["AOC-4 (financial statements)", 999], ["MGT-7 / MGT-7A (annual return)", 999]],
-      breakup: [["ADT-1: auditor appointment", "Nil if company registered with us"], ["AOC-4: financial statements", "₹999"], ["MGT-7 / 7A: annual return", "₹999"], ["MCA filing fee per form", "As per share capital"]],
-      pay: "Paid per form, before we file it.",
-      faq: [["Why is ADT-1 free?", "For companies registered through GrowwBizz, we file the auditor appointment (ADT-1) with no professional fee."], ["What is MGT-7A?", "A shorter annual return for small companies and OPCs."]] },
+      rates: [["ADT-1 (auditor appointment)", 999], ["AOC-4 (financial statements)", 999], ["MGT-7 / MGT-7A (annual return)", 999]],
+      breakup: [["ADT-1: auditor appointment", "₹999 + govt fee"], ["AOC-4: financial statements", "₹999 + govt fee"], ["MGT-7 / 7A: annual return", "₹999 + govt fee"], ["MCA filing fee per form", "As per share capital"]],
+      pay: "Paid per form, before we file it: our fee plus the MCA govt fee for that form.",
+      faq: [["What is ADT-1?", "ADT-1 tells MCA who your company's auditor is. It is filed within 15 days of the AGM, and also when an auditor is appointed or changed."], ["What is MGT-7A?", "A shorter annual return for small companies and OPCs."]] },
 
-    { id: "inc-20a", cat: "roc", name: "Commencement of Business (INC-20A)", short: "INC-20A", tag: "Free if registered with us",
-      price: 999, plus: "+ govt fee", card: "Mandatory declaration within 180 days of incorporation. Free for companies registered with us.",
+    { id: "inc-20a", cat: "roc", name: "Commencement of Business (INC-20A)", short: "INC-20A", tag: "Free with our DSC",
+      price: 999, plus: "+ govt fee", card: "Mandatory declaration within 180 days of incorporation. Free for companies registered with us using our DSC.",
       sub: "File the declaration of commencement of business (INC-20A) after the shareholders pay for their shares.",
-      facts: ["Within 180 days of incorporation", "Free if registered with us", "Fully online"],
+      facts: ["Within 180 days of incorporation", "Free with our DSC at registration", "Fully online"],
       about: "Every company with share capital incorporated after November 2019 must file INC-20A within 180 days of incorporation, confirming that the subscribers have paid for their shares into the company's bank account. Until it is filed, the company cannot start business or borrow, and late filing attracts a penalty of ₹50,000 on the company and ₹1,000 per day on each director (up to ₹1 lakh), and the ROC can strike the company off.",
       who: ["Private Limited companies and OPCs incorporated in the last 180 days", "Companies that missed the 180-day deadline (late filing)"],
       get: ["Check of the share money received in the bank", "INC-20A prepared and certified as needed", "Filing with MCA", "Filing receipt (SRN) shared with you"],
       docs: [["Company bank statement", "Showing share capital received from each subscriber"], ["Certificate of Incorporation", ""], ["DSC of a director", "We use the DSC made at registration"]],
       steps: [["Share money", "Shareholders pay their subscription into the company's bank account.", "After the bank account opens"], ["Preparation", "We prepare INC-20A with the bank proof.", "1 working day"], ["Filing", "Filed with MCA, signed with the director's DSC.", "Same day"]],
-      breakup: [["GrowwBizz fee", "₹999 (free if registered with us)"], ["Govt fee", "As per capital, ₹200 up to ₹1 lakh"]],
+      breakup: [["GrowwBizz fee", "₹999 (free if registered with us using our DSC)"], ["Govt fee", "As per capital, ₹200 up to ₹1 lakh"]],
       pay: "Our fee (if any) and the govt fee are paid before we file.",
-      faq: [["My company was registered by GrowwBizz. Do I pay?", "Only the govt fee. Our professional fee is free."], ["What if I miss 180 days?", "The form can still be filed with additional fees, but penalties apply. Contact us quickly."]] },
+      faq: [["My company was registered by GrowwBizz. Do I pay?", "If the directors' DSCs were bought from us at registration, you pay only the govt fee; our fee is free. Otherwise our fee is ₹999."], ["What if I miss 180 days?", "The form can still be filed with additional fees, but penalties apply. Contact us quickly."]] },
 
     { id: "dir-kyc", cat: "roc", name: "Director KYC (DIR-3 KYC)", short: "Director KYC",
       price: 499, plus: "per director", card: "Keep your DIN active and avoid the ₹5,000 late fee.",
@@ -1295,7 +1302,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       about: "Udyam registration recognises your business as a Micro, Small or Medium Enterprise. It gives access to MSME benefits such as protection against delayed payments, priority-sector lending, and a 50% lower trademark fee.",
       who: ["Proprietors, partnerships, LLPs and companies", "Manufacturers and service providers", "Businesses applying for bank loans or government tenders"],
       get: ["Right NIC activity codes", "Udyam application with Aadhaar OTP", "Udyam registration certificate", "Guidance on MSME benefits"],
-      docs: [["Aadhaar card", "Of proprietor, partner or director, linked to mobile"], ["PAN card", "Of the business"], ["Bank account details", "Account number and IFSC"], ["Business address", ""], ["GSTIN", "If registered"]],
+      docs: [["Aadhaar card", "Of proprietor, all partners or all directors, linked to mobile"], ["PAN card", "Of the business, and of proprietor, partners or directors"], ["Mobile number and email ID", "Of each person, and of the firm, LLP or company"], ["Bank account details", "Account number and IFSC"], ["Business address and main activity", ""], ["GSTIN", "If registered"]],
       steps: [["Details", "Share your details and business activity.", "Same day"], ["Filing", "We file the Udyam application. You share the Aadhaar OTP.", "Same day"], ["Certificate", "Your Udyam certificate is issued.", "Usually 1 to 2 working days"]],
       breakup: [["GrowwBizz professional fee", "₹499"], ["Govt fee", "Nil"]],
       pay: "Our fee is paid before we file the application.",
@@ -1308,7 +1315,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       about: "IEC is a 10-digit code issued by DGFT. It is needed to import or export goods, and for many export-of-services payments through banks.",
       who: ["Businesses importing or exporting goods", "Online sellers shipping abroad", "Service exporters receiving foreign payments"],
       get: ["DGFT portal registration", "IEC application and payment", "IEC certificate", "Reminder for yearly IEC update"],
-      docs: [["PAN card", "Of the business"], ["Aadhaar card", "Of proprietor, partner or director"], ["Address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"], ["Mobile and email", "For OTP"]],
+      docs: [["PAN card", "Of the business, and of proprietor, partners or directors"], ["Aadhaar card", "Of proprietor, all partners or all directors"], ["GST certificate", "Required"], ["Address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"], ["Mobile number and email ID", "Of each person, and of the firm, LLP or company, for OTP"]],
       steps: [["Details", "Share your documents.", "Same day"], ["Application", "We file the IEC application on DGFT.", "Same day"], ["IEC issued", "Your IEC certificate is issued.", "Usually 1 to 2 working days"]],
       breakup: [["GrowwBizz professional fee", "₹799"], ["Govt fee (DGFT)", "₹500"]],
       pay: "Govt fee and our fee are paid before we file the application.",
@@ -1334,7 +1341,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       about: "A registered trademark gives you the exclusive right to your brand name or logo for your goods or services across India. We search for similar marks, pick the right class and file your application.",
       who: ["New brands and startups", "Businesses with an existing name or logo", "Online sellers who need brand registry on marketplaces"],
       get: ["Trademark search", "Right class selected", "Application (TM-A) drafted and filed", "Use the ™ symbol from filing day", "Status tracking till registration"],
-      docs: [["Brand name and logo", "Logo in JPG, if any"], ["PAN and Aadhaar", "Of the applicant or signing director or partner"], ["Udyam certificate", "For the lower govt fee, if a company or LLP"], ["Incorporation certificate", "If a company or LLP"], ["Date of first use", "If already using the brand"]],
+      docs: [["Brand name and logo", "Logo in JPG, if any"], ["PAN and Aadhaar", "Of the applicant, or of all directors or partners"], ["Mobile number and email ID", "Of the applicant, and of the company, LLP or firm"], ["Udyam certificate", "For the lower govt fee, if a company or LLP"], ["Incorporation certificate", "If a company or LLP"], ["Date of first use", "If already using the brand"]],
       steps: [["DSC and MSME", "DSC of the signer and Udyam certificate are issued, if not already available.", "1 to 2 working days"], ["Search and drafting", "We search for similar marks and draft your application.", "1 working day"], ["Filing", "Application filed. You get the application number and can use ™.", "Same day"]],
       breakup: [["GrowwBizz professional fee (per class)", "₹799"], ["Govt fee per class (individual, MSME)", "₹4,500"], ["Govt fee per class (others)", "₹9,000"], DSC_ROW],
       pay: "Paid in steps, just before each step starts. Govt fees and DSC are non-refundable.",
@@ -1476,6 +1483,8 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     document.getElementById("have-l").textContent = type === "opc" ? "Of the director and nominee, how many already have one?" : "How many of the " + d + " already have one?";
   }
   function renderCalc() {
+    var freeTxt = type === "llp" ? "free LLP Agreement drafting and filing (Form 3, otherwise ₹499)" : "free INC-20A filing (otherwise ₹999) and free ADT-1 filing, with only the govt fee to pay";
+    document.getElementById("dsc-miss").textContent = dscMode === "own" ? "What you miss without our DSC: " + freeTxt + ", and hassle-free signing." : "Bonus with our DSC: " + freeTxt + ".";
     var n = +dirSel.value - (dscMode === "own" ? +haveSel.value : 0), h = r("GrowwBizz professional fee", PRO), govt, label;
     if (type === "pvt") { var st = STATES[+stSel.value]; govt = NAME + PANTAN + st[1]; label = "Private Limited in " + st[0];
       h += r("Government fees", govt) + r("Name application", NAME, 1) + r("PAN and TAN", PANTAN, 1) + r("Stamp duty, " + st[0], st[1], 1);
@@ -1766,29 +1775,30 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   };
   var DOCSBY = {
     "gst-registration": { label: "Business type", opts: ENT, docs: {
-      prop: [["PAN card of proprietor", ""], ["Aadhaar card of proprietor", "Linked to mobile, for OTP"], ["Passport-size photograph", "Of proprietor"], ["Bank proof", "Cancelled cheque, passbook or statement"], ["Business address proof", "Electricity bill; rent agreement and NOC if rented"]],
-      firm: [["PAN card of the firm", ""], ["Partnership deed", ""], ["PAN, Aadhaar and photo of every partner", ""], ["Authorisation letter", "For the partner who signs; we draft it"], ["Bank proof of the firm", "Cancelled cheque or statement"], ["Business address proof", "Electricity bill; rent agreement and NOC if rented"]],
-      llp: [["PAN card of the LLP", ""], ["Certificate of Incorporation", ""], ["LLP Agreement", ""], ["PAN, Aadhaar and photo of designated partners", ""], ["Authorisation for signatory", "We draft it"], ["Bank proof of the LLP", "Cancelled cheque or statement"], ["Business address proof", "Electricity bill; rent agreement and NOC if rented"]],
-      co: [["PAN card of the company", ""], ["Certificate of Incorporation", ""], ["MOA and AOA", ""], ["PAN, Aadhaar and photo of directors", ""], ["Board resolution for signatory", "We draft it"], ["Bank proof of the company", "Cancelled cheque or statement"], ["Business address proof", "Electricity bill; rent agreement and NOC if rented"]] } },
+      prop: [["#Proprietor documents", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Passport-size photograph", "Recent, plain background"], ["Mobile number and email ID", ""], ["#Business address proof", ""], ["Electricity bill, property tax receipt or gas bill", "Owner's name and full address, not older than 2 months"], ["Rent agreement", "If the premises is rented"], ["Consent letter", "If owned by a relative. We share the format"], ["#Additional details", ""], ["Trade name", "The name you will use for your business"], ["Products or services you sell", ""]],
+      firm: [["#Firm documents", ""], ["PAN card of the firm", ""], ["Partnership deed", ""], ["#Partner documents (all partners)", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Passport-size photograph", "Recent, plain background"], ["Mobile number and email ID", ""], ["#Business address proof", ""], ["Electricity bill, property tax receipt or gas bill", "Owner's name and full address, not older than 2 months"], ["Rent agreement", "If the premises is rented"], ["Consent letter", "If owned by a relative or partner. We share the format"]],
+      llp: [["#LLP documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the LLP", ""], ["LLP Agreement", ""], ["#Partner documents (all partners)", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Passport-size photograph", "Recent, plain background"], ["Mobile number and email ID", ""], ["#Registered office address proof", ""], ["Electricity bill, property tax receipt or gas bill", "Owner's name and full address, not older than 2 months"], ["Rent agreement", "If the premises is rented"], ["Consent letter", "If owned by a relative. We share the format"], ["#LLP contact details (required)", ""], ["Mobile number and email ID of the LLP", "Must be different from the partners' mobile and email"]],
+      co: [["#Company documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the company", ""], ["MOA and AOA", ""], ["#Director documents (all directors)", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Passport-size photograph", "Recent, plain background"], ["Mobile number and email ID", ""], ["#Registered office address proof", ""], ["Electricity bill, property tax receipt or gas bill", "Owner's name and full address, not older than 2 months"], ["Rent agreement", "If the premises is rented"], ["Consent letter", "If owned by a relative. We share the format"], ["#Company contact details (required)", ""], ["Mobile number and email ID of the company", "Must be different from all directors' mobile and email. Used for GST and future communication"], ["#Additional details", ""], ["Main business activity", ""], ["State of operations", ""]] } },
     msme: { label: "Business type", opts: ENT, docs: {
-      prop: [["Aadhaar of proprietor", "Linked to mobile, for OTP"], ["PAN of proprietor", ""], ["Bank account number and IFSC", ""], ["Business address and activity", ""], ["GSTIN", "If registered"]],
-      firm: [["Aadhaar of the managing partner", "Linked to mobile, for OTP"], ["PAN of the firm", ""], ["Partnership deed", ""], ["Bank account number and IFSC of the firm", ""], ["GSTIN", "If registered"]],
-      llp: [["Aadhaar of a designated partner", "Linked to mobile, for OTP"], ["PAN of the LLP", ""], ["Certificate of Incorporation", ""], ["Bank account number and IFSC of the LLP", ""], ["GSTIN", "If registered"]],
-      co: [["Aadhaar of a director", "Linked to mobile, for OTP"], ["PAN of the company", ""], ["Certificate of Incorporation", ""], ["Bank account number and IFSC of the company", ""], ["GSTIN", "If registered"]] } },
+      prop: [["#Proprietor details", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""], ["#Business details", ""], ["Business name and address", ""], ["Main business activity", ""], ["Bank account number and IFSC", ""], ["GSTIN", "If registered"]],
+      firm: [["#Firm documents", ""], ["PAN card of the firm", ""], ["Partnership deed", ""], ["Mobile number and email ID of the firm", ""], ["#Partner details (all partners)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""], ["#Business details", ""], ["Business address and main activity", ""], ["Bank account number and IFSC of the firm", ""], ["GSTIN", "If registered"]],
+      llp: [["#LLP documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the LLP", ""], ["Mobile number and email ID of the LLP", ""], ["#Partner details (all partners)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""], ["#Business details", ""], ["Business address and main activity", ""], ["Bank account number and IFSC of the LLP", ""], ["GSTIN", "If registered"]],
+      co: [["#Company documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the company", ""], ["Mobile number and email ID of the company", ""], ["#Director details (all directors)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""], ["#Business details", ""], ["Business address and main activity", ""], ["Bank account number and IFSC of the company", ""], ["GSTIN", "If registered"]] } },
     iec: { label: "Business type", opts: ENT, docs: {
-      prop: [["PAN of proprietor", ""], ["Aadhaar of proprietor", ""], ["Business address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"], ["Mobile and email", "For OTP"]],
-      firm: [["PAN of the firm", ""], ["Partnership deed", ""], ["Aadhaar of the managing partner", ""], ["Business address proof", ""], ["Cancelled cheque of the firm", ""]],
-      llp: [["PAN of the LLP", ""], ["Certificate of Incorporation", ""], ["Aadhaar of a designated partner", ""], ["Business address proof", ""], ["Cancelled cheque of the LLP", ""]],
-      co: [["PAN of the company", ""], ["Certificate of Incorporation", ""], ["Aadhaar of a director", ""], ["Business address proof", ""], ["Cancelled cheque of the company", ""]] } },
+      prop: [["#Proprietor documents", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", "For OTP"], ["#Business documents", ""], ["GST certificate", "Required"], ["Business address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"]],
+      firm: [["#Firm documents", ""], ["PAN card of the firm", ""], ["Partnership deed", ""], ["GST certificate", "Required"], ["Mobile number and email ID of the firm", "For OTP"], ["Business address proof", "Electricity bill or rent agreement"], ["Cancelled cheque of the firm", "Or bank certificate"], ["#Partner details (all partners)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""]],
+      llp: [["#LLP documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the LLP", ""], ["GST certificate", "Required"], ["Mobile number and email ID of the LLP", "For OTP"], ["Registered office address proof", "Electricity bill or rent agreement"], ["Cancelled cheque of the LLP", "Or bank certificate"], ["#Partner details (all partners)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""]],
+      co: [["#Company documents", ""], ["Certificate of Incorporation", ""], ["PAN card of the company", ""], ["GST certificate", "Required"], ["Mobile number and email ID of the company", "For OTP"], ["Registered office address proof", "Electricity bill or rent agreement"], ["Cancelled cheque of the company", "Or bank certificate"], ["#Director details (all directors)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""]] } },
     trademark: { label: "Applicant", opts: [["Individual or proprietor", "ind"], ["Company, LLP or firm", "biz"]], docs: {
-      ind: [["Brand name and logo", "Logo in JPG, if any"], ["PAN and Aadhaar of applicant", "Aadhaar linked to mobile"], ["Passport-size photograph", "For DSC, if needed"], ["Date of first use", "If already using the brand"], ["Udyam certificate", "If you have one"]],
-      biz: [["Brand name and logo", "Logo in JPG, if any"], ["Certificate of Incorporation or partnership deed", ""], ["PAN of the business", ""], ["PAN and Aadhaar of signing director or partner", "Aadhaar linked to mobile"], ["Udyam certificate", "Gets the lower govt fee"], ["Board resolution or authorisation", "We draft it"], ["Date of first use", "If already using the brand"]] } }
+      ind: [["#Brand details", ""], ["Brand name and logo", "Logo in JPG, if any"], ["Date of first use", "If already using the brand"], ["#Applicant details", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile"], ["Mobile number and email ID", ""], ["Passport-size photograph", "For DSC, if needed"], ["Udyam certificate", "If you have one"]],
+      biz: [["#Brand details", ""], ["Brand name and logo", "Logo in JPG, if any"], ["Date of first use", "If already using the brand"], ["#Business documents", ""], ["Certificate of Incorporation or partnership deed", ""], ["PAN card of the business", ""], ["Mobile number and email ID of the company, LLP or firm", ""], ["Udyam certificate", "Gets the lower govt fee"], ["Board resolution or authorisation", "We draft it"], ["#Director or partner details (all)", ""], ["Name", ""], ["PAN card", ""], ["Aadhaar card", "Linked to mobile, for OTP"], ["Mobile number and email ID", ""]] } }
   };
 
   function opts(list) { return list.map(function (o) { return typeof o === "string" ? [o, o] : o; }); }
   function nums(a, b) { var o = []; for (var i = a; i <= b; i++) o.push([String(i), i]); return o; }
   function li(items) { return "<ul>" + items.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>"; }
-  function docLi(list) { return li(list.map(function (d) { return esc(d[0]) + (d[1] ? ' <span style="color:var(--muted)">(' + esc(d[1]) + ")</span>" : ""); })); }
+  function docLi(list) { var out = "", cur = []; list.forEach(function (d) { if (d[0].charAt(0) === "#") { if (cur.length) out += docLi0(cur); cur = []; out += '<div class="cbh" style="font-size:14px">' + esc(d[0].slice(1)) + "</div>"; } else cur.push(d); }); return out + (cur.length ? docLi0(cur) : ""); }
+  function docLi0(list) { return li(list.map(function (d) { return esc(d[0]) + (d[1] ? ' <span style="color:var(--muted)">(' + esc(d[1]) + ")</span>" : ""); })); }
   function money(rows, total) { return '<table class="cb">' + rows.map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + (typeof r[1] === "number" ? inr(r[1]) : r[1]) + "</td></tr>"; }).join("") + (total !== undefined ? '<tr class="t"><td>Total</td><td>' + (typeof total === "number" ? inr(total) : total) + "</td></tr>" : "") + "</table>"; }
   function h(t) { return '<div class="cbh">' + t + "</div>"; }
   var PAYNOTE = "You pay step by step: each step's amount is paid just before we start it.";
@@ -1811,7 +1821,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       { k: "ent", q: "What type of business do you have?", o: function () { return [["Private Limited company", "co"], ["LLP", "llp"], ["Registered partnership firm", "firm"], ["Proprietor, OPC or not registered yet", "no"]]; } },
       { k: "age", q: "How old is the business, from its registration date?", o: function () { return [["Less than 10 years", "ok"], ["10 years or more", "old"]]; } },
       { k: "to", q: "Has turnover crossed ₹100 crore in any year?", o: function () { return [["No", "ok"], ["Yes", "big"]]; } },
-      { k: "has", q: "Does the signing director or partner already have a valid DSC?", skip: function (a) { return a.ent === "no" || a.age === "old" || a.to === "big"; }, o: function () { return [["Yes, a valid DSC", 1], ["No", 0]]; } }],
+      { k: "has", q: "Does the company or LLP already have a valid Organisation DSC (not an individual DSC)?", skip: function (a) { return a.ent === "no" || a.age === "old" || a.to === "big"; }, o: function () { return [["Yes, a valid Organisation DSC", 1], ["No", 0]]; } }],
     "gst-registration": [
       { k: "ent", q: "What type of business is it?", o: function () { return ENT; } },
       { k: "prem", q: "Is the business premises owned or rented?", o: function () { return [["Owned by me or the business", "own"], ["Rented", "rent"], ["Owned by a family member", "family"]]; } }],
@@ -1820,7 +1830,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       { k: "inv", q: "How many sales invoices do you issue in a return period?", o: function () { return [["No sales (nil return)", 200], ["Up to 20 invoices", 499], ["More than 20 invoices", 999]]; } },
       { k: "iff", q: "Do your business buyers want their GST credit every month (IFF)?", skip: function (a) { return a.freq !== "q" || a.inv === 200; }, o: function () { return [["Yes", 1], ["No", 0], ["Not sure", 0]]; } }],
     "gst-ecommerce": [
-      { k: "pl", q: "How many marketplaces do you sell on?", o: function () { return [["Only one", 499], ["More than one", 999]]; } }],
+      { k: "pl", q: "How many marketplaces did you sell on this period?", o: function () { return [["No sales (Nil return)", 200], ["Only one", 499], ["More than one", 999]]; } }],
     "gst-amendment": [
       { k: "ch", q: "What do you want to change? Tap all that apply, then tap Done.", type: "multi", o: function () { return AM.map(function (x) { return [x.t, x.id]; }); } }],
     lut: [
@@ -1840,7 +1850,6 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     "llp-compliance": [
       { k: "f", q: "Which filings do you need? Tap all that apply, then tap Done.", type: "multi", o: function () { return [["Form 11 (annual return)", "f11"], ["Form 8 (accounts and solvency)", "f8"], ["Form 3 (LLP Agreement)", "f3"]]; } }],
     "company-compliance": [
-      { k: "us", q: "Was the company registered through GrowwBizz?", o: function () { return [["Yes", 1], ["No", 0]]; } },
       { k: "f", q: "Which filings do you need? Tap all that apply, then tap Done.", type: "multi", o: function () { return [["ADT-1 (auditor appointment)", "adt"], ["AOC-4 (financial statements)", "aoc"], ["MGT-7 or MGT-7A (annual return)", "mgt"]]; } }],
     "dir-kyc": [{ k: "n", q: "For how many directors or partners?", o: function () { return nums(1, 5); } }],
     "other-roc": [
@@ -1871,12 +1880,12 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     "startup-india": function (a) {
       if (a.ent === "no") return h("Not eligible yet") + "DPIIT recognition is only for Private Limited companies, LLPs and registered partnership firms. We can register your company or LLP first (from ₹899 + govt fee + DSC) and then apply.";
       if (a.age === "old" || a.to === "big") return h("Not eligible") + "DPIIT recognition is for entities under 10 years old with turnover below ₹100 crore in every year. Message us if you'd like us to check your case.";
-      return h("Startup India (DPIIT) recognition") + "Your " + ENT_NAME[a.ent] + " looks eligible." + money([["GrowwBizz professional fee", 999], ["Govt fee", "Nil"], ["DSC", a.has ? "Not needed" : 2000]], 999 + (a.has ? 0 : 2000)) + h("Documents") + docLi(byId["startup-india"].docs) + h("Steps") + li(byId["startup-india"].steps.map(function (s) { return s[0] + ": " + s[2]; })) + PAYNOTE;
+      return h("Startup India (DPIIT) recognition") + "Your " + ENT_NAME[a.ent] + " looks eligible." + money([["GrowwBizz professional fee", 999], ["Govt fee", "Nil"], ["Organisation DSC", a.has ? "Not needed" : 2000]], 999 + (a.has ? 0 : 2000)) + h("Documents") + docLi(byId["startup-india"].docs) + h("Steps") + li(byId["startup-india"].steps.map(function (s) { return s[0] + ": " + s[2]; })) + PAYNOTE;
     },
     "gst-registration": function (a) {
-      var d = DOCSBY["gst-registration"].docs[a.ent].filter(function (x) { return x[0].indexOf("address proof") < 0; });
+      var skip = false, d = DOCSBY["gst-registration"].docs[a.ent].filter(function (x) { if (x[0].charAt(0) === "#") skip = x[0].indexOf("address proof") >= 0; return !skip; });
       return h("GST registration for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 499], ["Govt fee", "Nil"]], 499) + h("Documents") + docLi(d) + h("Premises proof (" + (a.prem === "own" ? "owned" : a.prem === "rent" ? "rented" : "family-owned") + ")") + docLi(PREM[a.prem]) +
-        h("Steps") + li(["We file the application; you complete Aadhaar OTP authentication", "GST officer verifies; we reply to any query", "GSTIN usually issued in 3 to 7 working days"]) + "<b>Pay our fee only after your GST certificate is delivered.</b>";
+        h("Steps") + li(["We file the application; you complete Aadhaar OTP authentication", "GST officer verifies; we reply to any query", "GST delivered within 24 hours for startups and small businesses"]) + "<b>Pay our fee only after your GST certificate is delivered.</b>";
     },
     "gst-filing": function (a) {
       var rows = [["GrowwBizz fee per return", a.inv]]; if (a.iff) rows.push(["IFF upload, months 1 and 2 of each quarter", "₹499 each"]);
@@ -1884,7 +1893,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
         (a.freq === "q" ? "<b>Remember:</b> as a quarterly filer, GST on sales of months 1 and 2 is paid by the 25th of the next month (PMT-06), or 18% yearly interest applies. Please send bills every month." : "") +
         h("What to send each period") + docLi(byId["gst-filing"].docs) + "Fee paid per return, before we file.";
     },
-    "gst-ecommerce": function (a) { return h("E-commerce GST filing") + money([["GrowwBizz fee per return", a.pl], ["Selling on", a.pl === 499 ? "One marketplace" : "More than one"]]) + h("What to send each period") + docLi(byId["gst-ecommerce"].docs) + "Fee paid per return, before we file."; },
+    "gst-ecommerce": function (a) { return h("E-commerce GST filing") + money([["GrowwBizz fee per return", a.pl], ["Selling on", a.pl === 200 ? "No sales (Nil return)" : a.pl === 499 ? "One marketplace" : "More than one"]]) + h("What to send each period") + docLi(byId["gst-ecommerce"].docs) + "Fee paid per return, before we file."; },
     "gst-amendment": function (a) {
       var picked = AM.filter(function (x) { return a.ch.indexOf(x.id) > -1; }), by = { core: [], non: [], new: [] }, fee = 0, out = h("GST amendment");
       picked.forEach(function (x) { by[x.g].push(x); });
@@ -1918,7 +1927,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       return h("LLP compliance") + money(rows, inr(tot) + " + MCA fees") + "Late filing costs ₹100 per day per form. Each form is paid before we file it.";
     },
     "company-compliance": function (a) {
-      var rows = a.f.map(function (k) { return k === "adt" ? ["ADT-1 (auditor appointment)", a.us ? "Nil" : CONFIRM] : k === "aoc" ? ["AOC-4 (financial statements)", 999] : ["MGT-7 / MGT-7A (annual return)", 999]; });
+      var rows = a.f.map(function (k) { return k === "adt" ? ["ADT-1 (auditor appointment)", 999] : k === "aoc" ? ["AOC-4 (financial statements)", 999] : ["MGT-7 / MGT-7A (annual return)", 999]; });
       var tot = rows.reduce(function (s, r) { return s + (typeof r[1] === "number" ? r[1] : 0); }, 0);
       rows.push(["MCA filing fee", "As per share capital"]);
       return h("Company compliance") + money(rows, inr(tot) + " + MCA fees") + "AOC-4 is due within 30 days of the AGM and MGT-7 within 60 days. Late filing costs ₹100 per day per form. Each form is paid before we file it.";
@@ -2250,7 +2259,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     var tabs = [
       ["ov", "Overview", "<h2>Overview</h2><p>" + esc(s.about) + '</p><h3 class="h">Who needs it</h3><ul class="ticks">' + s.who.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>"],
       ["get", "What you get", '<h2>What you get</h2><ul class="ticks">' + s.get.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul>"],
-      ["docs", "Documents", '<h2>Documents required</h2>' + (DOCSBY[s.id] ? '<div class="dent" role="group" aria-label="' + DOCSBY[s.id].label + '"><span>' + DOCSBY[s.id].label + ":</span>" + DOCSBY[s.id].opts.map(function (o, i) { return '<button type="button" data-dent="' + o[1] + '" aria-pressed="' + (i === 0) + '">' + esc(o[0]) + "</button>"; }).join("") + '</div><div class="docs" id="dlist">' + docHtml(DOCSBY[s.id].docs[DOCSBY[s.id].opts[0][1]]) : '<div class="docs">' + docHtml(s.docs)) + '</div><p class="fine">Send clear scans or phone photos on WhatsApp. Name and date of birth must match across PAN and Aadhaar.</p>'],
+      ["docs", "Documents", '<h2>Documents required</h2>' + (DOCSBY[s.id] ? '<div class="dent" role="group" aria-label="' + DOCSBY[s.id].label + '"><span>' + DOCSBY[s.id].label + ":</span>" + DOCSBY[s.id].opts.map(function (o, i) { return '<button type="button" data-dent="' + o[1] + '" aria-pressed="' + (i === 0) + '">' + esc(o[0]) + "</button>"; }).join("") + '</div><div class="docs" id="dlist">' + docHtml(DOCSBY[s.id].docs[DOCSBY[s.id].opts[0][1]]) : '<div class="docs">' + docHtml(s.docs)) + '</div>' + (s.xl ? '<div class="xlbox"><b>More than 30 invoices? Send your data in Excel.</b>Include invoice no., date, customer GSTIN, state, HSN, quantity, taxable value, CGST, SGST and IGST, one row per invoice item. It saves time and avoids mistakes.<a class="btn btn-ghost" href="gst-sales-data-format.xlsx" download>Download our Excel format</a></div>' : "") + '<p class="fine">Send clear scans or phone photos on WhatsApp. Name and date of birth must match across PAN and Aadhaar.</p>'],
       ["steps", "Process", '<h2>Process and timeline</h2><ol class="tl">' + s.steps.map(function (st, i) { return '<li><span class="n">' + (i + 1) + "</span><div><b>" + esc(st[0]) + "</b><span>" + esc(st[1]) + "</span><br><em>" + esc(st[2]) + "</em></div></li>"; }).join("") + '</ol><p class="fine">Timelines start once complete, correct documents are received, and depend on government processing.</p>'],
       ["faq", "FAQs", '<h2>FAQs</h2><div class="faq">' + s.faq.map(function (f) { return "<details><summary>" + esc(f[0]) + "</summary><p>" + esc(f[1]) + "</p></details>"; }).join("") + "</div>"]
     ];
@@ -2283,7 +2292,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     if (s.tool === "rocamend") initRocAmend();
   }
 
-  function docHtml(list) { return list.map(function (d) { return '<div class="doc">' + DOC + "<div>" + esc(d[0]) + (d[1] ? "<small>" + esc(d[1]) + "</small>" : "") + "</div></div>"; }).join(""); }
+  function docHtml(list) { return list.map(function (d) { if (d[0].charAt(0) === "#") return '<div class="dochd">' + esc(d[0].slice(1)) + "</div>"; return '<div class="doc">' + DOC + "<div>" + esc(d[0]) + (d[1] ? "<small>" + esc(d[1]) + "</small>" : "") + "</div></div>"; }).join(""); }
   svcView.addEventListener("click", function (e) {
     var b = e.target.closest("[data-dent]"), s = byId[location.hash.replace("#", "")]; if (!b || !s || !DOCSBY[s.id]) return;
     svcView.querySelectorAll("[data-dent]").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
