@@ -670,6 +670,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
 .field .dsc-rec b { color: var(--gold-t2); } .dsc-rec > b { display: block; margin-bottom: 2px; } .dsc-rec ul { margin: 6px 0 0; padding-left: 18px; } .dsc-rec li { margin-top: 3px; } .dsc-rec b.ok { color: var(--em-t); } .dsc-rec b.no { color: var(--ink); }
 .field select:disabled { opacity: 1; }
 .dsc-help { margin: 0 0 14px; border: 1px solid var(--hair); border-radius: 14px; background: var(--sunk); }
+.field .dsc-help { margin: 12px 0; }
 .dsc-help summary { cursor: pointer; list-style: none; padding: 12px 14px; font-weight: 700; font-size: 15.5px; color: var(--gold-t2); display: flex; align-items: center; gap: 10px; }
 .dsc-help summary::-webkit-details-marker { display: none; }
 .dsc-help summary::before { content: "?"; flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 800; background: var(--gold); color: var(--gold-ink); }
@@ -812,7 +813,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       <button class="cart-btn" type="button" id="cart-btn" aria-label="Open cart, 0 services" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l2.3 11.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg><span class="lbl">Cart</span><b id="cart-n">0</b></button>
       <button class="theme-btn" type="button" id="theme-btn" aria-label="Switch to light mode" title="Switch to light mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
       <a class="btn btn-ghost" href="tel:+919203601998">92036 01998</a>
-      <a class="btn btn-wa" data-wa="Hi GrowwBizz, I need help with my business." href="https://wa.me/919203601998"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3Z"/></svg><span>WhatsApp</span></a>
+      <a class="btn btn-wa" data-bot="Hi" href="https://wa.me/919425491998?text=Hi"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.3Z"/></svg><span>WhatsApp</span></a>
       <button class="burger" type="button" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mega"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
     </div>
   </div>
@@ -901,14 +902,14 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
               <div class="field"><span class="lbl" id="dsc-l">Digital signature (DSC)</span>
                 <div class="dchoice" role="radiogroup" aria-labelledby="dsc-l"><button type="button" role="radio" aria-checked="true" data-dsc="new"><i></i><span><b>Buy DSC</b><small>Recommended · ₹2,000 per person</small></span></button><button type="button" role="radio" aria-checked="false" data-dsc="own"><i></i><span><b>I already have DSC</b><small>Class 3 and not expired</small></span></button></div>
                 <div id="have-f" class="have-f" hidden><label for="have" id="have-l">How many already have a valid DSC?</label><select id="have"></select></div>
+                <details class="dsc-help"><summary>What is a DSC and do I need one?</summary>
+                  <p>A <b>DSC (Digital Signature Certificate)</b> is an online signature on a USB token. Every director or partner signs the government (MCA) forms with it, so <b>each person needs one</b>.</p>
+                  <ul><li><b>Best choice: make it with us</b> at the time of registration. We handle the signing of all incorporation forms smoothly, without chasing you for each form.</li><li><b>Already have one?</b> You can use it if it is a Class 3 DSC that is still valid (a DSC lasts 2 years), but expect us to ask you to sign several forms one by one.</li></ul>
+                  <p>Our DSC: Class 3, valid 2 years, ₹2,000 per person.</p>
+                </details>
                 <div class="hint dsc-rec"><b>Why buy DSC from us?</b>Don't have a DSC? We get it made for you, hassle-free.
                   <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth. For a company, INC-20A and ADT-1 filing is also free (only govt fee).</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul>
                   <p class="miss" id="dsc-miss"></p></div></div>
-              <details class="dsc-help"><summary>What is a DSC and do I need one?</summary>
-                <p>A <b>DSC (Digital Signature Certificate)</b> is an online signature on a USB token. Every director or partner signs the government (MCA) forms with it, so <b>each person needs one</b>.</p>
-                <ul><li><b>Best choice: make it with us</b> at the time of registration. We handle the signing of all incorporation forms smoothly, without chasing you for each form.</li><li><b>Already have one?</b> You can use it if it is a Class 3 DSC that is still valid (a DSC lasts 2 years), but expect us to ask you to sign several forms one by one.</li></ul>
-                <p>Our DSC: Class 3, valid 2 years, ₹2,000 per person.</p>
-              </details>
               <p class="fine" style="margin:0">Capital or contribution up to ₹1 lakh.</p>
             </div>
             <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Order with this quote</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Adds this to your cart with an Order ID</p></div></div>
@@ -1006,7 +1007,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       <h2>Let's get your business <em class="g">sorted.</em></h2>
       <p>Tell us what you need. We reply with the documents list and a clear quote, split into simple payment steps.</p>
       <div class="ways">
-        <div class="way"><span>WhatsApp · 24×7</span><a href="https://wa.me/919203601998" target="_blank" rel="noopener">+91 92036 01998</a></div>
+        <div class="way"><span>WhatsApp · 24×7</span><a data-bot="Hi" href="https://wa.me/919425491998?text=Hi" target="_blank" rel="noopener">Chat on WhatsApp</a><small>Instant fees, documents and order status</small></div>
         <div class="way"><span>Call</span><a href="tel:+919203601998">+91 92036 01998</a><small>11 am to 7 pm, Mon to Sat</small></div>
         <div class="way"><span>Email</span><a href="mailto:hello.growwbizz@gmail.com">hello.growwbizz@gmail.com</a></div>
         <div class="way"><span>Office</span><strong>Bhopal, Madhya Pradesh</strong><small>The heart of India · serving all of India</small></div>
@@ -1053,6 +1054,9 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
 (function () {
   var WA = "919203601998";
   function wa(t) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(t); }
+  // General WhatsApp questions go to the 24x7 WhatsApp assistant (bot); orders and quotes stay on WA.
+  var BOT_WA = "919425491998";
+  function waBot(t) { return "https://wa.me/" + BOT_WA + "?text=" + encodeURIComponent(t); }
   function inr(n) { return "₹" + n.toLocaleString("en-IN"); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -1309,16 +1313,16 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       faq: [["Is Udyam registration free?", "Yes, the government does not charge for Udyam registration."], ["Does it help with trademark fees?", "Yes. With Udyam, the trademark government fee is ₹4,500 per class instead of ₹9,000 for companies and LLPs."]] },
 
     { id: "iec", cat: "reg", name: "Import Export Code (IEC) Registration", short: "IEC",
-      price: 799, plus: "professional fee", card: "Your IEC to start importing or exporting goods and services.",
-      sub: "Get your Import Export Code from DGFT, needed for customs clearance and foreign payments.",
+      price: 799, plus: "+ govt fee + DSC", card: "Your IEC to start importing or exporting goods and services.",
+      sub: "Get your Import Export Code from DGFT (IECGATE), needed for customs clearance and foreign payments.",
       facts: ["Usually 1 to 2 working days", "Lifetime validity, update yearly", "Fully online"],
       about: "IEC is a 10-digit code issued by DGFT. It is needed to import or export goods, and for many export-of-services payments through banks.",
       who: ["Businesses importing or exporting goods", "Online sellers shipping abroad", "Service exporters receiving foreign payments"],
-      get: ["DGFT portal registration", "IEC application and payment", "IEC certificate", "Reminder for yearly IEC update"],
+      get: ["DGFT (IECGATE) portal registration", "IEC application signed with DSC", "IEC certificate", "Reminder for yearly IEC update"],
       docs: [["PAN card", "Of the business, and of proprietor, partners or directors"], ["Aadhaar card", "Of proprietor, all partners or all directors"], ["GST certificate", "Required"], ["Address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"], ["Mobile number and email ID", "Of each person, and of the firm, LLP or company, for OTP"]],
       steps: [["Details", "Share your documents.", "Same day"], ["Application", "We file the IEC application on DGFT.", "Same day"], ["IEC issued", "Your IEC certificate is issued.", "Usually 1 to 2 working days"]],
-      breakup: [["GrowwBizz professional fee", "₹799"], ["Govt fee (DGFT)", "₹500"]],
-      pay: "Govt fee and our fee are paid before we file the application.",
+      breakup: [["GrowwBizz professional fee", "₹799"], ["Govt fee (DGFT)", "₹500"], ["DSC (Class 3, 2 years)", "₹2,000, if you don't have one"]],
+      pay: "DSC, govt fee and our fee are paid before we file the application.",
       faq: [["Does IEC need renewal?", "IEC has lifetime validity, but it must be updated on the DGFT portal every year between April and June."]] },
 
     { id: "dsc", cat: "reg", name: "Digital Signature Certificate (DSC)", short: "DSC (Class 3)",
@@ -1405,7 +1409,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     var c = cat(id);
     sheetBody.innerHTML = '<span class="kicker">' + inCat(id).length + ' services</span><h3 id="sheet-title">' + c.name + "</h3><p>" + c.blurb + ".</p>" +
       inCat(id).map(function (s) { return '<a class="srow" href="#' + s.id + '"><h4>' + esc(s.name) + "</h4><p>" + esc(s.card) + '</p><span class="pr"><b>' + priceTxt(s) + "</b><small>" + esc(priceNote(s)) + "</small>" + addBtn(s) + "</span></a>"; }).join("") +
-      '<a class="btn btn-ghost" style="width:100%;margin-top:18px" data-wa="Hi GrowwBizz, I need help with ' + esc(c.name) + '." href="#">Not sure? Ask us on WhatsApp</a>';
+      '<a class="btn btn-ghost" style="width:100%;margin-top:18px" data-bot="Hi GrowwBizz, I need help with ' + esc(c.name) + '." href="#">Not sure? Ask us on WhatsApp</a>';
     bindWa(sheetBody);
     lastFocus = document.activeElement; sheet.hidden = false; document.body.style.overflow = "hidden";
     sheet.querySelector(".close").focus();
@@ -1436,7 +1440,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     var hits = S.filter(function (s) { var hay = (s.name + " " + (KEYS[s.id] || "")).toLowerCase(); return t.split(/\s+/).every(function (w) { return hay.indexOf(w) > -1; }); }).slice(0, 6);
     sel = -1;
     sugg.innerHTML = hits.length ? hits.map(function (s) { return '<a href="#' + s.id + '"><span>' + esc(s.name) + "<small>" + cat(s.cat).name + "</small></span><b>" + (s.quote ? "quote" : (s.from ? "from " : "") + inr(s.price)) + "</b></a>"; }).join("")
-      : '<a data-wa="Hi GrowwBizz, I need help with ' + esc(q.value.trim()) + '." href="#"><span>Not listed? Ask us about “' + esc(q.value.trim()) + '”<small>We reply on WhatsApp</small></span></a>';
+      : '<a data-bot="Hi GrowwBizz, I need help with ' + esc(q.value.trim()) + '." href="#"><span>Not listed? Ask us about “' + esc(q.value.trim()) + '”<small>We reply on WhatsApp</small></span></a>';
     bindWa(sugg); sugg.hidden = false;
   }
   q.addEventListener("input", renderSugg);
@@ -1770,7 +1774,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   var ENT_NAME = { prop: "proprietor", firm: "partnership firm", llp: "LLP", co: "company" };
   var PREM = {
     own: [["Electricity bill or property tax receipt", "Of the business premises, not older than 2 months"]],
-    rent: [["Rent agreement", "Signed, for the business premises"], ["Owner's electricity bill", "Not older than 2 months"], ["NOC from the owner", "We share the format"]],
+    rent: [["Rent agreement", "Required. Signed, for the business premises"], ["Owner's electricity bill", "Not older than 2 months"]],
     family: [["Electricity bill", "In the family member's name, not older than 2 months"], ["Consent letter or NOC from the owner", "We share the format"], ["Owner's PAN or Aadhaar", ""]]
   };
   var DOCSBY = {
@@ -1908,7 +1912,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       return h("Income tax return") + money([["GrowwBizz fee", a.inc === "sal" ? "From ₹499" : "From ₹499, " + CONFIRM + " after seeing documents"], ["Govt fee", "Nil"]]) + h("Documents") + docLi([["PAN and Aadhaar", ""], ["Bank statements", "For interest"]].concat(extra).concat([["Investment proofs", "LIC, PPF, ELSS, health insurance"]])) + "We share your tax computation first. Our fee is paid before we file.";
     },
     msme: function (a) { return h("MSME (Udyam) for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 499], ["Govt fee", "Nil"]], 499) + h("Documents") + docLi(DOCSBY.msme.docs[a.ent]) + "Usually issued in 1 to 2 working days. Our fee is paid before we file."; },
-    iec: function (a) { return h("IEC for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 799], ["Govt fee (DGFT)", 500]], 1299) + h("Documents") + docLi(DOCSBY.iec.docs[a.ent]) + "Usually issued in 1 to 2 working days. Fees are paid before we file."; },
+    iec: function (a) { return h("IEC for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 799], ["Govt fee (DGFT)", 500], ["DSC (Class 3, 2 years), if you don't have one", 2000]], "₹1,299 + DSC if needed") + h("Documents") + docLi(DOCSBY.iec.docs[a.ent]) + "Usually issued in 1 to 2 working days. Fees are paid before we file."; },
     dsc: function (a) { return h("Class 3 DSC, 2-year validity") + money([[a.n + " × ₹2,000", a.n * 2000]], a.n * 2000) + h("For each person") + docLi(byId.dsc.docs) + "Usually issued the same day after video verification. Paid before we apply."; },
     trademark: function (a) {
       var govt = a.app === "big" ? 9000 : 4500, rows = [["GrowwBizz fee: " + a.cls + " × ₹799", 799 * a.cls], ["Govt fee: " + a.cls + " × " + inr(govt), govt * a.cls]], tot = 799 * a.cls + govt * a.cls;
@@ -2298,7 +2302,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     svcView.querySelectorAll("[data-dent]").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
     document.getElementById("dlist").innerHTML = docHtml(DOCSBY[s.id].docs[b.getAttribute("data-dent")]);
   });
-  function bindWa(root) { root.querySelectorAll("[data-wa]").forEach(function (a) { a.href = wa(a.getAttribute("data-wa")); a.target = "_blank"; a.rel = "noopener"; }); }
+  function bindWa(root) { root.querySelectorAll("[data-wa]").forEach(function (a) { a.href = wa(a.getAttribute("data-wa")); a.target = "_blank"; a.rel = "noopener"; }); root.querySelectorAll("[data-bot]").forEach(function (a) { a.href = waBot(a.getAttribute("data-bot")); a.target = "_blank"; a.rel = "noopener"; }); }
   bindWa(document);
 
   var pending = null;
