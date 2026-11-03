@@ -275,6 +275,16 @@ section.block { padding-block: 100px; position: relative; }
 .bill .note { padding: 12px 16px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--hair-2); }
 .bill .act { padding: 0 16px 16px; }
 .bill .act .btn { width: 100%; }
+.qbar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.qbar button { flex: 1 1 auto; min-height: 40px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--hair); background: var(--glass); color: var(--ink); font: 600 14px var(--body); cursor: pointer; }
+.qbar button:hover, .qbar button:focus-visible { border-color: var(--gold); outline: none; }
+.qbar button:disabled { opacity: .6; cursor: wait; }
+.qbar.wide { display: grid; grid-template-columns: 1fr 1fr; }
+.qask { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; background: rgba(0,0,0,.55); }
+.qask .qbox { width: min(420px, 100%); background: var(--panel); color: var(--ink); border: 1px solid var(--hair); border-radius: 22px; padding: 22px 20px 18px; box-shadow: 0 40px 90px rgba(0,0,0,.5); }
+.qask h3 { font-size: 24px; margin-bottom: 6px; } .qask p { margin: 0 0 14px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+.qask .field { margin-bottom: 12px; } .qask .err { margin: 0 0 8px; } .qask .err:empty { display: none; }
+.qask .qbtns { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; margin-top: 6px; } .qask .qbtns .btn { justify-content: center; min-height: 48px; padding: 10px 14px; }
 @media (max-width: 1000px) { .tools { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } .card { padding: 22px; } }
 .dues { display: grid; gap: 10px; }
@@ -908,11 +918,11 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
                   <p>Our DSC: Class 3, valid 2 years, ₹2,000 per person.</p>
                 </details>
                 <div class="hint dsc-rec"><b>Why buy DSC from us?</b>Don't have a DSC? We get it made for you, hassle-free.
-                  <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth. For a company, INC-20A and ADT-1 filing is also free (only govt fee).</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul>
+                  <ul><li><b class="ok">DSC from us:</b> all registration forms get signed smoothly, with no back-and-forth. For a company, INC-20A and ADT-1 filing is also free (pay only Govt fees).</li><li><b class="no">Your own DSC:</b> we have to ask you again and again to sign each form, which can delay registration.</li></ul>
                   <p class="miss" id="dsc-miss"></p></div></div>
               <p class="fine" style="margin:0">Capital or contribution up to ₹1 lakh.</p>
             </div>
-            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Order with this quote</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Adds this to your cart with an Order ID</p></div></div>
+            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Order with this quote</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Adds this to your cart with an Order ID</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
           </div>
         </div>
         <div class="card" id="roc-dates">
@@ -1090,7 +1100,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       facts: ["About 7 working days", "Minimum 2 directors", "Fully online"],
       about: "A Private Limited Company is a separate legal entity owned by its shareholders and run by its directors. Owners' personal assets are protected, and it is the preferred structure for investors and banks.",
       who: ["Startups that plan to raise investment", "Businesses that want to add partners as shareholders", "Founders who want limited liability and a strong brand image", "Businesses dealing with large clients or government tenders"],
-      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "INC-20A (commencement of business) filing: free when DSCs are bought from us, only govt fee", "ADT-1 (first auditor appointment) filing: free when DSCs are bought from us, only govt fee", "WhatsApp updates at every step"],
+      get: ["Name approval from MCA", "DSC and DIN for directors", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "INC-20A (commencement of business) filing: free when DSCs are bought from us, pay only Govt fees", "ADT-1 (first auditor appointment) filing: free when DSCs are bought from us, pay only Govt fees", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each director and shareholder"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement or electricity bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["Office electricity bill", "Of the registered office, not older than 2 months"], ["Rent agreement and owner NOC", "Only if the office is rented"]],
       steps: [["Name application", "Share two proposed names and your business activity. We file the name application with MCA.", "1 to 3 working days"], ["Documents and DSC", "DSCs are issued and we draft the MOA, AOA and incorporation forms for signing.", "1 to 2 working days"], ["Incorporation", "We file with MCA. Your Certificate of Incorporation, DIN, PAN and TAN are issued.", "2 to 3 working days"]],
       breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fee: name application", "₹1,000"], ["Govt fee: PAN and TAN", "₹143"], ["State stamp duty and registration", "Varies by state"], DSC_ROW],
@@ -1104,7 +1114,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       facts: ["About 7 working days", "Minimum 2 partners", "Fully online"],
       about: "An LLP combines the flexibility of a partnership with the limited liability of a company. Partners are not personally liable for the LLP's debts, and compliance is lighter than a company.",
       who: ["Two or more people starting a business together", "Professionals such as consultants, architects and agencies", "Existing partnership firms that want limited liability", "Businesses that don't plan to raise equity investment"],
-      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "LLP Agreement drafting", "LLP Agreement filing (Form 3): free when DSCs are bought from us, only govt fee and stamp duty", "WhatsApp updates at every step"],
+      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "LLP Agreement drafting", "LLP Agreement filing (Form 3): free when DSCs are bought from us, pay only Govt fees and stamp duty", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each partner"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement, electricity or phone bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["One more ID", "Passport, Voter ID or Driving Licence"], ["Office proof", "Electricity bill, owner NOC, and rent agreement if rented"]],
       steps: [["Name approval", "Your two proposed names are filed with MCA and approval is obtained.", "1 to 3 working days"], ["Document preparation", "DSCs are issued, the incorporation form is drafted and documents are signed.", "About 2 working days"], ["Incorporation", "MCA processes the application. Certificate of Incorporation, LLP PAN and TAN are issued.", "2 to 3 working days"], ["LLP Agreement (Form 3)", "We draft the LLP Agreement and file it within 30 days of incorporation. Free when DSCs are bought from us; otherwise ₹499.", "Within 30 days"]],
       breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fees (contribution up to ₹1 lakh)", "₹900"], DSC_ROW, ["LLP Agreement drafting and filing (Form 3)", "Free with our DSC (else ₹499)"], ["LLP Agreement stamp duty", "As per state"]],
@@ -1245,7 +1255,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       steps: [["Share money", "Shareholders pay their subscription into the company's bank account.", "After the bank account opens"], ["Preparation", "We prepare INC-20A with the bank proof.", "1 working day"], ["Filing", "Filed with MCA, signed with the director's DSC.", "Same day"]],
       breakup: [["GrowwBizz fee", "₹999 (free if registered with us using our DSC)"], ["Govt fee", "As per capital, ₹200 up to ₹1 lakh"]],
       pay: "Our fee (if any) and the govt fee are paid before we file.",
-      faq: [["My company was registered by GrowwBizz. Do I pay?", "If the directors' DSCs were bought from us at registration, you pay only the govt fee; our fee is free. Otherwise our fee is ₹999."], ["What if I miss 180 days?", "The form can still be filed with additional fees, but penalties apply. Contact us quickly."]] },
+      faq: [["My company was registered by GrowwBizz. Do I pay?", "If the directors' DSCs were bought from us at registration, you pay only Govt fees; our fee is free. Otherwise our fee is ₹999."], ["What if I miss 180 days?", "The form can still be filed with additional fees, but penalties apply. Contact us quickly."]] },
 
     { id: "dir-kyc", cat: "roc", name: "Director KYC (DIR-3 KYC)", short: "Director KYC",
       price: 499, plus: "per director", card: "Keep your DIN active and avoid the ₹5,000 late fee.",
@@ -1470,7 +1480,8 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   var PRO = 899, DSC = 2000, NAME = 1000, PANTAN = 143, LLP_GOVT = 900;
   var stSel = document.getElementById("state"), dirSel = document.getElementById("dirs"), haveSel = document.getElementById("have"), bill = document.getElementById("bill"), calcWa = document.getElementById("calc-wa"), type = "pvt";
   STATES.forEach(function (s, i) { var o = document.createElement("option"); o.value = i; o.textContent = s[0]; if (s[0] === "Madhya Pradesh") o.selected = true; stSel.appendChild(o); });
-  function r(l, a, sub) { return "<tr><td" + (sub ? ' class="sub"' : "") + ">" + l + "</td><td" + (sub ? ' class="sub"' : "") + ">" + inr(a) + "</td></tr>"; }
+  var calcRows = [];
+  function r(l, a, sub) { calcRows.push([l, inr(a), !!sub]); return "<tr><td" + (sub ? ' class="sub"' : "") + ">" + l + "</td><td" + (sub ? ' class="sub"' : "") + ">" + inr(a) + "</td></tr>"; }
   var WHO = { pvt: ["directors", "A Private Limited company needs at least 2 directors."], opc: ["people", "An OPC needs a DSC for both the director and the nominee."], llp: ["designated partners", "An LLP needs at least 2 designated partners."] };
   function fillPeople() {
     var min = 2, max = type === "opc" ? 2 : 6, cur = Math.min(max, Math.max(min, +dirSel.value || 2)), h = "";
@@ -1487,8 +1498,9 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     document.getElementById("have-l").textContent = type === "opc" ? "Of the director and nominee, how many already have one?" : "How many of the " + d + " already have one?";
   }
   function renderCalc() {
-    var freeTxt = type === "llp" ? "free LLP Agreement drafting and filing (Form 3, otherwise ₹499)" : "free INC-20A filing (otherwise ₹999) and free ADT-1 filing, with only the govt fee to pay";
+    var freeTxt = type === "llp" ? "free LLP Agreement drafting and filing (Form 3, otherwise ₹499)" : "free INC-20A filing (otherwise ₹999) and free ADT-1 filing (pay only Govt fees)";
     document.getElementById("dsc-miss").textContent = dscMode === "own" ? "What you miss without our DSC: " + freeTxt + ", and hassle-free signing." : "Bonus with our DSC: " + freeTxt + ".";
+    calcRows = [];
     var n = +dirSel.value - (dscMode === "own" ? +haveSel.value : 0), h = r("GrowwBizz professional fee", PRO), govt, label;
     if (type === "pvt") { var st = STATES[+stSel.value]; govt = NAME + PANTAN + st[1]; label = "Private Limited in " + st[0];
       h += r("Government fees", govt) + r("Name application", NAME, 1) + r("PAN and TAN", PANTAN, 1) + r("Stamp duty, " + st[0], st[1], 1);
@@ -1496,9 +1508,13 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       h += r("Government fees", govt) + r("Name application", NAME, 1) + r("PAN and TAN", PANTAN, 1) + r("Stamp duty, " + so[0], fo, 1);
     } else { govt = LLP_GOVT; label = "LLP"; h += r("Government fees", govt); }
     h += n > 0 ? r("DSC, " + n + " × " + inr(DSC), n * DSC) : "<tr><td>DSC (using your own)</td><td>₹0</td></tr>";
+    if (n <= 0) calcRows.push(["DSC (using your own)", "₹0", false]);
     var tot = PRO + govt + n * DSC;
     h += '<tr class="tot"><td>Total</td><td>' + inr(tot) + "</td></tr>";
     bill.innerHTML = h;
+    var who = type === "llp" ? "designated partners" : type === "opc" ? "people (director + nominee)" : "directors";
+    QUOTES = QUOTES || {}; QUOTES.calc = { title: label.replace(/^Private Limited in/, "Private Limited company in"), sub: dirSel.value + " " + who + ", " + n + " new DSC" + (n === 1 ? "" : "s") + ", capital up to ₹1 lakh.", rows: calcRows, total: inr(tot),
+      notes: ["No 100% advance. You pay in steps, each just before it starts.", document.getElementById("dsc-miss").textContent], details: [], svc: [type === "pvt" ? "private-limited" : type === "opc" ? "opc" : "llp"] };
     calcNote = label + ", " + dirSel.value + " " + (type === "llp" ? "partners" : type === "opc" ? "people (director + nominee)" : "directors") + ", " + n + " new DSC" + (n === 1 ? "" : "s") + ", calculator total " + inr(tot);
     calcWa.href = wa("Hi GrowwBizz, I want to register a " + label + " with " + dirSel.value + " " + (type === "llp" ? "partner(s)" : type === "opc" ? "people (director + nominee)" : "director(s)") + ", " + n + " new DSC(s) needed. Your calculator shows " + inr(tot) + "."); 
   }
@@ -2010,6 +2026,8 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       var o = opts(q.o(a)); if (q.type === "multi") return q.q.split("?")[0] + ": " + o.filter(function (x) { return v.indexOf(x[1]) > -1; }).map(function (x) { return x[0]; }).join(", ");
       var m = o.filter(function (x) { return x[1] === v; })[0]; return q.q.split("?")[0] + ": " + (m ? m[0] : v);
     });
+    var qk = quoteFromHtml(html, s, summary, cur.id === "gst-registration" ? "Pay our fee only after your GST certificate is delivered." : PAYNOTE);
+    if (qk) html += quoteBar(qk);
     bot(html, 600).then(function () {
       buttons([s.quote ? { t: "Send my details to the team", wa: "Hi GrowwBizz, I need " + s.name + ".\n" + summary.join("\n") } : { t: "Order this (adds to cart)", order: s.id, note: summary.join("; "), cls: "go" }, { t: "← Change my answers", act: "back", v: "", cls: "bk" }, { t: "Open full page", href: "#" + s.id }, { t: "Another service", act: "menu", v: "" }]);
       lastCur = cur; cur = null;
@@ -2172,6 +2190,166 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     if (note) { var tag = s.short + ": "; cartNote = cartNote.split("\n").filter(function (x) { return x && x.indexOf(tag) !== 0; }).concat(tag + note).join("\n"); }
     saveCart(); openCart();
   }
+  // ---------- quote: download as PDF (GrowwBizz letterhead) or copy as text ----------
+  // A quote is { title, sub, rows: [[label, amount, isSubRow]], total, notes: [...], details: [...] }.
+  var QUOTES = QUOTES || {}, qN = 0, JSPDF = null;   // QUOTES may already hold the calculator's quote (set earlier on load)
+  function quoteBar(k, wide) { return '<div class="qbar' + (wide ? " wide" : "") + '"><button type="button" data-qpdf="' + k + '">⬇ Download PDF</button><button type="button" data-qcopy="' + k + '">⧉ Copy quote</button></div>'; }
+  // Quote from an assistant answer: its first heading, the line under it and its fee table
+  function quoteFromHtml(html, s, details, note) {
+    var d = document.createElement("div"); d.innerHTML = html;
+    var tb = d.querySelector("table.cb"); if (!tb) return "";
+    var head = d.querySelector(".cbh"), sub = "", on = false;
+    for (var n = d.firstChild; n && n !== tb; n = n.nextSibling) { if (n === head) { on = true; continue; } if (on) sub += n.textContent; }
+    var q = { title: head ? head.textContent : s.name, sub: sub.trim(), rows: [], total: "", notes: [note], details: details || [], svc: s && s.id ? [s.id] : [] };
+    tb.querySelectorAll("tr").forEach(function (tr) { var c = tr.querySelectorAll("td"); if (tr.className === "t") q.total = c[1].textContent; else q.rows.push([c[0].textContent, c[1].textContent, false]); });
+    var k = "q" + (++qN); QUOTES[k] = q; return k;
+  }
+  function quoteText(q) {
+    return "*GrowwBizz fee quote*\n" + q.title + (q.sub ? "\n" + q.sub : "") + "\n\n" +
+      q.rows.map(function (r) { return (r[2] ? "    - " : "• ") + r[0] + ": " + r[1]; }).join("\n") +
+      (q.total ? "\n\n*Total: " + q.total + "*" : "") + (q.notes.length ? "\n\n" + q.notes.join("\n") : "") +
+      "\n\nWhatsApp / Call: 92036 01998\nwww.growwbizz.in";
+  }
+  function copyText(t) {
+    function old() { var a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (e) {} a.remove(); return ok; }
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t).then(function () { return true; }, old);
+    return Promise.resolve(old());
+  }
+  function loadJsPdf() {
+    if (JSPDF) return Promise.resolve(JSPDF);
+    return new Promise(function (res, rej) {
+      var sc = document.createElement("script"); sc.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+      sc.onload = function () { JSPDF = window.jspdf && window.jspdf.jsPDF; JSPDF ? res(JSPDF) : rej(); }; sc.onerror = rej; document.head.appendChild(sc);
+    });
+  }
+  function loadLogo() {
+    return new Promise(function (res) {
+      var i = new Image(); i.onload = function () { try { var c = document.createElement("canvas"); c.width = i.naturalWidth; c.height = i.naturalHeight; c.getContext("2d").drawImage(i, 0, 0); res(c.toDataURL("image/png")); } catch (e) { res(null); } };
+      i.onerror = function () { res(null); }; i.src = "logo-dark.png";
+    });
+  }
+  function rs(t) { return String(t).replace(/₹\s?/g, "Rs. ").replace(/×/g, "x").replace(/[–—]/g, "-").replace(/[^\x20-\x7E]/g, ""); }
+  // Before the PDF: ask the client's name and mobile. The name is printed on the quote and the quote is saved in the
+  // team's Orders deck (Quotes tab, kept apart from orders) so the team can follow up.
+  function askWho(q, btn) {
+    var m = me(), ov = document.createElement("div"); ov.className = "qask";
+    ov.innerHTML = '<form class="qbox" role="dialog" aria-modal="true" aria-labelledby="qa-h" novalidate><h3 id="qa-h">Get your quote PDF</h3><p>Your name is printed on the quote. Our team can also help if you have any questions.</p>' +
+      '<div class="field"><label for="qa-name">Your name</label><input id="qa-name" autocomplete="name" maxlength="80" value="' + esc(m.name || "") + '"></div>' +
+      '<div class="field"><label for="qa-mob">Your mobile</label><input id="qa-mob" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10-digit mobile" value="' + esc(m.mobile || "") + '"></div>' +
+      '<div class="err" id="qa-err" role="alert"></div><div class="qbtns"><button type="button" class="btn btn-ghost" data-qx>Cancel</button><button type="submit" class="btn btn-gold">⬇ Download PDF</button></div></form>';
+    document.body.appendChild(ov);
+    var nm = ov.querySelector("#qa-name"), mb = ov.querySelector("#qa-mob"), er = ov.querySelector("#qa-err");
+    function close() { ov.remove(); document.removeEventListener("keydown", key, true); if (btn && btn.focus) btn.focus(); }
+    function key(e) { if (e.key === "Escape") { e.stopPropagation(); close(); } }
+    document.addEventListener("keydown", key, true);
+    ov.addEventListener("click", function (e) { if (e.target === ov || e.target.closest("[data-qx]")) close(); });
+    mb.addEventListener("input", function () { mb.value = mb.value.replace(/\D/g, "").slice(0, 10); });
+    ov.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var n = nm.value.trim(), mo = mb.value;
+      if (n.length < 2) { er.textContent = "Please enter your name."; nm.focus(); return; }
+      if (!/^[6-9]\d{9}$/.test(mo)) { er.textContent = "Please enter a valid 10-digit mobile number."; mb.focus(); return; }
+      rememberMe({ name: n, mobile: mo, city: m.city || "" });
+      var id = newId("QT");
+      track({ type: "quote", id: id, name: n, mobile: mo, city: m.city || "", quote: rs(q.title), details: q.sub || "", total: q.total || "",
+        items: q.rows.filter(function (r) { return !r[2]; }).map(function (r) { return { service: r[0], fee: r[1] }; }) });
+      close(); quotePdf(q, btn, { name: n, mobile: mo, id: id });
+    });
+    (nm.value ? (mb.value ? ov.querySelector("[type=submit]") : mb) : nm).focus();
+  }
+  function quotePdf(q, btn, who) {
+    var label = btn.textContent; btn.disabled = true; btn.textContent = "Preparing PDF…";
+    Promise.all([loadJsPdf(), loadLogo()]).then(function (v) {
+      var doc = new v[0]({ unit: "mm", format: "a4" }), logo = v[1], G = [13, 96, 76], INK = [9, 37, 46], MU = [92, 107, 112], now = new Date();
+      var date = now.getDate() + " " + MON[now.getMonth()] + " " + now.getFullYear();
+      var qno = who && who.id ? who.id : "GBQ" + String(now.getFullYear()).slice(2) + ("0" + (now.getMonth() + 1)).slice(-2) + ("0" + now.getDate()).slice(-2) + "-" + ("0" + now.getHours()).slice(-2) + ("0" + now.getMinutes()).slice(-2);
+      function font(st, sz, col) { doc.setFont("helvetica", st); doc.setFontSize(sz); doc.setTextColor(col[0], col[1], col[2]); }
+      // faint diagonal watermark (on every page)
+      function wm() { try {
+        doc.saveGraphicsState(); doc.setGState(new doc.GState({ opacity: 0.07 })); font("bold", 112, G);
+        var pw = doc.internal.pageSize.getWidth(), ph = doc.internal.pageSize.getHeight(), wa = 50 * Math.PI / 180,
+            ww = doc.getTextWidth("GrowwBizz"), wh = 112 * 0.3528 * 0.7, ca = Math.cos(wa), sa = Math.sin(wa);
+        // centre of the text sits exactly on the centre of the page
+        doc.text("GrowwBizz", pw / 2 - ww / 2 * ca + wh / 2 * sa, ph / 2 + ww / 2 * sa + wh / 2 * ca, { angle: 50 });
+        doc.restoreGraphicsState();
+      } catch (e) {} }
+      wm();
+      // letterhead
+      if (logo) doc.addImage(logo, "PNG", 15, 11, 54, 54 * 135 / 558);
+      font("bold", 10, INK); doc.text("WhatsApp / Call: 92036 01998", 195, 15.5, { align: "right" });
+      font("normal", 9.5, G); doc.textWithLink("www.growwbizz.in", 195 - doc.getTextWidth("www.growwbizz.in"), 20.5, { url: "https://www.growwbizz.in" });
+      font("normal", 9, MU); doc.text("Bhopal, Madhya Pradesh  |  Serving all of India", 195, 25.5, { align: "right" });
+      doc.setDrawColor(G[0], G[1], G[2]); doc.setLineWidth(0.8); doc.line(15, 31, 195, 31);
+      // title
+      font("bold", 18, INK); doc.text("Fee Quotation", 15, 43);
+      font("normal", 9.5, MU); doc.text("Date: " + date, 195, 38.5, { align: "right" }); doc.text("Quote no: " + qno, 195, 43.5, { align: "right" });
+      var y = 54;
+      if (who && who.name) {
+        font("normal", 10, MU); doc.text("Prepared for:", 15, 51);
+        font("bold", 12, INK); doc.text(rs(who.name).slice(0, 60) + "   |   " + who.mobile.slice(0, 5) + " " + who.mobile.slice(5), 15 + doc.getTextWidth("Prepared for:") * 10 / 12 + 3, 51);
+        doc.setDrawColor(222, 230, 228); doc.setLineWidth(0.2); doc.line(15, 55, 195, 55); y = 64;
+      }
+      font("bold", 13, G); doc.splitTextToSize(rs(q.title), 180).forEach(function (l) { doc.text(l, 15, y); y += 6; });
+      if (q.sub) { font("normal", 10.5, INK); doc.splitTextToSize(rs(q.sub), 180).forEach(function (l) { doc.text(l, 15, y); y += 5.2; }); }
+      y += 4;
+      // table
+      doc.setFillColor(232, 243, 238); doc.rect(15, y - 5.5, 180, 8.5, "F");
+      font("bold", 10, INK); doc.text("Particulars", 18, y); doc.text("Amount", 192, y, { align: "right" }); y += 9;
+      q.rows.forEach(function (r) {
+        var sub = r[2], lines;
+        font(sub ? "normal" : "normal", sub ? 9.5 : 10.5, sub ? MU : INK); lines = doc.splitTextToSize(rs(r[0]), sub ? 120 : 128);
+        lines.forEach(function (l, i) { doc.text(l, sub ? 25 : 18, y + i * 5); });
+        font(sub ? "normal" : "bold", sub ? 9.5 : 10.5, sub ? MU : INK); doc.splitTextToSize(rs(r[1]), 44).forEach(function (l, i) { doc.text(l, 192, y + i * 5, { align: "right" }); });
+        y += lines.length * 5 + 2; doc.setDrawColor(222, 230, 228); doc.setLineWidth(0.2); doc.line(15, y - 1, 195, y - 1); y += 5;
+      });
+      if (q.total) { doc.setFillColor(G[0], G[1], G[2]); doc.rect(15, y - 5.5, 180, 10, "F"); font("bold", 12, [255, 255, 255]); doc.text("Total", 18, y + 0.8); doc.text(rs(q.total), 192, y + 0.8, { align: "right" }); y += 14; }
+      // notes, details and, for each service, documents, steps with timelines and what the client gets
+      function clean(t) { return rs(String(t == null ? "" : t).replace(/<[^>]+>/g, "")); }
+      function need(h) { if (y + h > 268) { doc.addPage(); wm(); y = 22; } }
+      function block(title, items) {
+        if (!items.length) return;
+        need(16); font("bold", 10.5, INK); doc.text(title, 15, y); y += 5.5;
+        items.forEach(function (t) { font("normal", 9.5, MU); doc.splitTextToSize(clean(t), 174).forEach(function (l, i) { need(5); doc.text((i ? "   " : "-  ") + l, 16, y); y += 4.8; }); y += 1; });
+        y += 3;
+      }
+      block("Please note", q.notes.concat(["Government fees are as per current MCA and state rules and may change."]).filter(function (x, i, a) { return x && a.indexOf(x) === i; }));
+      block("Your details", q.details || []);
+      function pair(x) { return Array.isArray(x) ? x : [x]; }
+      (q.svc || []).forEach(function (id) {
+        var sv = byId[id]; if (!sv) return;
+        need(30); y += 2; doc.setFillColor(232, 243, 238); doc.rect(15, y - 5.5, 180, 9, "F");
+        font("bold", 11.5, G); doc.text(clean(sv.name), 18, y + 0.5); y += 10;
+        block("Time and key facts", sv.facts || []);
+        block("Steps and timeline", (sv.steps || []).map(function (st, k) { st = pair(st); return (k + 1) + ". " + st[0] + (st[2] ? " (" + st[2] + ")" : "") + (st[1] ? ": " + st[1] : ""); }));
+        block("Documents needed", (sv.docs || []).map(function (d) { d = pair(d); return d[0] + (d[1] ? ": " + d[1] : ""); }));
+        block("What you get", sv.get || []);
+        if (sv.pay) block("How you pay", [sv.pay]);
+      });
+      // call to action
+      need(26); y += 2;
+      doc.setDrawColor(G[0], G[1], G[2]); doc.setLineWidth(0.5); doc.roundedRect(15, y, 180, 20, 3, 3, "S");
+      font("bold", 11.5, G); doc.text("Ready to start? We do it 100% online.", 21, y + 8);
+      font("normal", 10, INK); doc.text("WhatsApp or call 92036 01998 (calls 11am to 7pm, Mon to Sat)  |  www.growwbizz.in", 21, y + 14.5);
+      doc.link(15, y, 180, 20, { url: "https://wa.me/919203601998?text=" + encodeURIComponent("Hi GrowwBizz, I have your quote " + qno + " for " + q.title + ".") });
+      // footer on every page
+      var pages = doc.getNumberOfPages();
+      for (var pg = 1; pg <= pages; pg++) {
+        doc.setPage(pg);
+        doc.setDrawColor(G[0], G[1], G[2]); doc.setLineWidth(0.4); doc.line(15, 279, 195, 279);
+        font("bold", 9, INK); doc.text("GrowwBizz   |   92036 01998   |   www.growwbizz.in   |   hello.growwbizz@gmail.com", 105, 284.5, { align: "center" });
+        font("normal", 8, MU); doc.text("Computer-generated quote from www.growwbizz.in, " + date + "." + (pages > 1 ? "   Page " + pg + " of " + pages : ""), 105, 289, { align: "center" });
+      }
+      doc.save("GrowwBizz-Quote-" + (who && who.name ? rs(who.name).replace(/[^A-Za-z0-9]+/g, "-") + "-" : "") + rs(q.title).replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf");
+    }).catch(function () { toast("Couldn't create the PDF. Please check your internet and try again."); })
+      .then(function () { btn.disabled = false; btn.textContent = label; });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-qpdf], button[data-qcopy]"); if (!b) return;
+    var q = QUOTES[b.getAttribute("data-qpdf") || b.getAttribute("data-qcopy")]; if (!q) return;
+    if (b.hasAttribute("data-qpdf")) return askWho(q, b);
+    copyText(quoteText(q)).then(function (ok) { toast(ok ? "Quote copied. Paste it in WhatsApp or anywhere." : "Couldn't copy. Please select the text and copy it."); });
+  });
+
   function toast(html, view) {
     toastEl.innerHTML = "<span>" + html + "</span>" + (view ? ' <button type="button" data-copen>View cart</button>' : ""); toastEl.hidden = false;
     clearTimeout(toastT); toastT = setTimeout(function () { toastEl.hidden = true; }, 3200);
@@ -2186,12 +2364,16 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       return '<div class="cline"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : inr(sub)) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div></div>';
     }).join("");
     var exl = Object.keys(ex), m = me(), qn = cart.filter(function (l) { return byId[l.id].quote; }).map(function (l) { return byId[l.id].short; });
+    QUOTES = QUOTES || {}; QUOTES.cart = { title: "Your selected services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " in your cart (Order ID " + cartId + ").",
+      rows: cart.map(function (l) { var s = byId[l.id]; return [s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (l.q > 1 ? " x " + l.q : ""), s.quote ? "On quote" : inr(unit(l) * l.q), false]; }),
+      total: qn.length && !total ? "" : inr(total) + (qn.length ? " + quote" : ""),
+      notes: [(exl.length ? "Professional fee only. Plus " + exl.join(" and ") + " where the law requires them; we share the full amount before we start." : "")].concat(qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], [PAYNOTE]).filter(Boolean), details: [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
       '<div class="ctot"><span>GrowwBizz professional fee</span><b>' + (qn.length && !total ? "On quote" : inr(total) + (qn.length ? " + quote" : "")) + "</b></div>" +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
       (qn.length === cart.length ? "" : exl.length ? '<p class="cnote">Plus ' + exl.join(" and ") + " where the law requires them. For a company, the govt fee depends on your state: " + '<a href="#" data-go="tools" data-cclose>see the calculator</a>. We share the full amount before we start.</p>' : '<p class="cnote">No government fee for these services.</p>') +
-      '<div class="cpromise"><b>No 100% advance.</b> You pay for each step just before we start it.</div>' +
+      '<div class="cpromise"><b>No 100% advance.</b> You pay for each step just before we start it.</div>' + quoteBar("cart", true) +
       '<div class="cwho"><div class="field"><label for="c-name">Your name</label><input id="c-name" autocomplete="name" value="' + esc(m.name || "") + '"></div><div class="field"><label for="c-mob">Your mobile</label><input id="c-mob" inputmode="numeric" maxlength="10" autocomplete="tel" value="' + esc(m.mobile || "") + '"></div></div>' + forBlock("c", cfor) + '<div class="err" id="c-err" role="alert"></div>' +
       '<a class="btn btn-wa" id="cart-send" target="_blank" rel="noopener" href="' + wa(cartMsg(total, exl)) + '">' + document.querySelector(".top .btn-wa svg").outerHTML + "Place order via WhatsApp</a>" +
       '<p class="csave">Your order is saved with our team the moment you tap, so we follow up even if WhatsApp does not open.</p>' +
