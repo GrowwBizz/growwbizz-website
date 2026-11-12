@@ -648,6 +648,18 @@ a.due { text-decoration: none; color: inherit; transition: border-color .2s; } a
 .ferr { display: block; color: var(--danger); font-size: 14px; font-weight: 700; line-height: 1.4; }
 .ferr:empty { display: none; }
 input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(255,138,101,.15); }
+.cline.costed { padding-bottom: 12px; }
+.ccost { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.ccost .cc { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.ccost .cc:last-child { grid-column: 1 / -1; }
+.ccost .cc select { margin-top: 3px; text-transform: none; letter-spacing: 0; font-weight: 600; }
+table.cbk { grid-column: 1 / -1; width: 100%; border-collapse: collapse; font-size: 14px; color: var(--ink-2); background: var(--sunk); border-radius: 12px; overflow: hidden; }
+table.cbk td { padding: 5px 12px; } table.cbk td:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+table.cbk tr:first-child td { padding-top: 9px; } table.cbk tr:last-child td { padding-bottom: 9px; }
+.cp .allin { display: block; color: var(--muted); font-size: 12px; text-align: right; margin: 0; }
+table.csum { width: 100%; border-collapse: collapse; margin-top: 10px; border-top: 1px solid var(--hair-2); font-size: 15px; color: var(--ink-2); }
+table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right; font-weight: 700; color: var(--ink); }
+.cmore { display: block; width: 100%; margin: 4px 0 14px; padding: 11px; border-radius: 14px; border: 1px dashed var(--gold); background: none; color: var(--gold-t2); font: inherit; font-weight: 800; cursor: pointer; }
 .cdet { margin: 10px 0 4px; padding: 12px 14px; border-radius: 14px; background: var(--sunk); border: 1px solid var(--hair-2); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); } .cdet b { display: block; color: var(--gold-t2); margin-bottom: 2px; }
 .oid { margin: -8px 0 10px; font-size: 14.5px; color: var(--muted); letter-spacing: .02em; } .oid b { color: var(--gold-t2); font-size: 15.5px; letter-spacing: .06em; margin-left: 6px; }
 .cwho { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; margin-top: 4px; }
@@ -926,7 +938,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
                   <p class="miss" id="dsc-miss"></p></div></div>
               <p class="fine" style="margin:0">Capital or contribution up to ₹1 lakh.</p>
             </div>
-            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Order with this quote</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Adds this to your cart with an Order ID</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
+            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Add this costing to cart</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Then add GST, MSME or any other service and get one combined quote</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
           </div>
         </div>
         <div class="card" id="roc-dates">
@@ -1529,7 +1541,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   var calcNote = "", dscMode = "new";
   function setDsc(m) { dscMode = m; document.querySelectorAll("#calc [data-dsc]").forEach(function (x) { x.setAttribute("aria-checked", x.getAttribute("data-dsc") === m); }); document.getElementById("have-f").hidden = m !== "own"; }
   document.querySelectorAll("#calc [data-dsc]").forEach(function (b) { b.addEventListener("click", function () { setDsc(b.getAttribute("data-dsc")); renderCalc(); }); });
-  calcWa.addEventListener("click", function (e) { e.preventDefault(); orderNow({ pvt: "private-limited", opc: "opc", llp: "llp" }[type], 1, calcNote); });
+  calcWa.addEventListener("click", function (e) { e.preventDefault(); orderCosted({ pvt: "private-limited", opc: "opc", llp: "llp" }[type], { st: +stSel.value, p: +dirSel.value, h: dscMode === "own" ? +haveSel.value : 0 }); });
   stSel.addEventListener("change", renderCalc); dirSel.addEventListener("change", function () { fillHave(); renderCalc(); }); haveSel.addEventListener("change", renderCalc); fillPeople(); renderCalc();
 
   // Due dates: GST (shown on GST pages), ROC (tools card) and the full compliance calendar, all from today
@@ -2172,6 +2184,55 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   function unit(l) { var s = byId[l.id]; return s.rates && l.o > -1 ? s.rates[l.o][1] : s.price; }
   function extras(s) { var x = []; if (/govt/i.test(s.plus || "")) x.push("govt fee"); if (/DSC/.test(s.plus || "")) x.push("DSC"); return x; }
   function qtyLabel(s) { return /per return/.test(s.plus || "") ? "returns" : s.id === "trademark" ? "classes" : /per form/.test(s.plus || "") ? "filings" : "qty"; }
+  // Full costing in the cart: professional fee + govt fee / stamp duty + DSC for each service (state-wise for a company or OPC),
+  // so any mix of services becomes one itemised, combined quote.
+  var REG = { "private-limited": "pvt", opc: "opc", llp: "llp" }, DSC1 = { trademark: 1, iec: 1, "startup-india": 1 };
+  var TM_GOVT = [["Individual, MSME or startup", 4500], ["Others (company or LLP without Udyam)", 9000]], IEC_GOVT = 500, INC20A_GOVT = 200;
+  function hasReg() { return cart.some(function (l) { return REG[l.id]; }); }
+  function csel(i, k, opts, cur, lbl) { return '<label class="cc"><span>' + lbl + '</span><select data-cc="' + i + '" data-k="' + k + '">' + opts.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === cur ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join("") + "</select></label>"; }
+  function lineCost(l, i) {
+    var s = byId[l.id], c = l.c || {}, q = l.q, pro = s.quote ? 0 : unit(l) * q, g = [], nd = 0, m = 1, info = [], ctl = "", t = REG[l.id], dlab = "";
+    if (t) {
+      var st = c.st == null || !STATES[c.st] ? +stSel.value : c.st, p = t === "opc" ? 2 : Math.min(6, Math.max(2, c.p || 2)), h = Math.min(c.h || 0, p), opts = [];
+      if (t === "llp") g.push(["Govt fee (contribution up to ₹1 lakh)", LLP_GOVT]);
+      else { g.push(["Name application", NAME], ["PAN and TAN", PANTAN], ["Stamp duty, " + STATES[st][0], t === "opc" ? OPC_FEE[st] : STATES[st][1]]); info.push(STATES[st][0]); }
+      nd = p - h; m = q; info.push(p + " " + (t === "llp" ? "partners" : t === "opc" ? "people" : "directors"));
+      for (var k = 0; k <= p; k++) opts.push([k, k === 0 ? "Buy " + p + " DSCs (recommended)" : k === p ? (p === 2 ? "Both have" : "All " + p + " have") + " DSC, buy none" : k + " of " + p + " have DSC, buy " + (p - k)]);
+      ctl = (t === "llp" ? "" : csel(i, "st", STATES.map(function (x, n) { return [n, x[0]]; }), st, "State")) +
+        (t === "opc" ? "" : csel(i, "p", [2, 3, 4, 5, 6].map(function (n) { return [n, n + " " + (t === "llp" ? "partners" : "directors")]; }), p, t === "llp" ? "Partners" : "Directors")) +
+        csel(i, "h", opts, h, "DSC");
+      dlab = (t === "opc" ? "director + nominee" : t === "llp" ? "partners" : "directors");
+    } else if (DSC1[l.id]) {
+      var d = c.d == null ? (hasReg() ? 0 : 1) : c.d;
+      if (l.id === "trademark") { var tm = TM_GOVT[c.t || 0]; g.push(["Govt fee, " + q + " class" + (q > 1 ? "es" : "") + " × " + inr(tm[1]) + " (" + tm[0].split(" (")[0] + ")", tm[1] * q]); ctl = csel(i, "t", TM_GOVT.map(function (x, n) { return [n, x[0] + ": " + inr(x[1]) + " per class"]; }), c.t || 0, "Applicant"); }
+      if (l.id === "iec") g.push(["Govt fee (DGFT)", IEC_GOVT]);
+      nd = d; ctl += csel(i, "d", [[1, "Buy 1 DSC · " + inr(DSC)], [0, hasReg() ? "Use a director's DSC from the registration" : "I already have a valid DSC"]], d, "DSC");
+      if (!d) info.push(hasReg() ? "director's DSC" : "own DSC");
+    } else if (l.id === "inc-20a") g.push(["Govt fee (capital up to ₹1 lakh)", INC20A_GOVT]);
+    var govt = g.reduce(function (a, x) { return a + x[1]; }, 0) * m, dsc = nd * m * DSC;
+    return { pro: pro, gr: g, m: m, govt: govt, nd: nd * m, dsc: dsc, all: pro + govt + dsc, info: info.join(", "), ctl: ctl, costed: !!(t || DSC1[l.id] || g.length), dlab: dlab };
+  }
+  function lineName(l, k) { var s = byId[l.id]; return s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (k.info ? " (" + k.info + ")" : "") + (l.q > 1 ? " × " + l.q : ""); }
+  // rows for the quote PDF / copy text: one main row per service with its all-in amount, then its break-up
+  function lineRows(l, k) {
+    var s = byId[l.id], r = [[lineName(l, k), s.quote ? "On quote" : inr(k.all), false]];
+    if (!k.costed || s.quote) return r;
+    r.push(["GrowwBizz professional fee", inr(k.pro), true]);
+    k.gr.forEach(function (x) { r.push([x[0] + (k.m > 1 ? " × " + k.m : ""), inr(x[1] * k.m), true]); });
+    r.push(k.nd ? ["DSC, " + k.nd + " × " + inr(DSC), inr(k.dsc), true] : ["DSC (" + (REG[l.id] || !hasReg() ? "using your own" : "director's DSC from the registration") + ")", "₹0", true]);
+    return r;
+  }
+  // services whose govt fee we cannot work out up front (it depends on capital etc.)
+  function openExtras() { var x = []; cart.forEach(function (l) { if (!lineCost(l).costed && extras(byId[l.id]).length) x.push(byId[l.id].short); }); return x; }
+  function cartSums() { var a = { pro: 0, govt: 0, dsc: 0, all: 0 }; cart.forEach(function (l) { var k = lineCost(l); a.pro += k.pro; a.govt += k.govt; a.dsc += k.dsc; a.all += k.all; }); return a; }
+  // Calculator / state pages: put a service in the cart with its costing (replaces the costing if it is already there)
+  function orderCosted(id, c, quiet) {
+    var s = byId[id]; if (!s) return;
+    var l = cart.filter(function (x) { return x.id === id; })[0];
+    if (!l) { l = { id: id, o: -1, q: 1 }; cart.push(l); }
+    l.c = c; saveCart();
+    if (quiet) { if (!cartEl.hidden) renderCart(); toast("<b>" + esc(s.short) + "</b> added with full costing", true); } else openCart();
+  }
   function saveCart() {
     if (cart.length && !cartId) cartId = newId("GB");
     if (!cart.length) { cartId = ""; cartNote = ""; }
@@ -2301,7 +2362,7 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       doc.setFillColor(232, 243, 238); doc.rect(15, y - 5.5, 180, 8.5, "F");
       font("bold", 10, INK); doc.text("Particulars", 18, y); doc.text("Amount", 192, y, { align: "right" }); y += 9;
       q.rows.forEach(function (r) {
-        var sub = r[2], lines;
+        var sub = r[2], lines; need(r[2] ? 8 : 14);
         font(sub ? "normal" : "normal", sub ? 9.5 : 10.5, sub ? MU : INK); lines = doc.splitTextToSize(rs(r[0]), sub ? 120 : 128);
         lines.forEach(function (l, i) { doc.text(l, sub ? 25 : 18, y + i * 5); });
         font(sub ? "normal" : "bold", sub ? 9.5 : 10.5, sub ? MU : INK); doc.splitTextToSize(rs(r[1]), 44).forEach(function (l, i) { doc.text(l, 192, y + i * 5, { align: "right" }); });
@@ -2361,23 +2422,27 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   }
   function renderCart() {
     if (!cart.length) { cartBody.innerHTML = '<p class="cempty">Your cart is empty. Tap <b>+ Add</b> on any service in the price list or on a service page.</p><a class="btn btn-gold" href="#" data-go="prices" data-cclose>Browse prices</a>'; return; }
-    var total = 0, ex = {};
+    var total = 0, ex = {}, sums = cartSums(), oex = openExtras();
     var rows = cart.map(function (l, i) {
-      var s = byId[l.id], u = unit(l), sub = u * l.q; total += sub; extras(s).forEach(function (x) { ex[x] = 1; });
+      var s = byId[l.id], u = unit(l), sub = u * l.q, k = lineCost(l, i); total += sub; extras(s).forEach(function (x) { ex[x] = 1; });
       var opt = s.rates ? '<select data-ci="' + i + '" aria-label="Option for ' + esc(s.short) + '">' + s.rates.map(function (r, k) { return '<option value="' + k + '"' + (k === l.o ? " selected" : "") + ">" + esc(r[0]) + " · " + inr(r[1]) + "</option>"; }).join("") + "</select>" : "";
-      var xs = extras(s);
-      return '<div class="cline"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : inr(sub)) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div></div>';
+      var xs = extras(s), bk = "";
+      if (k.costed && !s.quote) bk = '<div class="ccost">' + k.ctl + '</div><table class="cbk">' + lineRows(l, k).slice(1).map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + r[1] + "</td></tr>"; }).join("") + "</table>";
+      return '<div class="cline' + (bk ? " costed" : "") + '"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (!k.costed && xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : inr(k.all) + (k.costed ? '<small class="allin">all-in</small>' : "")) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div>' + bk + '</div>';
     }).join("");
     var exl = Object.keys(ex), m = me(), qn = cart.filter(function (l) { return byId[l.id].quote; }).map(function (l) { return byId[l.id].short; });
-    QUOTES = QUOTES || {}; QUOTES.cart = { title: "Your selected services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " in your cart (Order ID " + cartId + ").",
-      rows: cart.map(function (l) { var s = byId[l.id]; return [s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (l.q > 1 ? " x " + l.q : ""), s.quote ? "On quote" : inr(unit(l) * l.q), false]; }),
-      total: qn.length && !total ? "" : inr(total) + (qn.length ? " + quote" : ""),
-      notes: [(exl.length ? "Professional fee only. Plus " + exl.join(" and ") + " where the law requires them; we share the full amount before we start." : "")].concat(qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], [PAYNOTE]).filter(Boolean), details: [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
+    var grand = qn.length && !sums.all ? "" : inr(sums.all) + (qn.length ? " + quote" : "");
+    QUOTES = QUOTES || {}; QUOTES.cart = { title: "Combined quote for your services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " (Order ID " + cartId + "). Professional fee " + inr(sums.pro) + (sums.govt ? ", govt fees " + inr(sums.govt) : "") + (sums.dsc ? ", DSC " + inr(sums.dsc) : "") + ".",
+      rows: [].concat.apply([], cart.map(function (l) { return lineRows(l, lineCost(l)); })),
+      total: grand,
+      notes: [(oex.length ? "Plus the govt (MCA) fee for " + oex.join(", ") + ", as per capital; we share the exact amount before we start." : "")].concat(sums.govt ? ["Govt fees and stamp duty are paid to the government at actuals, for capital or contribution up to ₹1 lakh."] : [], qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], [PAYNOTE]).filter(Boolean), details: cartNote ? cartNote.split("\n") : [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
-      '<div class="ctot"><span>GrowwBizz professional fee</span><b>' + (qn.length && !total ? "On quote" : inr(total) + (qn.length ? " + quote" : "")) + "</b></div>" +
+      '<table class="csum"><tr><td>GrowwBizz professional fee</td><td>' + inr(sums.pro) + (qn.length ? " + quote" : "") + "</td></tr>" + (sums.govt ? "<tr><td>Govt fees and stamp duty</td><td>" + inr(sums.govt) + "</td></tr>" : "") + (sums.dsc ? "<tr><td>DSC</td><td>" + inr(sums.dsc) + "</td></tr>" : "") + "</table>" +
+      '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
-      (qn.length === cart.length ? "" : exl.length ? '<p class="cnote">Plus ' + exl.join(" and ") + " where the law requires them. For a company, the govt fee depends on your state: " + '<a href="#" data-go="tools" data-cclose>see the calculator</a>. We share the full amount before we start.</p>' : '<p class="cnote">No government fee for these services.</p>') +
+      (oex.length ? '<p class="cnote">Plus the govt (MCA) fee for ' + esc(oex.join(", ")) + ", as per capital. We share the exact amount before we start.</p>" : qn.length === cart.length ? "" : sums.govt || sums.dsc ? '<p class="cnote">Govt fees as per current rules, capital up to ₹1 lakh. Change the state, people or DSC above to update the cost.</p>' : '<p class="cnote">No government fee for these services.</p>') +
+      '<button type="button" class="cmore" data-go="prices" data-cclose>+ Add more services</button>' +
       '<div class="cpromise"><b>No 100% advance.</b> You pay for each step just before we start it.</div>' + quoteBar("cart", true) +
       '<div class="cwho"><div class="field"><label for="c-name">Your name</label><input id="c-name" autocomplete="name" value="' + esc(m.name || "") + '"></div><div class="field"><label for="c-mob">Your mobile</label><input id="c-mob" inputmode="numeric" maxlength="10" autocomplete="tel" value="' + esc(m.mobile || "") + '"></div></div>' + forBlock("c", cfor) + '<div class="err" id="c-err" role="alert"></div>' +
       '<a class="btn btn-wa" id="cart-send" target="_blank" rel="noopener" href="' + wa(cartMsg(total, exl)) + '">' + document.querySelector(".top .btn-wa svg").outerHTML + "Place order via WhatsApp</a>" +
@@ -2386,7 +2451,9 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
   }
   function cartMsg(total, exl) {
     var m = me();
-    return "Hi GrowwBizz, I'd like these services.\nOrder ID: " + cartId + (m.name ? "\nName: " + m.name : "") + (m.mobile ? "\nMobile: " + m.mobile : "") + forLine(cfor) + "\n" + cart.map(function (l, n) { var s = byId[l.id]; return (n + 1) + ". " + s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (l.q > 1 ? " × " + l.q : "") + ": " + (s.quote ? "fee on quote" : inr(unit(l) * l.q)); }).join("\n") + "\nProfessional fee total: " + (total ? inr(total) : "on quote") + (total && cart.some(function (l) { return byId[l.id].quote; }) ? " + quote" : "") + (exl.length ? " + " + exl.join(" + ") : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease share the full cost and documents list.";
+    var sm = cartSums(), oex = openExtras(), qq = cart.some(function (l) { return byId[l.id].quote; });
+    return "Hi GrowwBizz, I'd like these services.\nOrder ID: " + cartId + (m.name ? "\nName: " + m.name : "") + (m.mobile ? "\nMobile: " + m.mobile : "") + forLine(cfor) + "\n" + cart.map(function (l, n) { var s = byId[l.id], k = lineCost(l); return (n + 1) + ". " + lineName(l, k) + ": " + (s.quote ? "fee on quote" : inr(k.all) + (k.costed ? " (fee " + inr(k.pro) + (k.govt ? " + govt " + inr(k.govt) : "") + (k.dsc ? " + DSC " + inr(k.dsc) : "") + ")" : "")); }).join("\n") +
+      "\nProfessional fee: " + inr(sm.pro) + (qq ? " + quote" : "") + (sm.govt ? "\nGovt fees: " + inr(sm.govt) : "") + (sm.dsc ? "\nDSC: " + inr(sm.dsc) : "") + "\nTotal: " + inr(sm.all) + (qq ? " + quote" : "") + (oex.length ? " + govt fee for " + oex.join(", ") : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease confirm and share the documents list.";
   }
   var cartFocus = null;
   function openCart() { cartFocus = document.activeElement; renderCart(); cartEl.hidden = false; document.body.style.overflow = "hidden"; toastEl.hidden = true; cartEl.querySelector(".close").focus(); }
@@ -2426,8 +2493,11 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
       if (!/^[6-9]\d{9}$/.test(m.mobile || "")) { e.preventDefault(); err.textContent = "Please enter a valid 10-digit mobile number."; var cm = document.getElementById("c-mob"); mobCheck(cm, true); cm.focus(); return; }
       var fe = forCheck(cfor, m.mobile); if (fe) { e.preventDefault(); err.textContent = fe; return; }
       err.textContent = "";
-      track(Object.assign(forData(cfor), { type: "order", id: cartId, name: m.name, mobile: m.mobile, city: m.city || "", total: cartTotal(), extras: cartExtras().join(" + "), note: cartNote,
-        items: cart.map(function (l) { var s = byId[l.id]; return { service: s.name, option: s.rates ? s.rates[l.o][0] : "", qty: l.q, fee: unit(l) * l.q }; }) }));
+      var sm = cartSums(), oex = openExtras();
+      track(Object.assign(forData(cfor), { type: "order", id: cartId, name: m.name, mobile: m.mobile, city: m.city || "", total: cartTotal(), allIn: sm.all, govt: sm.govt, dsc: sm.dsc,
+        extras: (sm.govt || sm.dsc ? (sm.govt ? "govt " + inr(sm.govt) : "") + (sm.govt && sm.dsc ? " + " : "") + (sm.dsc ? "DSC " + inr(sm.dsc) : "") + " = all-in " + inr(sm.all) : "") + (oex.length ? (sm.govt || sm.dsc ? "; " : "") + "govt fee (" + oex.join(", ") + ")" : ""),
+        note: cart.map(function (l) { var k = lineCost(l); return k.costed ? byId[l.id].short + ": " + lineRows(l, k).slice(1).map(function (r) { return r[0] + " " + r[1]; }).join(", ") + " = " + inr(k.all) : ""; }).filter(Boolean).concat(cartNote ? [cartNote] : []).join("\n"),
+        items: cart.map(function (l) { var s = byId[l.id], k = lineCost(l); return { service: s.name, option: [s.rates ? s.rates[l.o][0] : "", k.info, k.costed ? "all-in " + inr(k.all) : ""].filter(Boolean).join(" · "), qty: l.q, fee: k.pro, govt: k.govt, dsc: k.dsc, allIn: k.all }; }) }));
       toast("Order <b>" + cartId + "</b> sent. We'll reply on WhatsApp.");
       return;
     }
@@ -2438,8 +2508,18 @@ input.bad { border-color: var(--danger) !important; box-shadow: 0 0 0 3px rgba(2
     else { if (e.target.closest("[data-cclose]")) closeCart(); return; }
     saveCart(); renderCart();
   });
-  cartEl.addEventListener("change", function (e) { var sel = e.target.closest("[data-ci]"); if (!sel) return; cart[+sel.getAttribute("data-ci")].o = +sel.value; saveCart(); renderCart(); });
+  cartEl.addEventListener("change", function (e) { var cc = e.target.closest("[data-cc]"); if (cc) { var cl = cart[+cc.getAttribute("data-cc")]; cl.c = cl.c || {}; cl.c[cc.getAttribute("data-k")] = +cc.value; saveCart(); renderCart(); var f = cartEl.querySelector('[data-cc="' + cc.getAttribute("data-cc") + '"][data-k="' + cc.getAttribute("data-k") + '"]'); if (f) f.focus(); return; } var sel = e.target.closest("[data-ci]"); if (!sel) return; cart[+sel.getAttribute("data-ci")].o = +sel.value; saveCart(); renderCart(); });
   saveCart();
+  // Links from the state-wise cost pages: /?add=private-limited&state=uttar-pradesh&dirs=2 puts that costing in the cart
+  (function () {
+    var qs = new URLSearchParams(location.search), id = qs.get("add"); if (!id || !byId[id]) return;
+    function norm(x) { return String(x || "").toLowerCase().replace(/&/g, "and").replace(/[^a-z]+/g, ""); }
+    var st = -1, want = norm(qs.get("state")); STATES.forEach(function (x, n) { if (norm(x[0]) === want) st = n; });
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+    var c = REG[id] ? { st: st > -1 ? st : +stSel.value, p: +qs.get("dirs") || 2, h: 0 } : null;
+    if (st > -1) { stSel.value = st; renderCalc(); }
+    setTimeout(function () { if (c) orderCosted(id, c); else orderNow(id, 1, ""); }, 0);
+  })();
 
   // Service page
   var home = document.getElementById("view-home"), svcView = document.getElementById("view-svc");
