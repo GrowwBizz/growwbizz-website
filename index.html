@@ -654,6 +654,7 @@ em.off { display: inline-block; font-style: normal; font-weight: 800; font-size:
 [data-theme]:not([data-theme="light"]) em.off, :root:not([data-theme]) em.off { background: rgba(37,194,106,.16); color: #7fe0a7; }
 .pmrp { display: flex; align-items: center; gap: 8px; margin-top: 4px; color: var(--muted); font-size: 18px; } .pmrp em.off { margin: 0; }
 #bill tr.save td { color: #0d6b45; font-weight: 800; font-size: 14.5px; text-align: center; padding-top: 6px; }
+.offer { display: inline-block; background: #fff4cc; color: #8a5a00; border: 1px solid #e3b440; border-radius: 999px; padding: 1px 9px; font-size: 11.5px; font-weight: 800; letter-spacing: .02em; margin-right: 6px; vertical-align: 1px; }
 .csave-mrp { text-align: right; color: #0d6b45; font-weight: 800; font-size: 14.5px; margin: -2px 0 8px; }
 .ccost { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
 .ccost .cc { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
@@ -1499,7 +1500,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   var stSel = document.getElementById("state"), dirSel = document.getElementById("dirs"), bill = document.getElementById("bill"), calcWa = document.getElementById("calc-wa"), type = "pvt";
   STATES.forEach(function (s, i) { var o = document.createElement("option"); o.value = i; o.textContent = s[0]; if (s[0] === "Madhya Pradesh") o.selected = true; stSel.appendChild(o); });
   var calcRows = [];
-  function r(l, a, sub, mrp) { calcRows.push([l + (mrp ? " (MRP " + inr(mrp) + ")" : ""), inr(a), !!sub]); return "<tr><td" + (sub ? ' class="sub"' : "") + ">" + l + "</td><td" + (sub ? ' class="sub"' : "") + ">" + (mrp ? '<s class="mrp">' + inr(mrp) + "</s> " : "") + inr(a) + "</td></tr>"; }
+  function r(l, a, sub, mrp) { calcRows.push([l, inr(a), !!sub, mrp ? inr(mrp) : ""]); return "<tr><td" + (sub ? ' class="sub"' : "") + ">" + l + "</td><td" + (sub ? ' class="sub"' : "") + ">" + (mrp ? '<s class="mrp">' + inr(mrp) + "</s> " : "") + inr(a) + "</td></tr>"; }
   var WHO = { pvt: ["directors", "A Private Limited company needs at least 2 directors."], opc: ["people", "An OPC needs a DSC for both the director and the nominee."], llp: ["designated partners", "An LLP needs at least 2 designated partners."] };
   function fillPeople() {
     var min = 2, max = type === "opc" ? 2 : 6, cur = Math.min(max, Math.max(min, +dirSel.value || 2)), h = "";
@@ -1519,11 +1520,11 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     } else { govt = LLP_GOVT; label = "LLP"; h += r("Government fees", govt); }
     h += r("DSC, " + n + " × " + inr(DSC), n * DSC, 0, n * DSC_MRP);
     var tot = PRO + govt + n * DSC, save = PRO_MRP - PRO + n * (DSC_MRP - DSC);
-    h += '<tr class="tot"><td>Total</td><td>' + inr(tot) + "</td></tr>" + '<tr class="save"><td colspan="2">You save ' + inr(save) + " on MRP</td></tr>";
+    h += '<tr class="tot"><td>Total</td><td>' + inr(tot) + "</td></tr>" + '<tr class="save"><td colspan="2">' + saveBand(save) + "</td></tr>";
     bill.innerHTML = h;
     var who = type === "llp" ? "designated partners" : type === "opc" ? "people (director + nominee)" : "directors";
-    QUOTES = QUOTES || {}; QUOTES.calc = { title: label.replace(/^Private Limited in/, "Private Limited company in"), sub: dirSel.value + " " + who + ", " + n + " new DSC" + (n === 1 ? "" : "s") + ", capital up to ₹1 lakh.", rows: calcRows, total: inr(tot),
-      notes: ["You save " + inr(save) + " on MRP (our fee MRP " + inr(PRO_MRP) + ", DSC MRP " + inr(DSC_MRP) + " each).", "No 100% advance. You pay in steps, each just before it starts.", afterTxt], details: [], svc: [type === "pvt" ? "private-limited" : type === "opc" ? "opc" : "llp"] };
+    QUOTES = QUOTES || {}; QUOTES.calc = { title: label.replace(/^Private Limited in/, "Private Limited company in"), sub: dirSel.value + " " + who + ", " + n + " new DSC" + (n === 1 ? "" : "s") + ", capital up to ₹1 lakh.", rows: calcRows, total: inr(tot), save: save, mrpTotal: inr(tot + save),
+      notes: ["No 100% advance. You pay in steps, each just before it starts.", afterTxt], details: [], svc: [type === "pvt" ? "private-limited" : type === "opc" ? "opc" : "llp"] };
     calcWa.href = wa("Hi GrowwBizz, I want to register a " + label + " with " + dirSel.value + " " + (type === "llp" ? "partner(s)" : type === "opc" ? "people (director + nominee)" : "director(s)") + ", " + n + " new DSC(s) needed. Your calculator shows " + inr(tot) + "."); 
   }
   document.querySelectorAll("#calc .seg button").forEach(function (b) {
@@ -1535,6 +1536,9 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   // Due dates: GST (shown on GST pages), ROC (tools card) and the full compliance calendar, all from today
   var TODAY = new Date(); TODAY.setHours(0, 0, 0, 0);
   var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  // Monthly offer name on quotes, cart and calculator: big festivals and New Year only; other months say "Limited time offer"
+  function offerName() { var f = ["New Year", "", "Holi", "", "", "", "", "Independence Day", "Ganesh Chaturthi", "Dussehra & Diwali", "Diwali", "Christmas & New Year"][new Date().getMonth()]; return "Limited time " + (f ? f + " offer" : "offer"); }
+  function saveBand(v) { return '<span class="offer">' + offerName() + "</span> You save " + inr(v) + " on MRP"; }
   var MONF = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   function daysLeft(d) { var n = Math.round((d - TODAY) / 864e5); return n === 0 ? "Today" : n + (n === 1 ? " day" : " days"); }
   function dueRow(d, title, desc, svc) {
@@ -2190,16 +2194,16 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       nd = d; if (!d) info.push("director's DSC");
     } else if (l.id === "inc-20a") g.push(["Govt fee (capital up to ₹1 lakh)", INC20A_GOVT]);
     var govt = g.reduce(function (a, x) { return a + x[1]; }, 0) * m, dsc = nd * m * DSC;
-    return { pro: pro, gr: g, m: m, govt: govt, nd: nd * m, dsc: dsc, all: pro + govt + dsc, info: info.join(", "), ctl: ctl, costed: !!(t || DSC1[l.id] || g.length), dlab: dlab, save: s.quote ? 0 : (mrpOf(s) && (!s.rates || l.o < 0) ? (s.mrp - s.price) * q : 0) + nd * m * (DSC_MRP - DSC) };
+    return { pro: pro, gr: g, m: m, govt: govt, nd: nd * m, dsc: dsc, all: pro + govt + dsc, info: info.join(", "), ctl: ctl, costed: !!(t || DSC1[l.id] || g.length), dlab: dlab, psave: s.quote ? 0 : (mrpOf(s) && (!s.rates || l.o < 0) ? (s.mrp - s.price) * q : 0), save: s.quote ? 0 : (mrpOf(s) && (!s.rates || l.o < 0) ? (s.mrp - s.price) * q : 0) + nd * m * (DSC_MRP - DSC) };
   }
   function lineName(l, k) { var s = byId[l.id]; return s.name + (s.rates ? " (" + s.rates[l.o][0] + ")" : "") + (k.info ? " (" + k.info + ")" : "") + (l.q > 1 ? " × " + l.q : ""); }
   // rows for the quote PDF / copy text: one main row per service with its all-in amount, then its break-up
   function lineRows(l, k) {
-    var s = byId[l.id], r = [[lineName(l, k), s.quote ? "On quote" : inr(k.all), false]];
+    var s = byId[l.id], r = [[lineName(l, k), s.quote ? "On quote" : inr(k.all), false, !s.quote && k.save ? inr(k.all + k.save) : ""]];
     if (!k.costed || s.quote) return r;
-    r.push(["GrowwBizz professional fee", inr(k.pro), true]);
+    r.push(["GrowwBizz professional fee", inr(k.pro), true, k.psave ? inr(k.pro + k.psave) : ""]);
     k.gr.forEach(function (x) { r.push([x[0] + (k.m > 1 ? " × " + k.m : ""), inr(x[1] * k.m), true]); });
-    if (REG[l.id] || DSC1[l.id]) r.push(k.nd ? ["DSC, " + k.nd + " × " + inr(DSC), inr(k.dsc), true] : ["DSC (director's DSC from the registration)", "₹0", true]);
+    if (REG[l.id] || DSC1[l.id]) r.push(k.nd ? ["DSC, " + k.nd + " × " + inr(DSC), inr(k.dsc), true, inr(k.nd * DSC_MRP)] : ["DSC (director's DSC from the registration)", "₹0", true]);
     return r;
   }
   // services whose govt fee we cannot work out up front (it depends on capital etc.)
@@ -2247,13 +2251,18 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     var head = d.querySelector(".cbh"), sub = "", on = false;
     for (var n = d.firstChild; n && n !== tb; n = n.nextSibling) { if (n === head) { on = true; continue; } if (on) sub += n.textContent; }
     var q = { title: head ? head.textContent : s.name, sub: sub.trim(), rows: [], total: "", notes: [note], details: details || [], svc: s && s.id ? [s.id] : [] };
-    tb.querySelectorAll("tr").forEach(function (tr) { var c = tr.querySelectorAll("td"); if (tr.className === "t") q.total = c[1].textContent; else q.rows.push([c[0].textContent, c[1].textContent, false]); });
+    var sv = s && !s.rates && !s.quote && mrpOf(s) ? s : null, hit = 0;
+    tb.querySelectorAll("tr").forEach(function (tr) { var c = tr.querySelectorAll("td"), m = ""; if (tr.className === "t") { q.total = c[1].textContent; return; }
+      if (sv && !hit && c[1].textContent.trim() === inr(sv.price)) { hit = 1; m = inr(sv.mrp); }
+      q.rows.push([c[0].textContent, c[1].textContent, false, m]); });
+    if (hit) q.save = sv.mrp - sv.price;
     var k = "q" + (++qN); QUOTES[k] = q; return k;
   }
   function quoteText(q) {
     return "*GrowwBizz fee quote*\n" + q.title + (q.sub ? "\n" + q.sub : "") + "\n\n" +
-      q.rows.map(function (r) { return (r[2] ? "    - " : "• ") + r[0] + ": " + r[1]; }).join("\n") +
-      (q.total ? "\n\n*Total: " + q.total + "*" : "") + (q.notes.length ? "\n\n" + q.notes.join("\n") : "") +
+      q.rows.map(function (r) { return (r[2] ? "    - " : "• ") + r[0] + ": " + (r[3] ? "~" + r[3] + "~ " : "") + r[1]; }).join("\n") +
+      (q.total ? "\n\n*Total: " + (q.mrpTotal ? "~" + q.mrpTotal + "~ " : "") + q.total + "*" : "") +
+      (q.save ? "\n🎉 *" + offerName() + ": you save " + inr(q.save) + " on MRP*" : "") + (q.notes.length ? "\n\n" + q.notes.join("\n") : "") +
       "\n\nWhatsApp / Call: 92036 01998\nwww.growwbizz.in";
   }
   function copyText(t) {
@@ -2297,7 +2306,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       if (!/^[6-9]\d{9}$/.test(mo)) { er.textContent = "Please enter a valid 10-digit mobile number."; mb.focus(); return; }
       rememberMe({ name: n, mobile: mo, city: m.city || "" });
       var id = newId("QT");
-      track({ type: "quote", id: id, name: n, mobile: mo, city: m.city || "", quote: rs(q.title), details: q.sub || "", total: q.total || "",
+      track({ type: "quote", id: id, name: n, mobile: mo, city: m.city || "", quote: rs(q.title), details: (q.sub || "") + (q.save ? " | " + offerName() + ": saves " + inr(q.save) + " on MRP" : ""), total: q.total || "",
         items: q.rows.filter(function (r) { return !r[2]; }).map(function (r) { return { service: r[0], fee: r[1] }; }) });
       close(); quotePdf(q, btn, { name: n, mobile: mo, id: id });
     });
@@ -2309,6 +2318,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       var doc = new v[0]({ unit: "mm", format: "a4" }), logo = v[1], G = [13, 96, 76], INK = [9, 37, 46], MU = [92, 107, 112], now = new Date();
       var date = now.getDate() + " " + MON[now.getMonth()] + " " + now.getFullYear();
       var qno = who && who.id ? who.id : "GBQ" + String(now.getFullYear()).slice(2) + ("0" + (now.getMonth() + 1)).slice(-2) + ("0" + now.getDate()).slice(-2) + "-" + ("0" + now.getHours()).slice(-2) + ("0" + now.getMinutes()).slice(-2);
+      function strike(txt, right, yy, sz, col) { col = col || [150, 160, 163]; font("normal", sz, col); var w = doc.getTextWidth(txt); doc.text(txt, right, yy, { align: "right" }); doc.setDrawColor(col[0], col[1], col[2]); doc.setLineWidth(0.3); doc.line(right - w - 0.3, yy - sz * 0.12, right + 0.3, yy - sz * 0.12); }
       function font(st, sz, col) { doc.setFont("helvetica", st); doc.setFontSize(sz); doc.setTextColor(col[0], col[1], col[2]); }
       // faint diagonal watermark (on every page)
       function wm() { try {
@@ -2346,9 +2356,16 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
         font(sub ? "normal" : "normal", sub ? 9.5 : 10.5, sub ? MU : INK); lines = doc.splitTextToSize(rs(r[0]), sub ? 120 : 128);
         lines.forEach(function (l, i) { doc.text(l, sub ? 25 : 18, y + i * 5); });
         font(sub ? "normal" : "bold", sub ? 9.5 : 10.5, sub ? MU : INK); doc.splitTextToSize(rs(r[1]), 44).forEach(function (l, i) { doc.text(l, 192, y + i * 5, { align: "right" }); });
+        if (r[3]) strike(rs(r[3]), 192 - doc.getTextWidth(rs(r[1])) - 3, y, sub ? 8.5 : 9.5);
         y += lines.length * 5 + 2; doc.setDrawColor(222, 230, 228); doc.setLineWidth(0.2); doc.line(15, y - 1, 195, y - 1); y += 5;
       });
-      if (q.total) { doc.setFillColor(G[0], G[1], G[2]); doc.rect(15, y - 5.5, 180, 10, "F"); font("bold", 12, [255, 255, 255]); doc.text("Total", 18, y + 0.8); doc.text(rs(q.total), 192, y + 0.8, { align: "right" }); y += 14; }
+      if (q.total) { doc.setFillColor(G[0], G[1], G[2]); doc.rect(15, y - 5.5, 180, 10, "F"); font("bold", 12, [255, 255, 255]); doc.text("Total", 18, y + 0.8); doc.text(rs(q.total), 192, y + 0.8, { align: "right" });
+        if (q.mrpTotal) strike(rs(q.mrpTotal), 192 - doc.getTextWidth(rs(q.total)) - 3, y + 0.8, 10, [214, 236, 228]); y += 14; }
+      // savings band: this month's offer + amount saved against MRP
+      if (q.save) { need(20); doc.setFillColor(255, 244, 204); doc.setDrawColor(201, 150, 20); doc.setLineWidth(0.5); doc.roundedRect(15, y - 6, 180, 15, 2.5, 2.5, "FD");
+        font("bold", 9, [150, 100, 0]); doc.text(rs(offerName()).toUpperCase(), 20, y - 0.5);
+        font("bold", 14, [13, 107, 69]); doc.text("You save " + rs(inr(q.save)) + " on MRP", 20, y + 5.6);
+        font("normal", 8.5, MU); doc.text("Offer valid this month only", 190, y + 5.6, { align: "right" }); y += 17; }
       // notes, details and, for each service, documents, steps with timelines and what the client gets
       function clean(t) { return rs(String(t == null ? "" : t).replace(/<[^>]+>/g, "")); }
       function need(h) { if (y + h > 268) { doc.addPage(); wm(); y = 22; } }
@@ -2407,20 +2424,20 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       var s = byId[l.id], u = unit(l), sub = u * l.q, k = lineCost(l, i); total += sub; extras(s).forEach(function (x) { ex[x] = 1; });
       var opt = s.rates ? '<select data-ci="' + i + '" aria-label="Option for ' + esc(s.short) + '">' + s.rates.map(function (r, k) { return '<option value="' + k + '"' + (k === l.o ? " selected" : "") + ">" + esc(r[0]) + " · " + inr(r[1]) + "</option>"; }).join("") + "</select>" : "";
       var xs = extras(s), bk = "";
-      if (k.costed && !s.quote) bk = '<div class="ccost">' + k.ctl + '</div><table class="cbk">' + lineRows(l, k).slice(1).map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + r[1] + "</td></tr>"; }).join("") + "</table>";
-      return '<div class="cline' + (bk ? " costed" : "") + '"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (!k.costed && xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : inr(k.all) + (k.costed ? '<small class="allin">all-in</small>' : "")) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div>' + bk + '</div>';
+      if (k.costed && !s.quote) bk = '<div class="ccost">' + k.ctl + '</div><table class="cbk">' + lineRows(l, k).slice(1).map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + (r[3] ? '<s class="mrp">' + r[3] + "</s> " : "") + r[1] + "</td></tr>"; }).join("") + "</table>";
+      return '<div class="cline' + (bk ? " costed" : "") + '"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (!k.costed && xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : (k.save ? '<s class="mrp">' + inr(k.all + k.save) + "</s> " : "") + inr(k.all) + (k.costed ? '<small class="allin">all-in</small>' : "")) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div>' + bk + '</div>';
     }).join("");
     var after = []; if (cart.some(function (l) { return l.id === "private-limited" || l.id === "opc"; })) after.push(cart.some(function (l) { return l.id === "inc-20a"; }) ? "ADT-1 filing, ₹499 + govt fee" : "INC-20A and ADT-1 filing, ₹499 each + govt fee"); if (cart.some(function (l) { return l.id === "llp"; })) after.push("LLP Agreement (Form 3), ₹499 + stamp duty");
     var exl = Object.keys(ex), m = me(), qn = cart.filter(function (l) { return byId[l.id].quote; }).map(function (l) { return byId[l.id].short; });
     var grand = qn.length && !sums.all ? "" : inr(sums.all) + (qn.length ? " + quote" : "");
     QUOTES = QUOTES || {}; QUOTES.cart = { title: "Combined quote for your services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " (Order ID " + cartId + "). Professional fee " + inr(sums.pro) + (sums.govt ? ", govt fees " + inr(sums.govt) : "") + (sums.dsc ? ", DSC " + inr(sums.dsc) : "") + ".",
       rows: [].concat.apply([], cart.map(function (l) { return lineRows(l, lineCost(l)); })),
-      total: grand,
-      notes: [sums.save ? "You save " + inr(sums.save) + " on MRP with our discounted prices." : "", (oex.length ? "Plus the govt (MCA) fee for " + oex.join(", ") + ", as per capital; we share the exact amount before we start." : "")].concat(sums.govt ? ["Govt fees and stamp duty are paid to the government at actuals, for capital or contribution up to ₹1 lakh."] : [], qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], after.length ? ["After incorporation (not in this total): " + after.join("; ") + "."] : [], [PAYNOTE]).filter(Boolean), details: cartNote ? cartNote.split("\n") : [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
+      total: grand, save: sums.save, mrpTotal: sums.save && !qn.length ? inr(sums.all + sums.save) : "",
+      notes: [(oex.length ? "Plus the govt (MCA) fee for " + oex.join(", ") + ", as per capital; we share the exact amount before we start." : "")].concat(sums.govt ? ["Govt fees and stamp duty are paid to the government at actuals, for capital or contribution up to ₹1 lakh."] : [], qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], after.length ? ["After incorporation (not in this total): " + after.join("; ") + "."] : [], [PAYNOTE]).filter(Boolean), details: cartNote ? cartNote.split("\n") : [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
       '<table class="csum"><tr><td>GrowwBizz professional fee</td><td>' + inr(sums.pro) + (qn.length ? " + quote" : "") + "</td></tr>" + (sums.govt ? "<tr><td>Govt fees and stamp duty</td><td>" + inr(sums.govt) + "</td></tr>" : "") + (sums.dsc ? "<tr><td>DSC</td><td>" + inr(sums.dsc) + "</td></tr>" : "") + "</table>" +
-      '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">You save ' + inr(sums.save) + " on MRP</div>" : "") +
+      '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">' + saveBand(sums.save) + "</div>" : "") +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
       (oex.length ? '<p class="cnote">Plus the govt (MCA) fee for ' + esc(oex.join(", ")) + ", as per capital. We share the exact amount before we start.</p>" : qn.length === cart.length ? "" : sums.govt || sums.dsc ? '<p class="cnote">Govt fees as per current rules, capital up to ₹1 lakh. Change the state or number of people above to update the cost.</p>' : '<p class="cnote">No government fee for these services.</p>') +
       (after.length ? '<p class="cnote">After incorporation (not in this total): ' + after.join("; ") + ".</p>" : "") +
