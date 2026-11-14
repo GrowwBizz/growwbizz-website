@@ -116,7 +116,7 @@ def build():
 <link rel="icon" type="image/png" href="favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@500;700;800&display=swap">
 <style>{CSS}</style>
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script></head><body>
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script src="/justify.js" defer></script></head><body>
 <header><div class="wrap"><a href="/" aria-label="GrowwBizz home"><img src="logo-dark.png" alt="GrowwBizz" width="145" height="35"></a><nav><a href="tel:+919203601998">Call 92036 01998</a></nav></div></header>
 <main class="wrap"><div class="crumbs"><a href="/">Home</a> › News</div>
 <div style="padding:22px 0 0"><div class="kick">Updated {esc(upd)} · Official sources only</div><h1>GrowwBizz News</h1>
