@@ -73,7 +73,7 @@ h2{font-size:21px;margin:8px 0 8px}
 .chips button[aria-pressed=true]{background:var(--em);color:#fff}
 .n{background:var(--card);border:1px solid var(--hair);border-radius:18px;padding:20px;margin:0 0 14px}
 .n .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
-.n p{margin:0 0 8px;color:var(--ink2)}.n .meta{font-size:15px}.n .meta b{color:var(--ink)}
+.n p{margin:0 0 8px;color:var(--ink2)}.n p:not(.meta):not(.src),.lead{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}.n .meta,.n .src{text-align:left}.n .meta{font-size:15px}.n .meta b{color:var(--ink)}
 .n .src{font-size:13px;color:var(--muted);margin:10px 0 0;padding-top:10px;border-top:1px solid var(--hair)}
 .due{background:#fdecea;color:var(--red);font-weight:800;border-radius:99px;padding:2px 10px}
 .due.past{background:#eee;color:var(--muted)}

@@ -4,7 +4,7 @@
   s.textContent = '.gbj{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}';
   d.head.appendChild(s);
   if (!d.documentElement.lang) d.documentElement.lang = 'en';
-  var SKIP = 'button,a.btn,table,nav,header,footer,h1,h2,h3,h4,h5,h6,pre,code,.no-justify,[contenteditable],input,textarea,select';
+  var SKIP = '.meta,.src,.fine,.cnote,.disc,.small.muted,button,a.btn,table,nav,header,footer,h1,h2,h3,h4,h5,h6,pre,code,.no-justify,[contenteditable],input,textarea,select';
   function run(root) {
     var els = (root || d).querySelectorAll('p,li,dd,blockquote');
     for (var i = 0; i < els.length; i++) {
