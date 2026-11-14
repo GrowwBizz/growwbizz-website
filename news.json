@@ -3,6 +3,19 @@
   "note": "Only official government sources. Each item links to the official notification, circular or press release.",
   "items": [
     {
+      "id": "2026-10-24-mca-aoc4-mgt7-extension",
+      "date": "2026-10-24",
+      "cat": "MCA / ROC",
+      "title": "AOC-4 extended to 31 Dec 2026 and MGT-7 to 31 Jan 2027, no late fee",
+      "summary": "MCA has allowed companies to file financial statements (AOC-4 and its XBRL, CFS and NBFC versions) for FY 2025-26 up to 31 December 2026, and annual returns (MGT-7 and MGT-7A) up to 31 January 2027, without additional fees. Filings after these dates will attract the full additional fee counted from the original due date. The time limit for holding the AGM is not extended.",
+      "who": "All private limited companies, OPCs and other companies filing annual returns for FY 2025-26",
+      "action": "File AOC-4 by 31 December 2026 and MGT-7 or MGT-7A by 31 January 2027 to avoid late fees.",
+      "deadline": "2026-12-31",
+      "ref": "MCA General Circular No. 05/2026 dated 24 Oct 2026",
+      "source_name": "Ministry of Corporate Affairs",
+      "source_url": "https://www.mca.gov.in/bin/dms/getdocument?mds=5vSiNq59rdjIZwZqMbEIgQ%3D%3D&type=open"
+    },
+    {
       "id": "2026-10-08-gst-council-57",
       "date": "2026-10-08",
       "cat": "GST",

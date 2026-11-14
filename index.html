@@ -100,6 +100,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .mega ul { list-style: none; margin: 0; padding: 0; }
 .mega a { display: flex; justify-content: space-between; gap: 10px; text-decoration: none; font-size: 15.5px; color: var(--ink-2); padding: 7px 0; border-bottom: 1px solid var(--hair-2); }
 .mega a:hover { color: var(--gold-t2); }
+.news-tab .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #d64545; box-shadow: 0 0 0 0 rgba(214,69,69,.6); animation: livepulse 1.8s infinite; }
+@keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(214,69,69,.55); } 70% { box-shadow: 0 0 0 7px rgba(214,69,69,0); } 100% { box-shadow: 0 0 0 0 rgba(214,69,69,0); } }
+@media (prefers-reduced-motion: reduce) { .news-tab .live-dot { animation: none; } }
+.mega .mega-news { grid-column: 1 / -1; justify-content: flex-start; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); border: 1px solid var(--hair); border-radius: 14px; padding: 12px 16px; background: var(--glass); }
+.mega .mega-news small { font-weight: 500; color: var(--muted); font-size: 14px; }
 .mega a b { font-weight: 600; color: var(--muted); font-size: 15px; white-space: nowrap; }
 @media (max-width: 1020px) {
   .menu { display: none; }
@@ -839,6 +844,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       <a href="#" data-go="prices">Price list</a>
       <a href="#" data-go="tools">Calculator</a>
       <a href="#" data-go="calendar">Due dates</a>
+      <a class="news-tab" href="news.html">News <span class="live-dot" aria-hidden="true"></span></a>
       <a href="#" data-go="refer">Refer &amp; earn</a>
       <a href="#" data-go="contact">Contact</a>
     </nav>
@@ -1402,7 +1408,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   function minPrice(id) { var p = inCat(id).filter(function (s) { return !s.quote; }).map(function (s) { return s.price; }); return Math.min.apply(null, p); }
 
   // Mega menu and footer
-  document.getElementById("mega-inner").innerHTML = CATS.map(function (c) {
+  document.getElementById("mega-inner").innerHTML = '<a class="mega-news news-tab" href="news.html"><span class="live-dot" aria-hidden="true"></span>Latest News &amp; Updates <small>GST, Income Tax &amp; MCA, updated daily</small></a>' + CATS.map(function (c) {
     return "<div><h4>" + c.name + "</h4><ul>" + inCat(c.id).map(function (s) { return '<li><a href="#' + s.id + '">' + esc(s.short) + "<b>" + (s.quote ? "quote" : (s.from ? "from " : "") + (mrpOf(s) ? '<s class="mrp">' + inr(s.mrp) + "</s> " : "") + inr(s.price)) + "</b></a></li>"; }).join("") + "</ul></div>";
   }).join("");
   var fc = document.getElementById("foot-cols");
