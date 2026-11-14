@@ -10,7 +10,7 @@
     for (var i = 0; i < els.length; i++) {
       var e = els[i];
       if (e.classList.contains('gbj') || e.closest(SKIP)) continue;
-      if ((e.textContent || '').trim().length < 40) continue;
+      if ((e.textContent || '').trim().length < 100) continue;
       var a = getComputedStyle(e).textAlign;
       if (a === 'left' || a === 'start' || a === 'justify') e.classList.add('gbj');
     }
