@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: //
+Disallow: /staff-b336847466216f6513faa7da16737154/
 
 Sitemap: https://www.growwbizz.in/sitemap.xml
