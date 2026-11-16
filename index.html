@@ -1132,14 +1132,14 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
 
     { id: "llp", cat: "start", name: "LLP Registration", short: "LLP",
       mrp: 4999, price: 899, plus: "+ govt fee + DSC", card: "For partners who want limited liability with lower yearly compliance.",
-      sub: "Register your Limited Liability Partnership online, with name approval, incorporation, LLP PAN and TAN. LLP Agreement drafting and Form 3 filing: ₹499 + stamp duty.",
+      sub: "Register your Limited Liability Partnership online, with name approval, incorporation, LLP PAN and TAN. LLP Agreement drafting ₹499 + stamp duty, and Form 3 filing ₹499 + govt fee.",
       facts: ["About 7 working days", "Minimum 2 partners", "Fully online"],
       about: "An LLP combines the flexibility of a partnership with the limited liability of a company. Partners are not personally liable for the LLP's debts, and compliance is lighter than a company.",
       who: ["Two or more people starting a business together", "Professionals such as consultants, architects and agencies", "Existing partnership firms that want limited liability", "Businesses that don't plan to raise equity investment"],
-      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "LLP Agreement drafting", "LLP Agreement filing (Form 3): ₹499 + govt fee and stamp duty", "WhatsApp updates at every step"],
+      get: ["Name reservation (RUN-LLP)", "DSC and DPIN for designated partners", "Incorporation filing (FiLLiP)", "Certificate of Incorporation", "LLP PAN and TAN", "LLP Agreement drafting: ₹499 + stamp duty", "LLP Agreement filing (Form 3): ₹499 + govt fee", "WhatsApp updates at every step"],
       docs: [["PAN card", "Of each partner"], ["Aadhaar card", "Mobile number linked, for OTP"], ["Address proof", "Bank statement, electricity or phone bill, not older than 2 months"], ["Passport-size photograph", "Recent, plain background"], ["One more ID", "Passport, Voter ID or Driving Licence"], ["Office proof", "Electricity bill, owner NOC, and rent agreement if rented"]],
-      steps: [["Name approval", "Your two proposed names are filed with MCA and approval is obtained.", "1 to 3 working days"], ["Document preparation", "DSCs are issued, the incorporation form is drafted and documents are signed.", "About 2 working days"], ["Incorporation", "MCA processes the application. Certificate of Incorporation, LLP PAN and TAN are issued.", "2 to 3 working days"], ["LLP Agreement (Form 3)", "We draft the LLP Agreement and file it within 30 days of incorporation. ₹499 + stamp duty.", "Within 30 days"]],
-      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fees (contribution up to ₹1 lakh)", "₹900"], DSC_ROW, ["LLP Agreement drafting and filing (Form 3)", "₹499"], ["LLP Agreement stamp duty", "As per state"]],
+      steps: [["Name approval", "Your two proposed names are filed with MCA and approval is obtained.", "1 to 3 working days"], ["Document preparation", "DSCs are issued, the incorporation form is drafted and documents are signed.", "About 2 working days"], ["Incorporation", "MCA processes the application. Certificate of Incorporation, LLP PAN and TAN are issued.", "2 to 3 working days"], ["LLP Agreement (Form 3)", "We draft the LLP Agreement (₹499 + stamp duty) and file it with Form 3 (₹499 + govt fee) within 30 days of incorporation.", "Within 30 days"]],
+      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fees (contribution up to ₹1 lakh)", "₹900"], DSC_ROW, ["LLP Agreement drafting", "₹499"], ["LLP Agreement filing (Form 3)", "₹499 + govt fee"], ["LLP Agreement stamp duty", "As per state"]],
       pay: "Paid in steps. The amount for each step (our fee, govt fee, DSC) is paid just before that step starts.",
       calc: true,
       faq: [["How many partners do I need?", "At least 2 designated partners, and at least one must be resident in India."], ["What is Form 3?", "Form 3 files your LLP Agreement with MCA. It must be filed within 30 days of incorporation, or a late fee of ₹100 per day applies."], ["LLP or Private Limited?", "Choose an LLP for lower compliance between partners. Choose a Private Limited if you want to raise investment. See our comparison on the home page."]] },
@@ -1517,7 +1517,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     document.getElementById("dirs-h").textContent = WHO[type][1];
   }
   function renderCalc() {
-    var afterTxt = type === "llp" ? "After incorporation: LLP Agreement drafting and filing (Form 3), ₹499 + stamp duty." : "After incorporation: INC-20A and ADT-1 filing, ₹499 each + govt fee.";
+    var afterTxt = type === "llp" ? "After incorporation: LLP Agreement drafting ₹499 + stamp duty, and Form 3 filing ₹499 + govt fee." : "After incorporation: INC-20A and ADT-1 filing, ₹499 each + govt fee.";
     calcRows = [];
     var n = +dirSel.value, h = r("GrowwBizz professional fee", PRO, 0, PRO_MRP), govt, label;
     if (type === "pvt") { var st = STATES[+stSel.value]; govt = NAME + PANTAN + st[1]; label = "Private Limited in " + st[0];
@@ -1901,7 +1901,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     llp: function (a) {
       var dsc = (a.dirs - a.has) * 2000, rows = [["GrowwBizz professional fee", 899], ["Govt fees", a.cap === "small" ? 900 : CONFIRM], ["DSC: " + (a.dirs - a.has) + " × ₹2,000", dsc]];
       return h("LLP registration") + "<b>" + a.dirs + " partners</b>, " + (a.dirs - a.has) + " new DSC" + (a.dirs - a.has === 1 ? "" : "s") + "." + money(rows, a.cap === "small" ? 899 + 900 + dsc : inr(899 + dsc) + " + govt fees") +
-        "<b>After incorporation:</b> LLP Agreement filing (Form 3) within 30 days, ₹499 + state stamp duty." + h("Documents from each partner") + docLi(byId.llp.docs.slice(0, 5)) + h("For the office") + docLi(byId.llp.docs.slice(5)) +
+        "<b>After incorporation:</b> LLP Agreement drafting ₹499 + state stamp duty, and Form 3 filing ₹499 + govt fee, within 30 days." + h("Documents from each partner") + docLi(byId.llp.docs.slice(0, 5)) + h("For the office") + docLi(byId.llp.docs.slice(5)) +
         h("Steps") + li(["Name approval: 1 to 3 working days", "DSC and documents: about 2 working days", "Incorporation with PAN and TAN: 2 to 3 working days"]) + PAYNOTE;
     },
     opc: function (a) {
@@ -2253,7 +2253,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   // Steps after incorporation (LLP Agreement / Form 3, INC-20A, ADT-1): their own table on the quote PDF, copy text and cart, not in the total
   function afterRows(ids) {
     ids = ids || []; var r = [];
-    if (ids.indexOf("llp") >= 0) r.push(["LLP Agreement drafting and filing (Form 3)", "₹499 + stamp duty", "Within 30 days of LLP incorporation. We draft the agreement, partners sign it on state stamp paper and we file Form 3 with MCA."]);
+    if (ids.indexOf("llp") >= 0) r.push(["LLP Agreement drafting", "₹499 + stamp duty", "Within 30 days of LLP incorporation. We draft the agreement and partners sign it on state stamp paper."], ["LLP Agreement filing (Form 3)", "₹499 + govt fee", "Within 30 days of LLP incorporation. We file the signed agreement with MCA."]);
     if (ids.indexOf("private-limited") >= 0 || ids.indexOf("opc") >= 0) {
       if (ids.indexOf("inc-20a") < 0) r.push(["INC-20A: commencement of business", "₹499 + govt fee", "Within 180 days of incorporation"]);
       r.push(["ADT-1: first auditor appointment", "₹499 + govt fee", "Within 30 days of incorporation"]);
@@ -2457,7 +2457,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       if (k.costed && !s.quote) bk = '<div class="ccost">' + k.ctl + '</div><table class="cbk">' + lineRows(l, k).slice(1).map(function (r) { return "<tr><td>" + esc(r[0]) + "</td><td>" + (r[3] ? '<s class="mrp">' + r[3] + "</s> " : "") + r[1] + "</td></tr>"; }).join("") + "</table>";
       return '<div class="cline' + (bk ? " costed" : "") + '"><div class="ct"><a href="#' + s.id + '" data-cclose>' + esc(s.name) + "</a>" + opt + (!k.costed && xs.length ? '<small>+ ' + xs.join(" + ") + " (shared before we start)</small>" : "") + '</div><div class="cq"><button type="button" data-cm="' + i + '" aria-label="Fewer">−</button><span>' + l.q + (l.q > 1 ? " " + qtyLabel(s) : "") + '</span><button type="button" data-cp="' + i + '" aria-label="More">+</button></div><div class="cp">' + (s.quote ? '<span class="cq-q">On quote</span>' : (k.save ? '<s class="mrp">' + inr(k.all + k.save) + "</s> " : "") + inr(k.all) + (k.costed ? '<small class="allin">all-in</small>' : "")) + '<button type="button" class="rm" data-cr="' + i + '">Remove</button></div>' + bk + '</div>';
     }).join("");
-    var after = []; if (cart.some(function (l) { return l.id === "private-limited" || l.id === "opc"; })) after.push(cart.some(function (l) { return l.id === "inc-20a"; }) ? "ADT-1 filing, ₹499 + govt fee" : "INC-20A and ADT-1 filing, ₹499 each + govt fee"); if (cart.some(function (l) { return l.id === "llp"; })) after.push("LLP Agreement (Form 3), ₹499 + stamp duty");
+    var after = []; if (cart.some(function (l) { return l.id === "private-limited" || l.id === "opc"; })) after.push(cart.some(function (l) { return l.id === "inc-20a"; }) ? "ADT-1 filing, ₹499 + govt fee" : "INC-20A and ADT-1 filing, ₹499 each + govt fee"); if (cart.some(function (l) { return l.id === "llp"; })) after.push("LLP Agreement drafting ₹499 + stamp duty; Form 3 filing ₹499 + govt fee");
     var exl = Object.keys(ex), m = me(), qn = cart.filter(function (l) { return byId[l.id].quote; }).map(function (l) { return byId[l.id].short; });
     var grand = qn.length && !sums.all ? "" : inr(sums.all) + (qn.length ? " + quote" : "");
     QUOTES = QUOTES || {}; QUOTES.cart = { title: "Combined quote for your services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " (Order ID " + cartId + "). Professional fee " + inr(sums.pro) + (sums.govt ? ", govt fees " + inr(sums.govt) : "") + (sums.dsc ? ", DSC " + inr(sums.dsc) : "") + ".",
