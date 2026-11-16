@@ -536,6 +536,7 @@ footer .legal { border-top: 1px solid var(--hair-2); padding-block: 22px; displa
 .rtype { margin: 0 0 16px; }
 .am-card .rkind { display: inline-block; font-size: 12.5px; font-weight: 800; letter-spacing: .04em; padding: 2px 9px; border-radius: 999px; margin: 2px 0 8px; background: var(--glass-2); color: var(--ink-2); }
 .am-card .rf { font-size: 14.5px; line-height: 1.45; margin-top: 4px; } .am-card .rf span { display: inline-block; min-width: 46px; font-weight: 800; color: var(--muted); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; }
+.cafter { margin: 12px 0 4px; padding: 10px 12px; border: 1px dashed var(--hair-2); border-radius: 12px; } .cafter small { opacity: .75; } .cafter .cbk td:last-child { white-space: nowrap; }
 .am-card.rk-simple { border-left-color: var(--emerald-2); } .am-card.rk-approval { border-left-color: var(--gold); } .am-card.rk-complex { border-left-color: var(--danger); } .am-card.rk-none { border-left-color: var(--hair-2); }
 @media (max-width: 760px) { .amend-grid { grid-template-columns: 1fr; } .am-res { position: static; } }
 
@@ -2249,6 +2250,17 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   // ---------- quote: download as PDF (GrowwBizz letterhead) or copy as text ----------
   // A quote is { title, sub, rows: [[label, amount, isSubRow]], total, notes: [...], details: [...] }.
   var QUOTES = QUOTES || {}, qN = 0, JSPDF = null;   // QUOTES may already hold the calculator's quote (set earlier on load)
+  // Steps after incorporation (LLP Agreement / Form 3, INC-20A, ADT-1): their own table on the quote PDF, copy text and cart, not in the total
+  function afterRows(ids) {
+    ids = ids || []; var r = [];
+    if (ids.indexOf("llp") >= 0) r.push(["LLP Agreement drafting and filing (Form 3)", "₹499 + stamp duty", "Within 30 days of LLP incorporation. We draft the agreement, partners sign it on state stamp paper and we file Form 3 with MCA."]);
+    if (ids.indexOf("private-limited") >= 0 || ids.indexOf("opc") >= 0) {
+      if (ids.indexOf("inc-20a") < 0) r.push(["INC-20A: commencement of business", "₹499 + govt fee", "Within 180 days of incorporation"]);
+      r.push(["ADT-1: first auditor appointment", "₹499 + govt fee", "Within 30 days of incorporation"]);
+    }
+    return r;
+  }
+  function isAfterNote(x) { return /^After incorporation/.test(String(x || "")); }
   function quoteBar(k, wide) { return '<div class="qbar' + (wide ? " wide" : "") + '"><button type="button" data-qpdf="' + k + '">⬇ Download PDF</button><button type="button" data-qcopy="' + k + '">⧉ Copy quote</button></div>'; }
   // Quote from an assistant answer: its first heading, the line under it and its fee table
   function quoteFromHtml(html, s, details, note) {
@@ -2268,7 +2280,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     return "*GrowwBizz fee quote*\n" + q.title + (q.sub ? "\n" + q.sub : "") + "\n\n" +
       q.rows.map(function (r) { return (r[2] ? "    - " : "• ") + r[0] + ": " + (r[3] ? "~" + r[3] + "~ " : "") + r[1]; }).join("\n") +
       (q.total ? "\n\n*Total: " + (q.mrpTotal ? "~" + q.mrpTotal + "~ " : "") + q.total + "*" : "") +
-      (q.save ? "\n🎉 *" + offerName() + ": you save " + inr(q.save) + " on MRP*" : "") + (q.notes.length ? "\n\n" + q.notes.join("\n") : "") +
+      (q.save ? "\n🎉 *" + offerName() + ": you save " + inr(q.save) + " on MRP*" : "") + (afterRows(q.svc).length ? "\n\n*After incorporation (paid later, not in the total):*\n" + afterRows(q.svc).map(function (a) { return "• " + a[0] + ": " + a[1] + " (" + a[2].split(". ")[0] + ")"; }).join("\n") : "") + (q.notes.length ? "\n\n" + q.notes.filter(function (x) { return !(afterRows(q.svc).length && isAfterNote(x)); }).join("\n") : "") +
       "\n\nWhatsApp / Call: 92036 01998\nwww.growwbizz.in";
   }
   function copyText(t) {
@@ -2372,6 +2384,18 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
         font("bold", 9, [150, 100, 0]); doc.text(rs(offerName()).toUpperCase(), 20, y - 0.5);
         font("bold", 14, [13, 107, 69]); doc.text("You save " + rs(inr(q.save)) + " on MRP", 20, y + 5.6);
         font("normal", 8.5, MU); doc.text("Offer valid this month only", 190, y + 5.6, { align: "right" }); y += 17; }
+      var af = afterRows(q.svc);
+      if (af.length) {
+        need(18 + af.length * 14); y += 1;
+        font("bold", 11, G); doc.text("After incorporation (paid later, not in the total above)", 15, y); y += 3;
+        doc.setFillColor(232, 243, 238); doc.rect(15, y, 180, 8, "F"); font("bold", 10, INK); doc.text("Next step", 18, y + 5.5); doc.text("Fee", 192, y + 5.5, { align: "right" }); y += 14;
+        af.forEach(function (a) {
+          var dl; need(16); font("bold", 10.5, INK); doc.text(rs(a[0]), 18, y); doc.text(rs(a[1]), 192, y, { align: "right" });
+          font("normal", 9, MU); dl = doc.splitTextToSize(rs(a[2]), 170); dl.forEach(function (l, i) { doc.text(l, 18, y + 5 + i * 4.4); });
+          y += 4 + dl.length * 4.4 + 2; doc.setDrawColor(222, 230, 228); doc.setLineWidth(0.2); doc.line(15, y - 1, 195, y - 1); y += 6;
+        });
+        y += 2;
+      }
       // notes, details and, for each service, documents, steps with timelines and what the client gets
       function clean(t) { return rs(String(t == null ? "" : t).replace(/<[^>]+>/g, "")); }
       function need(h) { if (y + h > 268) { doc.addPage(); wm(); y = 22; } }
@@ -2381,7 +2405,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
         items.forEach(function (t) { font("normal", 9.5, MU); doc.splitTextToSize(clean(t), 174).forEach(function (l, i) { need(5); doc.text((i ? "   " : "-  ") + l, 16, y); y += 4.8; }); y += 1; });
         y += 3;
       }
-      block("Please note", q.notes.concat(["Government fees are as per current MCA and state rules and may change."]).filter(function (x, i, a) { return x && a.indexOf(x) === i; }));
+      block("Please note", q.notes.concat(["Government fees are as per current MCA and state rules and may change."]).filter(function (x, i, a) { return x && a.indexOf(x) === i && !(af.length && isAfterNote(x)); }));
       block("Your details", q.details || []);
       function pair(x) { return Array.isArray(x) ? x : [x]; }
       (q.svc || []).forEach(function (id) {
@@ -2446,7 +2470,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">' + saveBand(sums.save) + "</div>" : "") +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
       (oex.length ? '<p class="cnote">Plus the govt (MCA) fee for ' + esc(oex.join(", ")) + ", as per capital. We share the exact amount before we start.</p>" : qn.length === cart.length ? "" : sums.govt || sums.dsc ? '<p class="cnote">Govt fees as per current rules, capital up to ₹1 lakh. Change the state or number of people above to update the cost.</p>' : '<p class="cnote">No government fee for these services.</p>') +
-      (after.length ? '<p class="cnote">After incorporation (not in this total): ' + after.join("; ") + ".</p>" : "") +
+      (after.length ? '<div class="cafter"><b>After incorporation</b> <small>(paid later, not in this total)</small><table class="cbk">' + afterRows(cart.map(function (l) { return l.id; })).map(function (a) { return "<tr><td>" + esc(a[0]) + "<br><small>" + esc(a[2].split(". ")[0]) + "</small></td><td>" + esc(a[1]) + "</td></tr>"; }).join("") + "</table></div>" : "") +
       '<button type="button" class="cmore" data-go="prices" data-cclose>+ Add more services</button>' +
       '<div class="cpromise"><b>No 100% advance.</b> You pay for each step just before we start it.</div>' + quoteBar("cart", true) +
       '<div class="cwho"><div class="field"><label for="c-name">Your name</label><input id="c-name" autocomplete="name" value="' + esc(m.name || "") + '"></div><div class="field"><label for="c-mob">Your mobile</label><input id="c-mob" inputmode="numeric" maxlength="10" autocomplete="tel" value="' + esc(m.mobile || "") + '"></div></div>' + forBlock("c", cfor) + '<div class="err" id="c-err" role="alert"></div>' +
