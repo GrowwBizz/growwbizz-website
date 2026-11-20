@@ -1162,7 +1162,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       sub: "We prepare and file your DPIIT recognition application under Startup India.",
       facts: ["For Pvt Ltd, LLP and registered partnerships", "Fully online"],
       about: "DPIIT recognition certifies your business as a startup under the Government of India's Startup India programme. We handle the DPIIT registration application, including the write-up on your innovation.",
-      who: ["Private Limited companies, LLPs and registered partnership firms", "Entities less than 10 years old from incorporation", "Turnover below ₹100 crore in any year", "Businesses working on an innovative product, process or service"],
+      who: ["Private Limited companies, LLPs and registered partnership firms", "Entities less than 10 years old from incorporation", "Turnover below ₹200 crore in any year", "Businesses working on an innovative product, process or service"],
       get: ["Eligibility check", "Startup India portal profile", "Write-up on your innovation and business", "DPIIT application filed", "Follow-up till the recognition decision"],
       docs: [["Certificate of Incorporation", "Of the company, LLP or firm"], ["Company or LLP PAN", ""], ["Director or partner details", "Name, email, mobile"], ["Business write-up", "What you do and what is new about it. We help you draft it"], ["Website or pitch deck", "If available"], ["Authorisation letter", "We draft it for you"], ["Organisation DSC", "Class 3 DSC in the name of the company or LLP, not an individual DSC. We can issue it for ₹2,000"]],
       steps: [["Eligibility check", "We confirm your entity qualifies for DPIIT recognition.", "Same day"], ["Application drafting", "We prepare the innovation write-up and fill the application.", "1 to 2 working days"], ["Filing and follow-up", "We file on the Startup India portal and track it till DPIIT decides.", "As per DPIIT"]],
@@ -1853,7 +1853,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     "startup-india": [
       { k: "ent", q: "What type of business do you have?", o: function () { return [["Private Limited company", "co"], ["LLP", "llp"], ["Registered partnership firm", "firm"], ["Proprietor, OPC or not registered yet", "no"]]; } },
       { k: "age", q: "How old is the business, from its registration date?", o: function () { return [["Less than 10 years", "ok"], ["10 years or more", "old"]]; } },
-      { k: "to", q: "Has turnover crossed ₹100 crore in any year?", o: function () { return [["No", "ok"], ["Yes", "big"]]; } }],
+      { k: "to", q: "Has turnover crossed ₹200 crore in any year?", o: function () { return [["No", "ok"], ["Yes", "big"]]; } }],
     "gst-registration": [
       { k: "ent", q: "What type of business is it?", o: function () { return ENT; } },
       { k: "prem", q: "Is the business premises owned or rented?", o: function () { return [["Owned by me or the business", "own"], ["Rented", "rent"], ["Owned by a family member", "family"]]; } }],
@@ -1910,7 +1910,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     },
     "startup-india": function (a) {
       if (a.ent === "no") return h("Not eligible yet") + "DPIIT recognition is only for Private Limited companies, LLPs and registered partnership firms. We can register your company or LLP first (from ₹899 + govt fee + DSC) and then apply.";
-      if (a.age === "old" || a.to === "big") return h("Not eligible") + "DPIIT recognition is for entities under 10 years old with turnover below ₹100 crore in every year. Message us if you'd like us to check your case.";
+      if (a.age === "old" || a.to === "big") return h("Not eligible") + "DPIIT recognition is for entities under 10 years old with turnover below ₹200 crore in every year. Message us if you'd like us to check your case.";
       return h("Startup India (DPIIT) recognition") + "Your " + ENT_NAME[a.ent] + " looks eligible." + money([["GrowwBizz professional fee", 999], ["Govt fee", "Nil"], ["Organisation DSC, included", 2000]], 999 + 2000) + h("Documents") + docLi(byId["startup-india"].docs) + h("Steps") + li(byId["startup-india"].steps.map(function (s) { return s[0] + ": " + s[2]; })) + PAYNOTE;
     },
     "gst-registration": function (a) {
