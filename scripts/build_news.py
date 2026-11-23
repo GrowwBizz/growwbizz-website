@@ -119,7 +119,7 @@ def build():
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script src="/justify.js" defer></script></head><body>
 <header><div class="wrap"><a href="/" aria-label="GrowwBizz home"><img src="logo-dark.png" alt="GrowwBizz" width="145" height="35"></a><nav><a href="tel:+919203601998">Call 92036 01998</a></nav></div></header>
 <main class="wrap"><div class="crumbs"><a href="/">Home</a> › News</div>
-<div style="padding:22px 0 0"><div class="kick">Updated {esc(upd)} · Official sources only</div><h1>GrowwBizz News</h1>
+<div style="padding:22px 0 0"><div class="kick">Checked {esc(upd)} · Official sources only</div><h1>GrowwBizz News</h1>
 <p class="lead">GST, Income Tax, MCA and MSME updates that matter to your business, in plain words. Every update links to the official notification, circular or press release.</p></div>
 <div class="chips" role="group" aria-label="Filter by topic">{chips}</div>
 {''.join(card(i) for i in items)}
