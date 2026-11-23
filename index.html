@@ -1239,16 +1239,16 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       faq: [["How often do I file the LUT?", "Once every financial year, ideally before the first export of that year."], ["What if I export without an LUT?", "You must pay IGST on the export and then claim a refund."]] },
 
     { id: "llp-compliance", cat: "roc", name: "LLP Annual Compliance", short: "LLP Compliance",
-      mrp: 999, price: 499, from: true, plus: "per form + govt fee", card: "Form 8 and Form 11 every year, and Form 3 for your LLP Agreement.",
+      mrp: 999, price: 499, from: true, plus: "per form + govt fee", card: "Form 8 and Form 11 every year, LLP Agreement drafting and Form 3 to file it.",
       sub: "Yearly MCA filings for your LLP, filed on time to avoid ₹100 per day late fees.",
       facts: ["Form 11 by 30 May", "Form 8 by 30 October", "Late fee ₹100 per day per form"],
       about: "Every LLP must file Form 11 (annual return) and Form 8 (statement of accounts and solvency) with MCA every year, even if there was no business. Form 3 files the LLP Agreement and any change to it. Late filing attracts ₹100 per day per form.",
       who: ["Every registered LLP, even with zero business", "LLPs signing or changing their LLP Agreement"],
-      get: ["Form 11: annual return with partner details", "Form 8: statement of accounts and solvency", "Form 3: LLP Agreement or its changes", "Due date reminders on WhatsApp", "MCA filing receipts (SRN)"],
+      get: ["LLP Agreement drafting, new or changed", "Form 11: annual return with partner details", "Form 8: statement of accounts and solvency", "Form 3: LLP Agreement or its changes", "Due date reminders on WhatsApp", "MCA filing receipts (SRN)"],
       docs: [["Financial statements", "Balance sheet and profit and loss for the year"], ["Partner details", "Any change in partners or contribution"], ["DSC of designated partners", "We can arrange one for ₹2,000"], ["LLP Agreement", "For Form 3"]],
       steps: [["Share accounts", "Send your financial statements and partner details.", "Day 1"], ["Prepare forms", "We prepare the forms and share them for review.", "1 to 2 working days"], ["File with MCA", "Partners sign with DSC and we file. You get the SRN receipts.", "Before due date"]],
-      rates: [["Form 3 (LLP Agreement)", 499], ["Form 8 (accounts and solvency)", 999], ["Form 11 (annual return)", 999]],
-      breakup: [["Form 3: LLP Agreement", "₹499"], ["Form 8: accounts and solvency", "₹999 + govt fee"], ["Form 11: annual return", "₹999 + govt fee"], ["MCA filing fee per form", "As per contribution"], ["LLP Agreement stamp duty (Form 3)", "As per state"]],
+      rates: [["LLP Agreement drafting", 499], ["Form 3 (LLP Agreement)", 499], ["Form 8 (accounts and solvency)", 999], ["Form 11 (annual return)", 999]],
+      breakup: [["LLP Agreement drafting", "₹499"], ["Form 3: LLP Agreement filing", "₹499 + govt fee"], ["Form 8: accounts and solvency", "₹999 + govt fee"], ["Form 11: annual return", "₹999 + govt fee"], ["MCA filing fee per form", "As per contribution"], ["LLP Agreement stamp duty (Form 3)", "As per state"]],
       pay: "Paid per form, before we file it: our fee plus the MCA govt fee for that form.",
       faq: [["My LLP had no business. Do I still file?", "Yes. Form 8 and Form 11 are compulsory every year, even with nil business."], ["What if I miss the due date?", "MCA charges ₹100 per day per form for late filing."]] },
 
@@ -1306,17 +1306,19 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       faq: [["Can you handle a filing not listed here?", "Yes. Message us the requirement and we'll tell you if we can handle it, with the cost."]] },
 
     { id: "itr", cat: "tax", name: "Income Tax Return (ITR) Filing", short: "ITR Filing",
-      mrp: 999, price: 499, from: true, plus: "starts at", card: "ITR filing for salaried people, professionals and businesses.",
+      mrp: 999, price: 499, from: true, plus: "starts at", card: "ITR filing for individuals, professionals, businesses, LLPs (ITR-5) and Private Limited companies (ITR-6).",
+      rates: [["Individual", 499], ["LLP (ITR-5)", 1000], ["Private Limited company (ITR-6)", 1000]],
       sub: "Accurate ITR filing with the right form, deductions and a check of your AIS and Form 26AS.",
-      facts: ["Right ITR form", "AIS and 26AS checked", "Fully online"],
+      facts: ["Right ITR form", "Individuals, LLPs and companies", "Fully online"],
       about: "Filing your ITR on time avoids late fees and notices, helps with loans and visas, and lets you claim refunds. We pick the right form, check your income against AIS and Form 26AS, and claim every deduction you're entitled to.",
-      who: ["Salaried employees", "Freelancers and professionals", "Small business owners and traders", "Anyone with income from capital gains, rent or interest"],
+      who: ["Salaried employees", "Freelancers and professionals", "Small business owners and traders", "Anyone with income from capital gains, rent or interest", "LLPs (ITR-5)", "Private Limited companies (ITR-6)"],
       get: ["Choosing the right ITR form", "AIS, TIS and Form 26AS check", "Deductions under 80C, 80D and others", "Old vs new tax regime comparison", "ITR filed and e-verified", "Acknowledgement (ITR-V)"],
-      docs: [["PAN and Aadhaar", ""], ["Form 16", "If salaried"], ["Bank statements", "For interest and business receipts"], ["Investment proofs", "LIC, PPF, ELSS, health insurance and others"], ["Capital gains statement", "If you sold shares or property"], ["Income tax portal login", "Or we set it up with you"]],
+      docs: [["PAN and Aadhaar", ""], ["Form 16", "If salaried"], ["Bank statements", "For interest and business receipts"], ["Investment proofs", "LIC, PPF, ELSS, health insurance and others"], ["Capital gains statement", "If you sold shares or property"], ["Income tax portal login", "Or we set it up with you"], ["Accounts, books and income details", "Provided by you. For LLPs and companies, the finalised books of accounts and financial statements. Accounting and bookkeeping are not part of the ITR fee."]],
       steps: [["Share documents", "Send your documents on WhatsApp.", "Day 1"], ["Computation", "We compute your tax, compare regimes and share it with you.", "1 to 2 working days"], ["Filing", "We file the ITR and help you e-verify it.", "Same day as approval"]],
-      breakup: [["GrowwBizz professional fee", "From ₹499"], ["Govt fee", "Nil"]],
-      pay: "Our fee after you approve the computation, before filing.",
-      faq: [["What is the due date?", "Usually 31 July for individuals not requiring audit. Due dates can change by government notification."], ["I missed the due date. Can I still file?", "Yes, a belated return can be filed with a late fee, within the time allowed."]] },
+      breakup: [["Individual", "From ₹499"], ["LLP (ITR-5)", "From ₹1,000"], ["Private Limited company (ITR-6)", "From ₹1,000"], ["Govt fee", "Nil"]],
+      pay: "Our fee after you approve the computation, before filing. ITR charges are flexible: the prices shown are starting prices. Our team checks the complexity of your work and confirms the final price before we start.",
+      note: "ITR charges are flexible: the prices shown are starting prices. Our team checks the complexity of your work and confirms the final price before we start.",
+      faq: [["What is the due date?", "Usually 31 July for individuals not requiring audit. Due dates can change by government notification."], ["I missed the due date. Can I still file?", "Yes, a belated return can be filed with a late fee, within the time allowed."], ["Is the price fixed?", "No. The prices shown are starting prices. Our team checks the complexity of your work and confirms the final price before we start."], ["Do you prepare my books of accounts?", "No. You provide your accounts, books and income details. Accounting and bookkeeping are not part of the ITR fee."]] },
 
     { id: "tds-return", cat: "tax", name: "TDS Return Filing (24Q / 26Q)", short: "TDS Return",
       mrp: 2499, price: 1499, plus: "per quarterly return", card: "Quarterly TDS returns for salary and other payments, with Form 16 and 16A.",
@@ -2463,11 +2465,12 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     QUOTES = QUOTES || {}; QUOTES.cart = { title: "Combined quote for your services", sub: cart.length + " service" + (cart.length === 1 ? "" : "s") + " (Order ID " + cartId + "). Professional fee " + inr(sums.pro) + (sums.govt ? ", govt fees " + inr(sums.govt) : "") + (sums.dsc ? ", DSC " + inr(sums.dsc) : "") + ".",
       rows: [].concat.apply([], cart.map(function (l) { return lineRows(l, lineCost(l)); })),
       total: grand, save: sums.save, mrpTotal: sums.save && !qn.length ? inr(sums.all + sums.save) : "",
-      notes: [(oex.length ? "Plus the govt (MCA) fee for " + oex.join(", ") + ", as per capital; we share the exact amount before we start." : "")].concat(sums.govt ? ["Govt fees and stamp duty are paid to the government at actuals, for capital or contribution up to ₹1 lakh."] : [], qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], after.length ? ["After incorporation (not in this total): " + after.join("; ") + "."] : [], [PAYNOTE]).filter(Boolean), details: cartNote ? cartNote.split("\n") : [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
+      notes: [(hasItr() ? ITR_NOTE : ""), (oex.length ? "Plus the govt (MCA) fee for " + oex.join(", ") + ", as per capital; we share the exact amount before we start." : "")].concat(sums.govt ? ["Govt fees and stamp duty are paid to the government at actuals, for capital or contribution up to ₹1 lakh."] : [], qn.length ? ["We send a clear quote for " + qn.join(", ") + " before we start."] : [], after.length ? ["After incorporation (not in this total): " + after.join("; ") + "."] : [], [PAYNOTE]).filter(Boolean), details: cartNote ? cartNote.split("\n") : [], svc: cart.map(function (l) { return l.id; }).filter(function (x, i, a) { return a.indexOf(x) === i; }) };
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
       '<table class="csum"><tr><td>GrowwBizz professional fee</td><td>' + inr(sums.pro) + (qn.length ? " + quote" : "") + "</td></tr>" + (sums.govt ? "<tr><td>Govt fees and stamp duty</td><td>" + inr(sums.govt) + "</td></tr>" : "") + (sums.dsc ? "<tr><td>DSC</td><td>" + inr(sums.dsc) + "</td></tr>" : "") + "</table>" +
       '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">' + saveBand(sums.save) + "</div>" : "") +
+      (hasItr() ? '<p class="cnote">' + ITR_NOTE + "</p>" : "") +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
       (oex.length ? '<p class="cnote">Plus the govt (MCA) fee for ' + esc(oex.join(", ")) + ", as per capital. We share the exact amount before we start.</p>" : qn.length === cart.length ? "" : sums.govt || sums.dsc ? '<p class="cnote">Govt fees as per current rules, capital up to ₹1 lakh. Change the state or number of people above to update the cost.</p>' : '<p class="cnote">No government fee for these services.</p>') +
       (after.length ? '<div class="cafter"><b>After incorporation</b> <small>(paid later, not in this total)</small><table class="cbk">' + afterRows(cart.map(function (l) { return l.id; })).map(function (a) { return "<tr><td>" + esc(a[0]) + "<br><small>" + esc(a[2].split(". ")[0]) + "</small></td><td>" + esc(a[1]) + "</td></tr>"; }).join("") + "</table></div>" : "") +
@@ -2478,11 +2481,13 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       '<p class="csave">Your order is saved with our team the moment you tap, so we follow up even if WhatsApp does not open.</p>' +
       '<button type="button" class="cclear" data-cclear>Clear cart</button>';
   }
+  var ITR_NOTE = "ITR charges are flexible: the prices shown are starting prices. Our team checks the complexity of your work and confirms the final price before we start.";
+  function hasItr() { return cart.some(function (l) { return l.id === "itr"; }); }
   function cartMsg(total, exl) {
     var m = me();
     var sm = cartSums(), oex = openExtras(), qq = cart.some(function (l) { return byId[l.id].quote; });
     return "Hi GrowwBizz, I'd like these services.\nOrder ID: " + cartId + (m.name ? "\nName: " + m.name : "") + (m.mobile ? "\nMobile: " + m.mobile : "") + forLine(cfor) + "\n" + cart.map(function (l, n) { var s = byId[l.id], k = lineCost(l); return (n + 1) + ". " + lineName(l, k) + ": " + (s.quote ? "fee on quote" : inr(k.all) + (k.costed ? " (fee " + inr(k.pro) + (k.govt ? " + govt " + inr(k.govt) : "") + (k.dsc ? " + DSC " + inr(k.dsc) : "") + ")" : "")); }).join("\n") +
-      "\nProfessional fee: " + inr(sm.pro) + (qq ? " + quote" : "") + (sm.govt ? "\nGovt fees: " + inr(sm.govt) : "") + (sm.dsc ? "\nDSC: " + inr(sm.dsc) : "") + "\nTotal: " + inr(sm.all) + (qq ? " + quote" : "") + (oex.length ? " + govt fee for " + oex.join(", ") : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease confirm and share the documents list.";
+      "\nProfessional fee: " + inr(sm.pro) + (qq ? " + quote" : "") + (sm.govt ? "\nGovt fees: " + inr(sm.govt) : "") + (sm.dsc ? "\nDSC: " + inr(sm.dsc) : "") + "\nTotal: " + inr(sm.all) + (qq ? " + quote" : "") + (oex.length ? " + govt fee for " + oex.join(", ") : "") + (hasItr() ? "\nNote: " + ITR_NOTE : "") + (cartNote ? "\nDetails:\n" + cartNote : "") + "\nPlease confirm and share the documents list.";
   }
   var cartFocus = null;
   function openCart() { cartFocus = document.activeElement; renderCart(); cartEl.hidden = false; document.body.style.overflow = "hidden"; toastEl.hidden = true; cartEl.querySelector(".close").focus(); }
