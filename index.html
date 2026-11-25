@@ -941,7 +941,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
               <div class="field" id="state-f"><label for="state">State of registered office</label><select id="state"></select></div>
               <div class="field"><label for="dirs" id="dirs-l">How many directors?</label><select id="dirs"></select><small class="hint" id="dirs-h">A Private Limited company needs at least 2.</small></div>
               <div class="field"><span class="lbl">Digital signature (DSC)</span>
-                <div class="hint dsc-rec"><b>DSC included for every person</b>Class 3, valid 2 years, <s class="mrp">₹2,500</s> ₹2,000 per person. We make it for you, so all registration forms get signed smoothly with no back-and-forth.</div></div>
+                <div class="hint dsc-rec"><b>DSC charged separately, per person</b>Class 3, valid 2 years, <s class="mrp">₹2,500</s> ₹2,000 per person. We make it for you, so all registration forms get signed smoothly with no back-and-forth.</div></div>
               <p class="fine" style="margin:0">Capital or contribution up to ₹1 lakh.</p>
             </div>
             <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div id="calc-terms"></div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Add this costing to cart</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Then add GST, MSME or any other service and get one combined quote</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
@@ -1115,7 +1115,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     { id: "fin", cls: "c-fin", name: "Project Reports", blurb: "Project report and CMA data for bank loans" }
   ];
 
-  var DSC_ROW = ["DSC (Class 3, 2 years), per person, included", "₹2,000 (MRP ₹2,500)"];
+  var DSC_ROW = ["DSC (Class 3, 2 years), per person, charged separately", "₹2,000 (MRP ₹2,500)"];
   var S = [
     { id: "private-limited", cat: "start", name: "Private Limited Company Registration", short: "Private Limited", tag: "Most popular",
       mrp: 4999, price: 899, plus: "+ govt fee + DSC", card: "The best structure for startups and growing businesses that plan to raise funds.",
@@ -1154,7 +1154,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       get: ["Name approval from MCA", "DSC for the director and the nominee", "DIN for the director", "MOA and AOA drafting", "Certificate of Incorporation", "Company PAN and TAN", "WhatsApp updates at every step"],
       docs: [["PAN and Aadhaar", "Of the member and the nominee"], ["Address proof", "Bank statement or electricity bill, not older than 2 months"], ["Passport-size photograph", "Of the member and the nominee"], ["Nominee consent", "We prepare the form for signing"], ["Office electricity bill", "Not older than 2 months"], ["Rent agreement and owner NOC", "Only if the office is rented"]],
       steps: [["Name application", "Share two proposed names and your business activity.", "1 to 3 working days"], ["Documents and DSC", "DSC is issued and we draft the MOA, AOA and nominee consent.", "1 to 2 working days"], ["Incorporation", "We file with MCA. Certificate of Incorporation, PAN and TAN are issued.", "2 to 3 working days"]],
-      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fee: name application", "₹1,000"], ["Govt fee: PAN and TAN", "₹143"], ["State stamp duty and registration", "Varies by state"], ["DSC for director and nominee (2 × ₹2,000), included", "₹4,000 (MRP ₹5,000)"]],
+      breakup: [["GrowwBizz professional fee", "₹899"], ["Govt fee: name application", "₹1,000"], ["Govt fee: PAN and TAN", "₹143"], ["State stamp duty and registration", "Varies by state"], ["DSC for director and nominee (2 × ₹2,000), charged separately", "₹4,000 (MRP ₹5,000)"]],
       pay: "Paid in steps. The amount for each step (our fee, govt fee, DSC) is paid just before that step starts.",
       faq: [["Can an OPC have more than one owner?", "No. An OPC has one member. To add owners, it converts to a Private Limited Company."], ["Who can be a nominee?", "Any Indian resident adult, usually a family member. The nominee gives written consent at registration."]] },
 
@@ -1167,7 +1167,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       get: ["Eligibility check", "Startup India portal profile", "Write-up on your innovation and business", "DPIIT application filed", "Follow-up till the recognition decision"],
       docs: [["Certificate of Incorporation", "Of the company, LLP or firm"], ["Company or LLP PAN", ""], ["Director or partner details", "Name, email, mobile"], ["Business write-up", "What you do and what is new about it. We help you draft it"], ["Website or pitch deck", "If available"], ["Authorisation letter", "We draft it for you"], ["Organisation DSC", "Class 3 DSC in the name of the company or LLP, not an individual DSC. We can issue it for ₹2,000"]],
       steps: [["Eligibility check", "We confirm your entity qualifies for DPIIT recognition.", "Same day"], ["Application drafting", "We prepare the innovation write-up and fill the application.", "1 to 2 working days"], ["Filing and follow-up", "We file on the Startup India portal and track it till DPIIT decides.", "As per DPIIT"]],
-      breakup: [["GrowwBizz professional fee", "₹999"], ["Govt fee", "Nil"], ["Organisation DSC (Class 3, 2 years) of the company or LLP, included (an individual DSC does not work)", "₹2,000"]],
+      breakup: [["GrowwBizz professional fee", "₹999"], ["Govt fee", "Nil"], ["Organisation DSC (Class 3, 2 years) of the company or LLP, charged separately (an individual DSC does not work)", "₹2,000"]],
       pay: "Paid in steps, just before each step starts.",
       faq: [["Is DPIIT recognition free from the government?", "Yes, the government does not charge a fee for DPIIT recognition."], ["Do you help with funding?", "No. Our service covers DPIIT recognition only."], ["Which DSC is needed?", "An Organisation DSC (Class 3) issued in the name of the company or LLP. A director's or partner's individual DSC cannot be used."]] },
 
@@ -1356,12 +1356,12 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       get: ["DGFT (IECGATE) portal registration", "IEC application signed with DSC", "IEC certificate", "Reminder for yearly IEC update"],
       docs: [["PAN card", "Of the business, and of proprietor, partners or directors"], ["Aadhaar card", "Of proprietor, all partners or all directors"], ["GST certificate", "Required"], ["Address proof", "Electricity bill or rent agreement"], ["Cancelled cheque", "Or bank certificate"], ["Mobile number and email ID", "Of each person, and of the firm, LLP or company, for OTP"]],
       steps: [["Details", "Share your documents.", "Same day"], ["Application", "We file the IEC application on DGFT.", "Same day"], ["IEC issued", "Your IEC certificate is issued.", "Usually 1 to 2 working days"]],
-      breakup: [["GrowwBizz professional fee", "₹799"], ["Govt fee (DGFT)", "₹500"], ["DSC (Class 3, 2 years), included", "₹2,000"]],
+      breakup: [["GrowwBizz professional fee", "₹799"], ["Govt fee (DGFT)", "₹500"], ["DSC (Class 3, 2 years), charged separately", "₹2,000"]],
       pay: "DSC, govt fee and our fee are paid before we file the application.",
       faq: [["Does IEC need renewal?", "IEC has lifetime validity, but it must be updated on the DGFT portal every year between April and June."]] },
 
     { id: "dsc", cat: "reg", name: "Digital Signature Certificate (DSC)", short: "DSC (Class 3)",
-      mrp: 2500, price: 2000, plus: "all inclusive", card: "Class 3 DSC with 2-year validity, for MCA, GST, ITR and tenders.",
+      mrp: 2500, price: 2000, plus: "per DSC, charged separately", card: "Class 3 DSC with 2-year validity, for MCA, GST, ITR and tenders.",
       sub: "Class 3 Digital Signature Certificate with 2-year validity, with USB token.",
       facts: ["2-year validity", "Usually same day", "Video verification online"],
       about: "A DSC is the digital form of your signature. It is needed for company and LLP filings, trademark filing, and is useful for GST, income tax and e-tenders.",
@@ -1922,7 +1922,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     "startup-india": function (a) {
       if (a.ent === "no") return h("Not eligible yet") + "DPIIT recognition is only for Private Limited companies, LLPs and registered partnership firms. We can register your company or LLP first (from ₹899 + govt fee + DSC) and then apply.";
       if (a.age === "old" || a.to === "big") return h("Not eligible") + "DPIIT recognition is for entities under 10 years old with turnover below ₹200 crore in every year. Message us if you'd like us to check your case.";
-      return h("Startup India (DPIIT) recognition") + "Your " + ENT_NAME[a.ent] + " looks eligible." + money([["GrowwBizz professional fee", 999], ["Govt fee", "Nil"], ["Organisation DSC, included", 2000]], 999 + 2000) + h("Documents") + docLi(byId["startup-india"].docs) + h("Steps") + li(byId["startup-india"].steps.map(function (s) { return s[0] + ": " + s[2]; })) + PAYNOTE;
+      return h("Startup India (DPIIT) recognition") + "Your " + ENT_NAME[a.ent] + " looks eligible." + money([["GrowwBizz professional fee", 999], ["Govt fee", "Nil"], ["Organisation DSC, charged separately", 2000]], 999 + 2000) + h("Documents") + docLi(byId["startup-india"].docs) + h("Steps") + li(byId["startup-india"].steps.map(function (s) { return s[0] + ": " + s[2]; })) + PAYNOTE;
     },
     "gst-registration": function (a) {
       var skip = false, d = DOCSBY["gst-registration"].docs[a.ent].filter(function (x) { if (x[0].charAt(0) === "#") skip = x[0].indexOf("address proof") >= 0; return !skip; });
@@ -1950,7 +1950,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       return h("Income tax return") + money([["GrowwBizz fee", a.inc === "sal" ? "From ₹499" : "From ₹499, " + CONFIRM + " after seeing documents"], ["Govt fee", "Nil"]]) + h("Documents") + docLi([["PAN and Aadhaar", ""], ["Bank statements", "For interest"]].concat(extra).concat([["Investment proofs", "LIC, PPF, ELSS, health insurance"]])) + "We share your tax computation first. Our fee is paid before we file.";
     },
     msme: function (a) { return h("MSME (Udyam) for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 499], ["Govt fee", "Nil"]], 499) + h("Documents") + docLi(DOCSBY.msme.docs[a.ent]) + "Usually issued in 1 to 2 working days. Our fee is paid before we file."; },
-    iec: function (a) { return h("IEC for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 799], ["Govt fee (DGFT)", 500], ["DSC (Class 3, 2 years), included", 2000]], 3299) + h("Documents") + docLi(DOCSBY.iec.docs[a.ent]) + "Usually issued in 1 to 2 working days. Fees are paid before we file."; },
+    iec: function (a) { return h("IEC for a " + ENT_NAME[a.ent]) + money([["GrowwBizz professional fee", 799], ["Govt fee (DGFT)", 500], ["DSC (Class 3, 2 years), charged separately", 2000]], 3299) + h("Documents") + docLi(DOCSBY.iec.docs[a.ent]) + "Usually issued in 1 to 2 working days. Fees are paid before we file."; },
     dsc: function (a) { return h("Class 3 DSC, 2-year validity") + money([[a.n + " × ₹2,000", a.n * 2000]], a.n * 2000) + h("For each person") + docLi(byId.dsc.docs) + "Usually issued the same day after video verification. Paid before we apply."; },
     trademark: function (a) {
       var govt = a.app === "big" ? 9000 : 4500, rows = [["GrowwBizz fee: " + a.cls + " × ₹799", 799 * a.cls], ["Govt fee: " + a.cls + " × " + inr(govt), govt * a.cls]], tot = 799 * a.cls + govt * a.cls;
