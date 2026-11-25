@@ -614,6 +614,7 @@ table.cb tr.t td { border-bottom: 0; border-top: 1px solid var(--gold); font-wei
 .cp .rm { display: block; margin-left: auto; margin-top: 4px; font: inherit; font-size: 13px; font-weight: 600; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .ctot { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0 6px; border-top: 1px solid var(--gold); font-weight: 800; font-size: 17px; }
 .ctot b { font-family: var(--display); font-size: 34px; color: var(--gold-t2); }
+.terms-note { font-size: 12.5px; line-height: 1.5; color: var(--muted); border-top: 1px dashed var(--hair-2); margin: 12px 0 0; padding-top: 10px; text-align: left; } .terms-note b { color: var(--ink-2); }
 .cnote { color: var(--ink-2); font-size: 15px; margin: 6px 0 14px; } .cnote a { color: var(--gold-t2); font-weight: 700; }
 .cpromise { padding: 12px 14px; border-radius: 14px; border: 1px dashed var(--gold); font-size: 15px; color: var(--ink-2); margin-bottom: 16px; } .cpromise b { color: var(--gold-t2); }
 .cart .btn-wa { width: 100%; }
@@ -943,7 +944,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
                 <div class="hint dsc-rec"><b>DSC included for every person</b>Class 3, valid 2 years, <s class="mrp">₹2,500</s> ₹2,000 per person. We make it for you, so all registration forms get signed smoothly with no back-and-forth.</div></div>
               <p class="fine" style="margin:0">Capital or contribution up to ₹1 lakh.</p>
             </div>
-            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Add this costing to cart</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Then add GST, MSME or any other service and get one combined quote</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
+            <div class="bill" aria-live="polite"><table><tbody id="bill"></tbody></table><div class="note"><b style="color:var(--gold-t2)">No 100% advance.</b> Paid in steps, each just before it starts.</div><div id="calc-terms"></div><div class="act"><a class="btn btn-gold" id="calc-wa" href="#">Add this costing to cart</a><p class="fine" style="margin:8px 0 0;text-align:center;font-size:13.5px">Then add GST, MSME or any other service and get one combined quote</p><div class="qbar wide"><button type="button" data-qpdf="calc">⬇ Download PDF</button><button type="button" data-qcopy="calc">⧉ Copy quote</button></div></div></div>
           </div>
         </div>
         <div class="card" id="roc-dates">
@@ -1518,6 +1519,13 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     document.getElementById("dirs-l").textContent = type === "opc" ? "Director + nominee" : "How many " + WHO[type][0] + "?";
     document.getElementById("dirs-h").textContent = WHO[type][1];
   }
+  var TERM_GOVT = "Government fees and stamp duty are taken from the official government portals (MCA, State stamp duty, IP India, DGFT, etc.) as on the date of this quote and are charged at actuals. If any government fee is revised before or at the time of filing, the client has to pay the additional amount \u2013 GrowwBizz will not bear any change in government fees.";
+  var TERM_COMBO = "Offer prices and discounts are combo offers for the services quoted together. If the client does not take any service or part of this quote, the offer / discount may be withdrawn at GrowwBizz's discretion.";
+  function hasGovtTxt(t) { return /govt|government|stamp|DGFT|MCA|IP India/i.test(t); }
+  // which standard terms apply: govt term when any govt fee or stamp duty line, combo term when any offer price (MRP) or discount
+  function termsOf(govt, offer) { var a = []; if (govt) a.push(TERM_GOVT); if (offer) a.push(TERM_COMBO); return a; }
+  function termsQ(q) { return termsOf(q.rows.some(function (r) { return hasGovtTxt(r[0]); }), !!(q.save || q.rows.some(function (r) { return r[3]; }))); }
+  function termsNote(a) { return a.length ? '<div class="terms-note"><b>Terms:</b> ' + a.map(esc).join(" ") + "</div>" : ""; }
   function renderCalc() {
     var afterTxt = type === "llp" ? "After incorporation: LLP Agreement drafting ₹499 + stamp duty, and Form 3 filing ₹499 + govt fee." : "After incorporation: INC-20A and ADT-1 filing, ₹499 each + govt fee.";
     calcRows = [];
@@ -1534,6 +1542,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     var who = type === "llp" ? "designated partners" : type === "opc" ? "people (director + nominee)" : "directors";
     QUOTES = QUOTES || {}; QUOTES.calc = { title: label.replace(/^Private Limited in/, "Private Limited company in"), sub: dirSel.value + " " + who + ", " + n + " new DSC" + (n === 1 ? "" : "s") + ", capital up to ₹1 lakh.", rows: calcRows, total: inr(tot), save: save, mrpTotal: inr(tot + save),
       notes: ["No 100% advance. You pay in steps, each just before it starts.", afterTxt], details: [], svc: [type === "pvt" ? "private-limited" : type === "opc" ? "opc" : "llp"] };
+    document.getElementById("calc-terms").innerHTML = termsNote(termsQ(QUOTES.calc));
     calcWa.href = wa("Hi GrowwBizz, I want to register a " + label + " with " + dirSel.value + " " + (type === "llp" ? "partner(s)" : type === "opc" ? "people (director + nominee)" : "director(s)") + ", " + n + " new DSC(s) needed. Your calculator shows " + inr(tot) + "."); 
   }
   document.querySelectorAll("#calc .seg button").forEach(function (b) {
@@ -2263,7 +2272,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     return r;
   }
   function isAfterNote(x) { return /^After incorporation/.test(String(x || "")); }
-  function quoteBar(k, wide) { return '<div class="qbar' + (wide ? " wide" : "") + '"><button type="button" data-qpdf="' + k + '">⬇ Download PDF</button><button type="button" data-qcopy="' + k + '">⧉ Copy quote</button></div>'; }
+  function quoteBar(k, wide) { return (k === "cart" || k === "calc" ? "" : termsNote(termsQ(QUOTES[k]))) + '<div class="qbar' + (wide ? " wide" : "") + '"><button type="button" data-qpdf="' + k + '">⬇ Download PDF</button><button type="button" data-qcopy="' + k + '">⧉ Copy quote</button></div>'; }
   // Quote from an assistant answer: its first heading, the line under it and its fee table
   function quoteFromHtml(html, s, details, note) {
     var d = document.createElement("div"); d.innerHTML = html;
@@ -2283,6 +2292,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       q.rows.map(function (r) { return (r[2] ? "    - " : "• ") + r[0] + ": " + (r[3] ? "~" + r[3] + "~ " : "") + r[1]; }).join("\n") +
       (q.total ? "\n\n*Total: " + (q.mrpTotal ? "~" + q.mrpTotal + "~ " : "") + q.total + "*" : "") +
       (q.save ? "\n🎉 *" + offerName() + ": you save " + inr(q.save) + " on MRP*" : "") + (afterRows(q.svc).length ? "\n\n*After incorporation (paid later, not in the total):*\n" + afterRows(q.svc).map(function (a) { return "• " + a[0] + ": " + a[1] + " (" + a[2].split(". ")[0] + ")"; }).join("\n") : "") + (q.notes.length ? "\n\n" + q.notes.filter(function (x) { return !(afterRows(q.svc).length && isAfterNote(x)); }).join("\n") : "") +
+      (termsQ(q).length ? "\n\n*Terms:*\n" + termsQ(q).map(function (x, i) { return (i + 1) + ". " + x; }).join("\n") : "") +
       "\n\nWhatsApp / Call: 92036 01998\nwww.growwbizz.in";
   }
   function copyText(t) {
@@ -2426,6 +2436,15 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       font("bold", 11.5, G); doc.text("Ready to start? We do it 100% online.", 21, y + 8);
       font("normal", 10, INK); doc.text("WhatsApp or call 92036 01998 (calls 11am to 7pm, Mon to Sat)  |  www.growwbizz.in", 21, y + 14.5);
       doc.link(15, y, 180, 20, { url: "https://wa.me/919203601998?text=" + encodeURIComponent("Hi GrowwBizz, I have your quote " + qno + " for " + q.title + ".") });
+      // standard terms box above the footer
+      var tm = termsQ(q);
+      if (tm.length) {
+        var tl = []; tm.forEach(function (x, i) { doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); tl.push(doc.splitTextToSize((i + 1) + ". " + rs(x), 170)); });
+        var th = 12 + tl.reduce(function (a, l) { return a + l.length * 4 + 1.5; }, 0);
+        y += 24; need(th + 4); doc.setFillColor(247, 249, 248); doc.setDrawColor(190, 205, 200); doc.setLineWidth(0.3); doc.roundedRect(15, y, 180, th, 2, 2, "FD");
+        font("bold", 10, INK); doc.text("Terms", 19, y + 6.5); var ty = y + 11.5;
+        tl.forEach(function (ls) { font("normal", 8.5, MU); ls.forEach(function (l) { doc.text(l, 19, ty); ty += 4; }); ty += 1.5; }); y += th + 2;
+      }
       // footer on every page
       var pages = doc.getNumberOfPages();
       for (var pg = 1; pg <= pages; pg++) {
@@ -2469,7 +2488,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
     cartBody.innerHTML = '<div class="oid">Order ID <b>' + cartId + "</b></div>" + rows +
       (cartNote ? '<div class="cdet"><b>Your details</b>' + cartNote.split("\n").map(esc).join("<br>") + "</div>" : "") +
       '<table class="csum"><tr><td>GrowwBizz professional fee</td><td>' + inr(sums.pro) + (qn.length ? " + quote" : "") + "</td></tr>" + (sums.govt ? "<tr><td>Govt fees and stamp duty</td><td>" + inr(sums.govt) + "</td></tr>" : "") + (sums.dsc ? "<tr><td>DSC</td><td>" + inr(sums.dsc) + "</td></tr>" : "") + "</table>" +
-      '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">' + saveBand(sums.save) + "</div>" : "") +
+      '<div class="ctot"><span>' + (sums.govt || sums.dsc ? "Total payable (all-in)" : "Total") + "</span><b>" + (grand || "On quote") + "</b></div>" + (sums.save ? '<div class="csave-mrp">' + saveBand(sums.save) + "</div>" : "") + termsNote(termsQ(QUOTES.cart)) +
       (hasItr() ? '<p class="cnote">' + ITR_NOTE + "</p>" : "") +
       (qn.length ? '<p class="cnote">We send a clear quote for ' + qn.join(", ") + ", including the govt (MCA) fee, before we start.</p>" : "") +
       (oex.length ? '<p class="cnote">Plus the govt (MCA) fee for ' + esc(oex.join(", ")) + ", as per capital. We share the exact amount before we start.</p>" : qn.length === cart.length ? "" : sums.govt || sums.dsc ? '<p class="cnote">Govt fees as per current rules, capital up to ₹1 lakh. Change the state or number of people above to update the cost.</p>' : '<p class="cnote">No government fee for these services.</p>') +
@@ -2579,7 +2598,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       '<div class="spanel" id="sp" role="tabpanel">' + tabs[0][2] + "</div>" +
       (s.cat === "gst" ? GST_BOX() : "") +
       '<div><span class="kicker">You may also need</span><div class="related" style="margin-top:16px">' + rel.slice(0, 3).map(function (x) { return '<a class="rel" href="#' + x.id + '"><h4>' + esc(x.short) + "</h4><p>" + esc(x.card) + "</p><b>" + priceTxt(x) + "</b></a>"; }).join("") + "</div></div></div>" +
-      '<aside class="side"><div class="pcard"><div class="hd"><div class="lbl">' + (s.quote ? "Professional fee" : s.from ? "Starts at" : "Professional fee") + '</div>' + (mrpOf(s) && !s.quote ? '<div class="pmrp"><s>' + inr(s.mrp) + "</s>" + offTag(s) + "</div>" : "") + '<div class="amt num gold-text">' + inr(s.price) + "</div><div style=\"color:var(--muted);font-size:13.5px\">" + esc(s.quote ? "We quote after understanding your need" : s.plus) + "</div><ul>" + breakup + '</ul></div><div class="pay' + (s.payAfter ? " payafter" : "") + '"><b>' + (s.payAfter ? esc(s.payAfter) + "." : "No 100% advance.") + "</b> " + esc(s.pay) + '</div><div class="acts">' + (s.quote ? '<a class="btn btn-gold" data-wa="Hi GrowwBizz, I want ' + esc(s.name) + '. Please share a quote and the documents list." href="#">Get a quote on WhatsApp</a>' : '<button type="button" class="btn btn-gold" data-order="' + s.id + '">Order now</button>') + (CALC_FOR[s.id] ? '<button type="button" class="btn btn-ghost" data-calctab>Calculate my exact fees</button>' : FLOWS[s.id] && FLOWS[s.id].length ? '<button type="button" class="btn btn-ghost" data-ask="' + s.id + '">Check my exact cost</button>' : "") + '<div class="minor">' + (s.quote ? "" : '<button type="button" data-add="' + s.id + '">' + CART_ICON + "Add to cart only</button><span>·</span>") + '<a href="tel:+919203601998">Call 92036 01998</a></div><p class="hours">Calls: Mon to Sat, 11 am to 7 pm · WhatsApp 24×7</p></div></div>' +
+      '<aside class="side"><div class="pcard"><div class="hd"><div class="lbl">' + (s.quote ? "Professional fee" : s.from ? "Starts at" : "Professional fee") + '</div>' + (mrpOf(s) && !s.quote ? '<div class="pmrp"><s>' + inr(s.mrp) + "</s>" + offTag(s) + "</div>" : "") + '<div class="amt num gold-text">' + inr(s.price) + "</div><div style=\"color:var(--muted);font-size:13.5px\">" + esc(s.quote ? "We quote after understanding your need" : s.plus) + "</div><ul>" + breakup + '</ul>' + termsNote(termsOf(hasGovtTxt((s.breakup || []).map(function (x) { return x[0]; }).join(" ") + " " + (s.plus || "")), !s.quote && !!mrpOf(s))) + '</div><div class="pay' + (s.payAfter ? " payafter" : "") + '"><b>' + (s.payAfter ? esc(s.payAfter) + "." : "No 100% advance.") + "</b> " + esc(s.pay) + '</div><div class="acts">' + (s.quote ? '<a class="btn btn-gold" data-wa="Hi GrowwBizz, I want ' + esc(s.name) + '. Please share a quote and the documents list." href="#">Get a quote on WhatsApp</a>' : '<button type="button" class="btn btn-gold" data-order="' + s.id + '">Order now</button>') + (CALC_FOR[s.id] ? '<button type="button" class="btn btn-ghost" data-calctab>Calculate my exact fees</button>' : FLOWS[s.id] && FLOWS[s.id].length ? '<button type="button" class="btn btn-ghost" data-ask="' + s.id + '">Check my exact cost</button>' : "") + '<div class="minor">' + (s.quote ? "" : '<button type="button" data-add="' + s.id + '">' + CART_ICON + "Add to cart only</button><span>·</span>") + '<a href="tel:+919203601998">Call 92036 01998</a></div><p class="hours">Calls: Mon to Sat, 11 am to 7 pm · WhatsApp 24×7</p></div></div>' +
       '<div class="helpbox"><b>Not sure what you need?</b>WhatsApp us any time. Calls 11 am to 7 pm, Monday to Saturday.</div></aside></div>';
     var sp = document.getElementById("sp");
     svcView.querySelectorAll(".stabs button").forEach(function (b) {
