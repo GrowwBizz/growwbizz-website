@@ -1,45 +1,58 @@
 {
-  "updated": "2026-11-23",
-  "note": "Only official government sources. Each item links to the official notification, circular or press release.",
-  "items": [
-    {
-      "id": "2026-10-24-mca-aoc4-mgt7-extension",
-      "date": "2026-10-24",
-      "cat": "MCA / ROC",
-      "title": "AOC-4 extended to 31 Dec 2026 and MGT-7 to 31 Jan 2027, no late fee",
-      "summary": "MCA has allowed companies to file financial statements (AOC-4 and its XBRL, CFS and NBFC versions) for FY 2025-26 up to 31 December 2026, and annual returns (MGT-7 and MGT-7A) up to 31 January 2027, without additional fees. Filings after these dates will attract the full additional fee counted from the original due date. The time limit for holding the AGM is not extended.",
-      "who": "All private limited companies, OPCs and other companies filing annual returns for FY 2025-26",
-      "action": "File AOC-4 by 31 December 2026 and MGT-7 or MGT-7A by 31 January 2027 to avoid late fees.",
-      "deadline": "2026-12-31",
-      "ref": "MCA General Circular No. 05/2026 dated 24 Oct 2026",
-      "source_name": "Ministry of Corporate Affairs",
-      "source_url": "https://www.mca.gov.in/bin/dms/getdocument?mds=5vSiNq59rdjIZwZqMbEIgQ%3D%3D&type=open"
-    },
-    {
-      "id": "2026-10-08-gst-council-57",
-      "date": "2026-10-08",
-      "cat": "GST",
-      "title": "GST Council recommends lower penalties and easier compliance",
-      "summary": "At its 57th meeting the GST Council recommended removing arrest provisions under GST, raising the prosecution threshold from ₹1 crore to ₹5 crore and cutting the general penalty from ₹25,000 to ₹10,000. It also recommended simpler registration for small sellers on e-commerce platforms and faster refunds, and approved in principle an optional scheme for small consumer-facing businesses with turnover up to ₹5 crore.",
-      "who": "All GST-registered businesses, small e-commerce sellers, exporters",
-      "action": "These are recommendations. Each change applies only from the date the government notifies it.",
-      "deadline": "",
-      "ref": "Press release, 57th GST Council meeting, 08 Oct 2026",
-      "source_name": "GST Council",
-      "source_url": "https://gstcouncil.gov.in/sites/default/files/2026-10/press_release.pdf"
-    },
-    {
-      "id": "2026-09-29-itr-audit-extension",
-      "date": "2026-09-29",
-      "cat": "Income Tax",
-      "title": "ITR due date for tax-audit cases extended to 21 November 2026",
-      "summary": "CBDT has extended the due date for filing income tax returns for AY 2026-27 by taxpayers whose accounts must be audited, from 31 October 2026 to 21 November 2026. The due date for the tax audit report was extended from 30 September 2026 to 21 October 2026.",
-      "who": "Businesses and professionals covered by tax audit",
-      "action": "File the ITR by 21 November 2026 to avoid late fees and interest.",
-      "deadline": "2026-11-21",
-      "ref": "CBDT Circular No. 07/2026 dated 28 Sep 2026",
-      "source_name": "Income Tax Department",
-      "source_url": "https://www.incometax.gov.in/iec/foportal/sites/default/files/2026-09/Circular-7-2026.pdf"
-    }
-  ]
+ "updated": "2026-11-25",
+ "note": "Only official government sources. Each item links to the official notification, circular or press release.",
+ "items": [
+  {
+   "id": "2026-10-24-mca-aoc4-mgt7-extension",
+   "date": "2026-10-24",
+   "cat": "MCA / ROC",
+   "title": "AOC-4 extended to 31 Dec 2026 and MGT-7 to 31 Jan 2027, no late fee",
+   "summary": "MCA has allowed companies to file financial statements (AOC-4 and its XBRL, CFS and NBFC versions) for FY 2025-26 up to 31 December 2026, and annual returns (MGT-7 and MGT-7A) up to 31 January 2027, without additional fees. Filings after these dates will attract the full additional fee counted from the original due date. The time limit for holding the AGM is not extended.",
+   "who": "All private limited companies, OPCs and other companies filing annual returns for FY 2025-26",
+   "action": "File AOC-4 by 31 December 2026 and MGT-7 or MGT-7A by 31 January 2027 to avoid late fees.",
+   "deadline": "2026-12-31",
+   "ref": "MCA General Circular No. 05/2026 dated 24 Oct 2026",
+   "source_name": "Ministry of Corporate Affairs",
+   "source_url": "https://www.mca.gov.in/bin/dms/getdocument?mds=5vSiNq59rdjIZwZqMbEIgQ%3D%3D&type=open"
+  },
+  {
+   "id": "2026-10-08-gst-council-57",
+   "date": "2026-10-08",
+   "cat": "GST",
+   "title": "GST Council recommends lower penalties and easier compliance",
+   "summary": "At its 57th meeting the GST Council recommended removing arrest provisions under GST, raising the prosecution threshold from ₹1 crore to ₹5 crore and cutting the general penalty from ₹25,000 to ₹10,000. It also recommended simpler registration for small sellers on e-commerce platforms and faster refunds, and approved in principle an optional scheme for small consumer-facing businesses with turnover up to ₹5 crore.",
+   "who": "All GST-registered businesses, small e-commerce sellers, exporters",
+   "action": "These are recommendations. Each change applies only from the date the government notifies it.",
+   "deadline": "",
+   "ref": "Press release, 57th GST Council meeting, 08 Oct 2026",
+   "source_name": "GST Council",
+   "source_url": "https://gstcouncil.gov.in/sites/default/files/2026-10/press_release.pdf"
+  },
+  {
+   "id": "2026-09-29-itr-audit-extension",
+   "date": "2026-09-29",
+   "cat": "Income Tax",
+   "title": "ITR due date for tax-audit cases extended to 21 November 2026",
+   "summary": "CBDT has extended the due date for filing income tax returns for AY 2026-27 by taxpayers whose accounts must be audited, from 31 October 2026 to 21 November 2026. The due date for the tax audit report was extended from 30 September 2026 to 21 October 2026.",
+   "who": "Businesses and professionals covered by tax audit",
+   "action": "File the ITR by 21 November 2026 to avoid late fees and interest.",
+   "deadline": "2026-11-21",
+   "ref": "CBDT Circular No. 07/2026 dated 28 Sep 2026",
+   "source_name": "Income Tax Department",
+   "source_url": "https://www.incometax.gov.in/iec/foportal/sites/default/files/2026-09/Circular-7-2026.pdf"
+  },
+  {
+   "id": "2026-07-08-mca-ccfs-2026-extension",
+   "date": "2026-07-08",
+   "cat": "MCA / ROC",
+   "title": "MCA extends Companies Compliance Facilitation Scheme, 2026",
+   "summary": "The Ministry of Corporate Affairs extended the Companies Compliance Facilitation Scheme, 2026 (CCFS-2026) up to 31 August 2026, giving companies more time to file pending statutory forms under the scheme. Check the circular for the forms and fees covered.",
+   "who": "Companies with pending ROC filings",
+   "action": "The scheme window has since closed. If you still have pending filings, talk to us about the current position.",
+   "deadline": "",
+   "ref": "MCA General Circular No. 03/2026 dated 08.07.2026",
+   "source_name": "Ministry of Corporate Affairs",
+   "source_url": "https://www.mca.gov.in/"
+  }
+ ]
 }
