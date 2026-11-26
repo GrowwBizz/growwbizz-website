@@ -923,6 +923,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
       <div class="tabs" role="tablist" id="ptabs" aria-label="Price list categories"></div>
       <div class="plist" id="plist" role="tabpanel"></div>
       <p class="fine">You pay for each step just before we start it. Government fees, once paid, are non-refundable.</p>
+      <div id="price-terms"></div>
     </div>
   </section>
 
@@ -1526,6 +1527,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
   function termsOf(govt, offer) { var a = []; if (govt) a.push(TERM_GOVT); if (offer) a.push(TERM_COMBO); return a; }
   function termsQ(q) { return termsOf(q.rows.some(function (r) { return hasGovtTxt(r[0]); }), !!(q.save || q.rows.some(function (r) { return r[3]; }))); }
   function termsNote(a) { return a.length ? '<div class="terms-note"><b>Terms:</b> ' + a.map(esc).join(" ") + "</div>" : ""; }
+  document.getElementById("price-terms").innerHTML = termsNote(termsOf(true, true));
   function renderCalc() {
     var afterTxt = type === "llp" ? "After incorporation: LLP Agreement drafting ₹499 + stamp duty, and Form 3 filing ₹499 + govt fee." : "After incorporation: INC-20A and ADT-1 filing, ₹499 each + govt fee.";
     calcRows = [];
@@ -2417,7 +2419,7 @@ table.csum td { padding: 7px 0 0; } table.csum td:last-child { text-align: right
         items.forEach(function (t) { font("normal", 9.5, MU); doc.splitTextToSize(clean(t), 174).forEach(function (l, i) { need(5); doc.text((i ? "   " : "-  ") + l, 16, y); y += 4.8; }); y += 1; });
         y += 3;
       }
-      block("Please note", q.notes.concat(["Government fees are as per current MCA and state rules and may change."]).filter(function (x, i, a) { return x && a.indexOf(x) === i && !(af.length && isAfterNote(x)); }));
+      block("Please note", q.notes.filter(function (x, i, a) { return x && a.indexOf(x) === i && !(af.length && isAfterNote(x)); }));
       block("Your details", q.details || []);
       function pair(x) { return Array.isArray(x) ? x : [x]; }
       (q.svc || []).forEach(function (id) {
